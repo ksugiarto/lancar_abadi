@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-md-2">
+  </div>
+  
+  <div class="col-md-8">
+    <h4 align="center"><%= t 'city.cities' %></h4>
+  </div>
+
+  <div class="col-md-2" align="right">
+    <%= link_to new_city_path, :class => "btn btn-default", :remote => true do %>
+      <i class="icon-plus-sign"></i>&nbsp;<%= t 'new' %>
+    <% end %>
+  </div>
+</div>
+
+<%=# render 'filter/city' 
+%>
+
+<div id="table"><%= render 'table' %></div>
+
+<div id="modal"></div>

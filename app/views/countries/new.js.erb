@@ -1,0 +1,13 @@
+$("#modal").dialog({
+  autoOpen: true,
+  height: 300,
+  width: 500,
+  modal: true,
+  title: "<%= t 'country.country' %> - <%= t 'new' %>",
+  open: function() {
+    $(this).html("<%= escape_javascript(render('form')) %>")
+  },
+  buttons: {
+    "<%= t 'cancel' %>": function() { $(this).dialog("close"); }
+  }
+});

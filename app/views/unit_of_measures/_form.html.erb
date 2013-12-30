@@ -1,0 +1,21 @@
+<%= form_for(@unit_of_measure, :html => { :class => "form-horizontal"}, :remote => true) do |f| %>
+  <% if @unit_of_measure.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@unit_of_measure.errors.count, "error") %> prohibited this unit_of_measure from being saved:</h2>
+
+      <ul>
+      <% @unit_of_measure.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :name, "#{t 'unit.name'}", :class => "col-sm-3 control-label" %>
+    <div class="col-sm-4"><%= f.text_field :name, :autofocus => true %></div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-4 col-sm-offset-3"><%= f.submit "#{t 'submit'}", :class => "btn btn-success", :disable_with => "#{t 'disable_with'}" %></div>
+  </div>
+<% end %>
