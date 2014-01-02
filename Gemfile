@@ -6,7 +6,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.12'
 gem 'pg'
 gem 'jquery-rails'
-gem 'jquery-ui-rails'
+# gem 'jquery-ui-rails'
 # gem 'date_time_picker', '~> 0.5.4'	# for date picker with time
 # gem "paperclip", '~> 3.4.2'					# required for upload and save photo
 # gem 'remotipart', '~> 1.0.5'				# required for form upload image remote form
@@ -29,7 +29,7 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
 end
-gem 'bootstrap-sass', '~> 2.3.2.0'
+# gem 'bootstrap-sass', '~> 2.3.2.0'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
