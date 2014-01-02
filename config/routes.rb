@@ -1,21 +1,10 @@
 LancarAbadi::Application.routes.draw do
   resources :provinces
-
-
   resources :suppliers
-
-
   resources :unit_of_measures
-
-
   resources :categories
-
-
   resources :cities
-
-
   resources :countries
-
 
   get "home/index"
 

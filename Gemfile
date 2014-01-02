@@ -4,8 +4,8 @@ source 'https://rubygems.org'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'rails', '3.2.12'
-gem 'pg'
-gem 'jquery-rails'
+gem 'pg', '0.17.0'
+gem 'jquery-rails', '3.0.4'
 # gem 'jquery-ui-rails'
 # gem 'date_time_picker', '~> 0.5.4'	# for date picker with time
 # gem "paperclip", '~> 3.4.2'					# required for upload and save photo
@@ -28,8 +28,8 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
+	# gem 'bootstrap-sass', '~> 2.3.2.0'
 end
-# gem 'bootstrap-sass', '~> 2.3.2.0'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
