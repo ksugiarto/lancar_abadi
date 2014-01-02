@@ -1,3 +1,59 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.status_1 /*STATUS POST => LIGHT GREEN*/
+{
+  background-color: #E0FFD6;
+}
+
+.status_7 /*PAYMENT POST => LIGHT GREEN*/
+{
+  background-color: #E0FFD6;
+}
+
+.status_4 /*STATUS WAITING => LIGHT YELLOW*/
+{
+  background-color: #FFE57F;
+}
+
+.status_5 /*STATUS VOID => LIGHT RED*/
+{
+  background-color: #FFE6E6;
+}
+
+.status_false /*STATUS VOID => LIGHT RED*/
+{
+  background-color: #FFE6E6;
+}
+
+div.login
+{
+  width:220px;
+  padding:10px;
+  border:5px solid #cfcfcf;
+  margin:0px;
+}
+
+h3.login
+{
+  margin:-10px -10px 21px;
+  line-height: 80px;
+  background:#f3f3f3;
+  border-bottom: 1px solid #cfcfcf;
+}
+
+.text-center
+{
+  text-align: center !important;
+}
+
+.text-right
+{
+  text-align: right !important;
+}
+
+.table-header
+{
+  background-color:#708DC6 !important;
+}

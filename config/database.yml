@@ -27,5 +27,3 @@ production:
   encoding: unicode
   database: lancar_abadi_production
   pool: 5
-  username: postgres
-  password: masterkey
