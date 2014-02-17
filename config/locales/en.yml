@@ -150,31 +150,27 @@ en:
   supplier:
     suppliers: "Suppliers"
     supplier: "Supplier"
-
-  vehicle:
-    vehicles: "Vehicles"
-    vehicle: "Vehicle"
-    ve_id: "Vehicle ID"
-    ve_id_placeholder: "Auto added when saving"
     name: "Name"
-    vehicle_type: "Vehicle Type"
-    police_id: "Police ID"
-    production_year: "Year of Production"
-    mileage: "Mileage"
-    colour: "Colour"
-    vehicle_registration_id: "STNK Number"
-    frame_number: "Frame Number"
-    machine_number: "Machine Number"
-    facility: "Facility"
-    machine_capacity: "Machine Capacity"
-    seating_capacity: "Seating Capacity"
-    fuel_type: "Fuel Type"
-    air_conditioning: "AC"
-    transport_capacity: "Transport Capacity"
-    motorcycle: "Motorcycle"
-    pick_up: "Pick-Up"
-    truck: "Truck"
-    car: "Car"
+    contact_person: "Contact Person"
+    email: "Email"
+    address: "Address"
+    join_date: "Join Date"
+    city: "City"
+    province: "Province"
+    category:
+      category: "Category"
+      notes: "Notes"
+    phone:
+      phone: "Phone"
+      country_ext: "Country EXT."
+      phone_number: "Phone Number"
+      description: "Description"
+
+  category:
+    categories: "Categories"
+    category: "Category"
+    name: "Name"
+    code: "Code"
 
   employee:
     employees: "Employees"

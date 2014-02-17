@@ -1,13 +1,5 @@
-$("#modal").dialog({
-  autoOpen: true,
-  height: 380,
-  width: 450,
-  modal: true,
-  title: "<%= t 'city.city' %> - <%= t 'edit' %>",
-  open: function() {
-    $(this).html("<%= escape_javascript(render('form')) %>")
-  },
-  buttons: {
-    "<%= t 'cancel' %>": function() { $(this).dialog("close"); }
-  }
-});
+$('#general_modal').modal('show');
+$('#general_modal .modal-title').html("<%= escape_javascript(t 'city.city') %> - <%= escape_javascript(t 'edit') %>");
+$('#general_modal .modal-body').html("<%= escape_javascript(render 'form') %>");
+
+$('#city_country_id').ajaxSelect('home/provinces_by_country');

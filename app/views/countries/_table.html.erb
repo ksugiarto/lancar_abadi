@@ -12,8 +12,8 @@
   <tr>
     <td><%= country.name %></td>
     <td><%= country.country_ext %></td>
-    <td style="text-align:right;">
-      <%= link_to "#{t 'edit'}", edit_country_path(country), :class => "btn btn-warning btn-mini", :remote => true %>
+    <td class="text-right">
+      <%= link_to "#{t 'edit'}", edit_country_path(country), :class => "btn btn-warning btn-xs", :remote => true %>
       <%= link_to "#{t 'destroy'}", country, method: :delete, data: { confirm: "#{t 'confirm'}" }, :class => "btn btn-danger btn-xs", :remote => true %>
     </td>
   </tr>

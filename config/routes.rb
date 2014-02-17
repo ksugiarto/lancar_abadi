@@ -1,12 +1,22 @@
 LancarAbadi::Application.routes.draw do
-  resources :provinces
-  resources :suppliers
+  resources :customer_phones
+
+  resources :customers
+
+  resources :suppliers do
+    resources :supplier_categories
+    resources :supplier_phones
+  end
+
   resources :unit_of_measures
   resources :categories
   resources :cities
+  resources :provinces
   resources :countries
 
   get "home/index"
+  get "*module/home/provinces_by_country" => "home#provinces_by_country"
+  get "*module/home/cities_by_province" => "home#cities_by_province"
 
   root to: "home#index"
 

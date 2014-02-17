@@ -7,8 +7,8 @@
   </div>
 
   <div class="col-md-2" align="right">
-    <%= link_to new_city_path, :class => "btn btn-default", :remote => true do %>
-      <i class="icon-plus-sign"></i>&nbsp;<%= t 'new' %>
+    <%= link_to new_city_path, :class => "btn btn-default btn-sm", :remote => true do %>
+      <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;<%= t 'new' %>
     <% end %>
   </div>
 </div>
@@ -19,3 +19,17 @@
 <div id="table"><%= render 'table' %></div>
 
 <div id="modal"></div>
+
+<!-- Modal -->
+<div id="general_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="BranchModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 class="modal-title"></h3>
+      </div>
+      <div class="modal-body">
+      </div>
+    </div>
+  </div>
+</div>

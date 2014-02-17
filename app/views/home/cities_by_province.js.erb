@@ -1,0 +1,5 @@
+$("select[id*='city_id']").empty();
+$("select[id*='city_id']").append($("<option></option>").attr("value","").text("<%= t 'prompt' %> <%= t 'city.city' %>"));
+<% for city in @cities %>
+$("select[id*='city_id']").append($("<option></option>").attr("value",<%= city.id %>).text('<%= city.name %>'));
+<% end %>

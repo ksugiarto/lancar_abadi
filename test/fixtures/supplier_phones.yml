@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  supplier: 
+  country_ext: MyString
+  phone_number: MyString
+  description: MyString
+
+two:
+  supplier: 
+  country_ext: MyString
+  phone_number: MyString
+  description: MyString

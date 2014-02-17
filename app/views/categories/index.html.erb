@@ -1,25 +1,35 @@
-<h1>Listing categories</h1>
+<div class="row">
+  <div class="col-md-2">
+  </div>
+  
+  <div class="col-md-8">
+    <h4 align="center"><%= t 'category.categories' %></h4>
+  </div>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Code</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+  <div class="col-md-2" align="right">
+    <%= link_to new_category_path, :class => "btn btn-default", :remote => true do %>
+      <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;<%= t 'new' %>
+    <% end %>
+  </div>
+</div>
 
-<% @categories.each do |category| %>
-  <tr>
-    <td><%= category.name %></td>
-    <td><%= category.code %></td>
-    <td><%= link_to 'Show', category %></td>
-    <td><%= link_to 'Edit', edit_category_path(category) %></td>
-    <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+<%=# render 'filter/category' 
+%>
 
-<br />
+<div id="table"><%= render 'table' %></div>
 
-<%= link_to 'New Category', new_category_path %>
+<div id="modal"></div>
+
+<!-- Modal -->
+<div id="general_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="BranchModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 class="modal-title"></h3>
+      </div>
+      <div class="modal-body">
+      </div>
+    </div>
+  </div>
+</div>

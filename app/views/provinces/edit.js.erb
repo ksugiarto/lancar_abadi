@@ -1,13 +1,3 @@
-$("#modal").dialog({
-  autoOpen: true,
-  height: 300,
-  width: 450,
-  modal: true,
-  title: "<%= t 'province.province' %> - <%= t 'edit' %>",
-  open: function() {
-    $(this).html("<%= escape_javascript(render('form')) %>")
-  },
-  buttons: {
-    "<%= t 'cancel' %>": function() { $(this).dialog("close"); }
-  }
-});
+$('#general_modal').modal('show');
+$('#general_modal .modal-title').html("<%= escape_javascript(t 'province.province') %> - <%= escape_javascript(t 'edit') %>");
+$('#general_modal .modal-body').html("<%= escape_javascript(render 'form') %>");

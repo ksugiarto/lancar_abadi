@@ -12,7 +12,7 @@
   <tr>
     <td><%= province.country.try(:name) %></td>
     <td><%= province.name %></td>
-    <td style="text-align:right;">
+    <td class="text-right">
       <%= link_to "#{t 'edit'}", edit_province_path(province), :class => "btn btn-warning btn-xs", :remote => true %>
       <%= link_to "#{t 'destroy'}", province, method: :delete, data: { confirm: "#{t 'confirm'}" }, :class => "btn btn-danger btn-xs", :remote => true %>
     </td>

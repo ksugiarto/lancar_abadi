@@ -33,11 +33,13 @@ class SuppliersController < ApplicationController
   # GET /suppliers/new.json
   def new
     @supplier = Supplier.new
+    get_data
   end
 
   # GET /suppliers/1/edit
   def edit
     @supplier = Supplier.find(params[:id])
+    get_data
   end
 
   # POST /suppliers

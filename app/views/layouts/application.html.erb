@@ -12,17 +12,29 @@
 		  <div class="row">
 			  <!-- Brand and toggle get grouped for better mobile display -->
 			  <div class="navbar-header">
-			    <a class="navbar-brand" href="/">Lancar Abadi</a>
+			    <a class="navbar-brand" href="/">
+			    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			    	Lancar Abadi
+			    </a>
 			  </div>
 
 			  <!-- Collect the nav links, forms, and other content for toggling -->
 			  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			    <ul class="nav navbar-nav">
-			      <li><a href="/suppliers/"><%= t 'supplier.supplier' %></a></li>
-			      <li><a href="/unit_of_measures/"><%= t 'unit.unit' %></a></li>
-			      <li><a href="/countries/"><%= t 'country.country' %></a></li>
-			      <li><a href="/provinces/"><%= t 'province.province' %></a></li>
-			      <li><a href="/cities/"><%= t 'city.city' %></a></li>
+			      <li class="dropdown">
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Master <b class="caret"></b></a>
+		          <ul class="dropdown-menu">
+					      <li><a href="/customers/"><%= t 'customer.customer' %></a></li>
+					      <li><a href="/suppliers/"><%= t 'supplier.supplier' %></a></li>
+		            <li class="divider"></li>
+					      <li><a href="/categories/"><%= t 'category.category' %></a></li>
+					      <li><a href="/unit_of_measures/"><%= t 'unit.unit' %></a></li>
+		            <li class="divider"></li>
+					      <li><a href="/cities/"><%= t 'city.city' %></a></li>
+					      <li><a href="/provinces/"><%= t 'province.province' %></a></li>
+					      <li><a href="/countries/"><%= t 'country.country' %></a></li>
+		          </ul>
+		        </li>
 			    </ul>
 
 			  <p class="navbar-text navbar-right">Kristono Sugiarto</p>
@@ -33,6 +45,8 @@
 	
 	<div class="container">
 	  <div class="row">
+	  	<p id="notice"><%= notice %></p>
+	  	
 		  <%= yield %>
 	  </div>
 	</div>

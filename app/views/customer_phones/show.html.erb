@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Customer:</b>
+  <%= @customer_phone.customer %>
+</p>
+
+<p>
+  <b>Country ext:</b>
+  <%= @customer_phone.country_ext %>
+</p>
+
+<p>
+  <b>Phone number:</b>
+  <%= @customer_phone.phone_number %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @customer_phone.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_customer_phone_path(@customer_phone) %> |
+<%= link_to 'Back', customer_phones_path %>

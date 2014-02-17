@@ -1,40 +1,48 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-md-2">
+  	<%= link_to suppliers_path, :class => "btn btn-default btn-sm" do %>
+  		<span class="glyphicon glyphicon-chevron-left"></span>&nbsp;<%= t 'back' %>
+  	<% end %>
+  </div>
+  
+  <div class="col-md-8">
+    <h4 align="center"><%= t 'supplier.suppliers' %> - <%= t 'detail' %></h4>
+  </div>
 
-<p>
-  <b>Name:</b>
-  <%= @supplier.name %>
-</p>
-
-<p>
-  <b>Join date:</b>
-  <%= @supplier.join_date %>
-</p>
-
-<p>
-  <b>Address:</b>
-  <%= @supplier.address %>
-</p>
-
-<p>
-  <b>City:</b>
-  <%= @supplier.city %>
-</p>
-
-<p>
-  <b>Province:</b>
-  <%= @supplier.province %>
-</p>
-
-<p>
-  <b>Country:</b>
-  <%= @supplier.country %>
-</p>
-
-<p>
-  <b>Notes:</b>
-  <%= @supplier.notes %>
-</p>
+  <div class="col-md-2" align="right">
+  	<%= link_to edit_supplier_path(@supplier), :class => "btn btn-warning btn-sm", :remote => true do %>
+  		<%= t 'edit' %>&nbsp;<span class="glyphicon glyphicon-pencil"></span>
+  	<% end %>
+  </div>
+</div>
 
 
-<%= link_to 'Edit', edit_supplier_path(@supplier) %> |
-<%= link_to 'Back', suppliers_path %>
+<%= render 'show' %>
+
+<!-- Nav tabs -->
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#phone" data-toggle="tab"><%= t 'supplier.phone.phone' %></a></li>
+  <li><a href="#category" data-toggle="tab"><%= t 'supplier.category.category' %></a></li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+  <div class="tab-pane active" id="phone"><%= render 'supplier_phones/table' %></div>
+  <div class="tab-pane" id="category"><%= render 'supplier_categories/table' %></div>
+</div>
+
+<div id="modal"></div>
+
+<!-- Modal -->
+<div id="general_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="BranchModalLabel" aria-hidden="true">
+  <div class="modal-dialog" style="width:900px;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 class="modal-title"></h3>
+      </div>
+      <div class="modal-body">
+      </div>
+    </div>
+  </div>
+</div>

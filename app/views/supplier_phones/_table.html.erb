@@ -1,0 +1,20 @@
+<table id="supplier_phone_table" class="table">
+  <tr>
+    <th><%= t 'supplier.phone.country_ext' %></th>
+    <th><%= t 'supplier.phone.phone_number' %></th>
+    <th><%= t 'supplier.phone.description' %></th>
+    <th class="text-right"><%= link_to "#{t 'new'}", new_supplier_supplier_phone_path(@supplier), :class => "btn btn-default btn-xs", :remote => true %></th>
+  </tr>
+
+<% @supplier.phones.each do |supplier_phone| %>
+  <tr>
+    <td><%= supplier_phone.country_ext %></td>
+    <td><%= supplier_phone.phone_number %></td>
+    <td><%= supplier_phone.description %></td>
+    <td class="text-right">
+      <%= link_to "#{t 'edit'}", edit_supplier_supplier_phone_path(@supplier, supplier_phone), :class => "btn btn-warning btn-xs", :remote => true %>
+      <%= link_to "#{t 'destroy'}", supplier_supplier_phone_path(@supplier, supplier_phone), method: :delete, data: { confirm: "#{t 'confirm'}" }, :class => "btn btn-danger btn-xs", :remote => true %>
+    </td>
+  </tr>
+<% end %>
+</table>

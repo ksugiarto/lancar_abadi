@@ -1,0 +1,33 @@
+<%=# will_paginate @suppliers, :class => "apple_pagination" 
+%>
+
+<table class="table table-condensed">
+  <tr style="background-color:#708DC6;">
+    <th><%= t 'supplier.name' %></th>
+    <th><%= t 'supplier.contact_person' %></th>
+    <th><%= t 'supplier.join_date' %></th>
+    <th><%= t 'supplier.address' %></th>
+    <th><%= t 'supplier.city' %></th>
+    <th><%= t 'supplier.province' %></th>
+    <th></th>
+  </tr>
+
+<% @customers.each do |customer| %>
+  <tr>
+    <td><%= customer.name %></td>
+    <td><%= customer.contact_person %></td>
+    <td><%= customer.join_date %></td>
+    <td><%= customer.address %></td>
+    <td><%= customer.city.try(:name) %></td>
+    <td><%= customer.province.try(:name) %></td>
+    <td>
+        <%= link_to "#{t 'show'}", customer %>
+        <%= link_to "#{t 'edit'}", edit_customer_path(customer) %>
+        <%= link_to "#{t 'destroy'}", customer, method: :delete, data: { confirm: "#{t 'confirm'}" } %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<%=# will_paginate @suppliers, :class => "apple_pagination" 
+%>

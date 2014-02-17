@@ -12,10 +12,11 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.label :name, "#{t 'unit.name'}", :class => "col-sm-3 control-label" %>
-    <div class="col-sm-4"><%= f.text_field :name, :autofocus => true %></div>
+    <%= f.label :name, "#{t 'unit.name'}", :class => "col-sm-4 control-label" %>
+    <div class="col-sm-6"><%= f.text_field :name, :autofocus => true, :class => "form-control" %></div>
   </div>
   <div class="form-group">
-    <div class="col-sm-4 col-sm-offset-3"><%= f.submit "#{t 'submit'}", :class => "btn btn-success", :disable_with => "#{t 'disable_with'}" %></div>
+    <div class="col-sm-4"></div>
+    <div class="col-sm-6"><%= f.submit "#{t 'submit'}", :class => "btn btn-success", :disable_with => "#{t 'disable_with'}" %></div>
   </div>
 <% end %>

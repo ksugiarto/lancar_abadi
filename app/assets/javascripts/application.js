@@ -14,6 +14,49 @@
 //= require jquery_ujs
 //= require_tree .
 
-// require bootstrap-scrollspy
 // require bootstrap-modal
+// require bootstrap-scrollspy
 // require bootstrap-dropdown
+
+jQuery.ajaxSetup({
+  'beforeSend': function(xhr) {xhr.setRequestHeader("Accept", "text/javascript")}
+})
+
+$.fn.ajaxSelect = function(rel) {
+  var that = this;
+
+  this.change(function() {
+    $.get(rel, {id: that.val()}, null, "script");
+  });
+}
+
+$.fn.ajaxChange = function(rel) {
+  var that = this;
+
+  $.get(rel, {id: that.val()}, null, "script");
+  return false;
+}
+
+$.fn.keyUp = function(rel) {
+  var that = this;
+
+  this.keyup(function() {
+    $.get(rel, {id: that.val()}, null, "script");
+  })
+}
+
+$.fn.onLoad = function(rel) {
+  var that = this;
+
+  this.ready(function() {
+    $.get(rel, {id: that.val()}, null, "script");
+  })
+}
+
+$.fn.ajaxPagination = function() {
+  this.on("click", function () {
+    $(".apple_pagination").html("Silahkan tunggu...")
+    $.get(this.href, null, null, "script");
+    return false;
+  });
+}

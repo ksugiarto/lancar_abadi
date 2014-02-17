@@ -15,6 +15,10 @@ city_ext:string
 UNIT_OF_MEASURE
 name:string 
 
+CATEGORY
+name:string 
+code:string 
+
 SUPPLIER
 name:string 
 join_date:date 
@@ -23,15 +27,38 @@ city:references
 province:references 
 country:references 
 notes:text 
-
-CATEGORY
-name:string 
-code:string 
+contact_person:string
+email:string 
 
 SUPPLIER_CATEGORY
 supplier:references 
 category:references 
 notes:references 
+
+SUPPLIER_PHONE 
+supplier:references 
+country_ext:string 
+phone_number:string 
+description:string 
+
+CUSTOMER
+name:string contact_person:string 
+email:string 
+join_date:date 
+address:string 
+city:references 
+province:references 
+country:references 
+notes:text
+
+CUSTOMER_DISCOUNT
+customer:references 
+
+CUSTOMER_PHONE
+customer:references 
+country_ext:references 
+phone_number:references 
+description:string 
 
 PRODUCT
 category:references 
@@ -42,6 +69,7 @@ merk:string
 size:string 
 unit_of_measure:references 
 sales_price:decimal 
+mass_sales_price:decimal 
 
 PRODUCT_SUPPLIER
 product:references 
@@ -50,15 +78,40 @@ notes:refereces
 
 PURCHASE
 pi_id:string 
-purchase_date:string 
+purchase_date:date 
 supplier:references 
 sub_amount:decimal 
-discount:decimal 
+percentage_discount:decimal 
+percentage_discount_amount:decimal 
+amount_after_discount:decimal 
+added_discount:decimal (?)
+tax:boolean 
+tax_amount:decimal 
 total_amount:decimal 
 
 PURCHASE_DETAIL
 purchase:references 
 product:references 
 quantity:decimal 
-discount:decimal 
+percentage_discount:decimal 
+added_discount:decimal 
+amount:decimal 
+
+SALE
+si_id:string 
+sale_date:date 
+customer:references 
+sub_amount:decimal 
+percentage_discount:decimal 
+added_discount:decimal 
+tax:boolean 
+tax_amount:decimal 
+total_amount:decimal 
+
+SALE_DETAIL
+sale:references 
+product:references 
+quantity:decimal 
+percentage_discount:decimal 
+added_discount:decimal 
 amount:decimal 

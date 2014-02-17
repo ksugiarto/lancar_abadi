@@ -1,7 +1,7 @@
 <%=# will_paginate @cities, :class => "apple_pagination" 
 %>
 
-<table id="table" class="table table-condensed">
+<table class="table table-condensed">
   <tr style="background-color:#708DC6;">
     <th><%= t 'city.country' %></th>
     <th><%= t 'city.province' %></th>
@@ -16,7 +16,7 @@
     <td><%= city.province.try(:name) %></td>
     <td><%= city.name %></td>
     <td><%= city.city_ext %></td>
-    <td style="text-align:right;">
+    <td class="text-right">
       <%= link_to "#{t 'edit'}", edit_city_path(city), :class => "btn btn-warning btn-xs", :remote => true %>
       <%= link_to "#{t 'destroy'}", city, method: :delete, data: { confirm: "#{t 'confirm'}" }, :class => "btn btn-danger btn-xs", :remote => true %>
     </td>

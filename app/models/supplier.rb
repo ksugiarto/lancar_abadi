@@ -2,6 +2,9 @@ class Supplier < ActiveRecord::Base
   belongs_to :city
   belongs_to :province
   belongs_to :country
+  
+  has_many :categories, :class_name => "SupplierCategory"
+  has_many :phones, :class_name => "SupplierPhone"
 
   attr_accessible :address, :join_date, :name, :notes, :city_id, :province_id, :country_id
 

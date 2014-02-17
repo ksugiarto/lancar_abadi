@@ -1,0 +1,11 @@
+$("select[id*='province_id']").empty();
+$("select[id*='province_id']").append($("<option></option>").attr("value","").text("<%= t 'prompt' %> <%= t 'province.province' %>"));
+<% for province in @provinces %>
+$("select[id*='province_id']").append($("<option></option>").attr("value",<%= province.id %>).text('<%= province.name %>'));
+<% end %>
+
+$("select[id*='city_id']").empty();
+$("select[id*='city_id']").append($("<option></option>").attr("value","").text("<%= t 'prompt' %> <%= t 'city.city' %>"));
+<% for city in @cities %>
+$("select[id*='city_id']").append($("<option></option>").attr("value",<%= city.id %>).text('<%= city.name %>'));
+<% end %>

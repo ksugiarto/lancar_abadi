@@ -10,7 +10,7 @@
 <% @unit_of_measures.each do |unit_of_measure| %>
   <tr>
     <td><%= unit_of_measure.name %></td>
-    <td style="text-align:right;">
+    <td class="text-right">
     	<%= link_to "#{t 'edit'}", edit_unit_of_measure_path(unit_of_measure), :class => "btn btn-warning btn-xs", :remote => true %>
     	<%= link_to "#{t 'destroy'}", unit_of_measure, method: :delete, data: { confirm: "#{t 'confirm'}" }, :class => "btn btn-danger btn-xs", :remote => true %>
     </td>
