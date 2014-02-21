@@ -3,7 +3,6 @@ class SuppliersController < ApplicationController
     @countries = Country.order(:name)
     @provinces = Province.order(:name)
     @cities = City.order(:name)
-    # @salesmans = Employee.salesman.order(:nickname)
   end
 
   # GET /suppliers

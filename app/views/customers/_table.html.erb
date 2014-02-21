@@ -1,4 +1,4 @@
-<%=# will_paginate @suppliers, :class => "apple_pagination" 
+<%=# will_paginate @customers, :class => "apple_pagination" 
 %>
 
 <table class="table table-condensed">
@@ -20,14 +20,14 @@
     <td><%= customer.address %></td>
     <td><%= customer.city.try(:name) %></td>
     <td><%= customer.province.try(:name) %></td>
-    <td>
-        <%= link_to "#{t 'show'}", customer %>
-        <%= link_to "#{t 'edit'}", edit_customer_path(customer) %>
-        <%= link_to "#{t 'destroy'}", customer, method: :delete, data: { confirm: "#{t 'confirm'}" } %>
+    <td class="text-right">
+        <%= link_to "#{t 'show'}", customer, :class => "btn btn-primary btn-xs" %>
+        <%= link_to "#{t 'edit'}", edit_customer_path(customer), :class => "btn btn-warning btn-xs", :remote => true %>
+        <%= link_to "#{t 'destroy'}", customer, method: :delete, data: { confirm: "#{t 'confirm'}" }, :class => "btn btn-danger btn-xs", :remote => true %>
     </td>
   </tr>
 <% end %>
 </table>
 
-<%=# will_paginate @suppliers, :class => "apple_pagination" 
+<%=# will_paginate @customers, :class => "apple_pagination" 
 %>

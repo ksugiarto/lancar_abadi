@@ -1,0 +1,20 @@
+<table id="customer_phone_table" class="table">
+  <tr>
+    <th><%= t 'customer.phone.country_ext' %></th>
+    <th><%= t 'customer.phone.phone_number' %></th>
+    <th><%= t 'customer.phone.description' %></th>
+    <th class="text-right"><%= link_to "#{t 'new'}", new_customer_customer_phone_path(@customer), :class => "btn btn-default btn-xs", :remote => true %></th>
+  </tr>
+
+<% @customer.phones.each do |customer_phone| %>
+  <tr>
+    <td><%= customer_phone.country_ext %></td>
+    <td><%= customer_phone.phone_number %></td>
+    <td><%= customer_phone.description %></td>
+    <td class="text-right">
+      <%= link_to "#{t 'edit'}", edit_customer_customer_phone_path(@customer, customer_phone), :class => "btn btn-warning btn-xs", :remote => true %>
+      <%= link_to "#{t 'destroy'}", customer_customer_phone_path(@customer, customer_phone), method: :delete, data: { confirm: "#{t 'confirm'}" }, :class => "btn btn-danger btn-xs", :remote => true %>
+    </td>
+  </tr>
+<% end %>
+</table>

@@ -1,0 +1,37 @@
+<%=# will_paginate @products, :class => "apple_pagination" 
+%>
+
+<table class="table table-condensed">
+  <tr style="background-color:#708DC6;">
+    <th><%= t 'product.category' %></th>
+    <th><%= t 'product.barcode' %></th>
+    <th><%= t 'product.name' %></th>
+    <th><%= t 'product.type' %></th>
+    <th><%= t 'product.merk' %></th>
+    <th><%= t 'product.size' %></th>
+    <th><%= t 'product.unit_of_measure' %></th>
+    <th><%= t 'product.sales_price' %></th>
+    <th></th>
+  </tr>
+
+<% @products.each do |product| %>
+  <tr>
+    <td><%= product.category_name %></td>
+    <td><%= product.barcode_id %></td>
+    <td><%= product.name %></td>
+    <td><%= product.type %></td>
+    <td><%= product.merk %></td>
+    <td><%= product.size %></td>
+    <td><%= product.unit_of_measure_name %></td>
+    <td><%= product.sales_price %></td>
+    <td class="text-right">
+        <%= link_to "#{t 'show'}", product, :class => "btn btn-primary btn-xs" %>
+        <%= link_to "#{t 'edit'}", edit_product_path(product), :class => "btn btn-warning btn-xs", :remote => true %>
+        <%= link_to "#{t 'destroy'}", product, method: :delete, data: { confirm: "#{t 'confirm'}" }, :class => "btn btn-danger btn-xs", :remote => true %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<%=# will_paginate @products, :class => "apple_pagination" 
+%>

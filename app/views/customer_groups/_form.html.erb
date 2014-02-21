@@ -1,0 +1,36 @@
+<%= form_for(@customer_group, :html => { :class => "form-horizontal" }, :remote => true) do |f| %>
+  <% if @customer_group.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@customer_group.errors.count, "error") %> prohibited this customer_group from being saved:</h2>
+
+      <ul>
+      <% @customer_group.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :initial, "#{t 'group.initial'}", :class => "col-sm-3 control-label" %>
+    <div class="col-sm-7"><%= f.text_field :initial, :class => "form-control" %></div>
+  </div>
+  <div class="form-group">
+    <%= f.label :name, "#{t 'group.name'}", :class => "col-sm-3 control-label" %>
+    <div class="col-sm-7"><%= f.text_field :name, :class => "form-control" %></div>
+  </div>
+  <div class="form-group">
+    <%= f.label :description, "#{t 'group.description'}", :class => "col-sm-3 control-label" %>
+    <div class="col-sm-7"><%= f.text_area :description, :rows => 2, :class => "form-control" %></div>
+  </div>
+  <div class="form-group">
+    <%= f.label :selected_price, "#{t 'group.formula'}", :class => "col-sm-3 control-label" %>
+    <div class="col-sm-4"><%= f.select(:selected_price, [["#{t 'group.sales_price'}", 1], ["#{t 'group.purchase_price'}", 2]], {:include_blank => "#{t 'group.selected_price'}"}, :required => true, :class => "form-control") %></div>
+    <div class="col-sm-1">&nbsp;<b><big>*</big></b>&nbsp;</div>
+    <div class="col-sm-2"><%= f.text_field :formula, :class => "form-control" %></div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-7"><%= f.submit "#{t 'submit'}", :class => "btn btn-success", :disable_with => "#{t 'disable_with'}" %></div>
+  </div>
+<% end %>

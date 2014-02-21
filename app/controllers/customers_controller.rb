@@ -1,12 +1,19 @@
 class CustomersController < ApplicationController
+  def get_data
+    @countries = Country.order(:name)
+    @provinces = Province.order(:name)
+    @cities = City.order(:name)
+  end
+
   # GET /customers
   # GET /customers.json
   def index
-    @customers = Customer.all
+    @customers = Customer.order(:name)
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @customers }
+      format.js
     end
   end
 
@@ -25,16 +32,13 @@ class CustomersController < ApplicationController
   # GET /customers/new.json
   def new
     @customer = Customer.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @customer }
-    end
+    get_data
   end
 
   # GET /customers/1/edit
   def edit
     @customer = Customer.find(params[:id])
+    get_data
   end
 
   # POST /customers

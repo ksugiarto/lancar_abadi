@@ -3,17 +3,17 @@
   </div>
   
   <div class="col-md-8">
-    <h4 align="center"><%= t 'customer.customers' %></h4>
+    <h4 align="center"><%= t 'product.products' %></h4>
   </div>
 
   <div class="col-md-2" align="right">
-    <%= link_to new_customer_path, :class => "btn btn-default btn-sm", :remote => true do %>
+    <%= link_to new_product_path, :class => "btn btn-default btn-sm", :remote => true do %>
       <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;<%= t 'new' %>
     <% end %>
   </div>
 </div>
 
-<%=# render 'filter/customer' 
+<%=# render 'filter/product' 
 %>
 
 <div id="table"><%= render 'table' %></div>

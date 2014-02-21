@@ -1,22 +1,22 @@
 <div class="row">
   <div class="col-md-2">
+    <%= link_to products_path, :class => "btn btn-default btn-sm" do %>
+      <span class="glyphicon glyphicon-chevron-left"></span>&nbsp;<%= t 'back' %>
+    <% end %>
   </div>
   
   <div class="col-md-8">
-    <h4 align="center"><%= t 'customer.customers' %></h4>
+    <h4 align="center"><%= t 'product.product' %> - <%= t 'detail' %></h4>
   </div>
 
   <div class="col-md-2" align="right">
-    <%= link_to new_customer_path, :class => "btn btn-default btn-sm", :remote => true do %>
-      <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;<%= t 'new' %>
+    <%= link_to edit_product_path(@product), :class => "btn btn-warning btn-sm", :remote => true do %>
+      <%= t 'edit' %>&nbsp;<span class="glyphicon glyphicon-pencil"></span>
     <% end %>
   </div>
 </div>
 
-<%=# render 'filter/customer' 
-%>
-
-<div id="table"><%= render 'table' %></div>
+<%= render 'show' %>
 
 <div id="modal"></div>
 

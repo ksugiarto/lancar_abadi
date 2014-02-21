@@ -1,0 +1,6 @@
+$('#general_modal').modal('show');
+$('#general_modal .modal-title').html("<%= escape_javascript(t 'customer.customer') %> - <%= escape_javascript(t 'new') %>");
+$('#general_modal .modal-body').html("<%= escape_javascript(render 'form') %>");
+
+$('#customer_country_id').ajaxSelect('home/provinces_by_country');
+$('#customer_province_id').ajaxSelect('home/cities_by_province');

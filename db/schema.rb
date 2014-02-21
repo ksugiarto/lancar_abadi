@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140203173126) do
+ActiveRecord::Schema.define(:version => 20140221153417) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -39,18 +39,26 @@ ActiveRecord::Schema.define(:version => 20140203173126) do
     t.datetime "updated_at",  :null => false
   end
 
-  create_table "customer_phones", :force => true do |t|
-    t.integer  "customer_id"
-    t.integer  "country_ext_id"
-    t.integer  "phone_number_id"
-    t.string   "description"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+  create_table "customer_groups", :force => true do |t|
+    t.string   "initial"
+    t.string   "name"
+    t.text     "description"
+    t.integer  "selected_price"
+    t.decimal  "formula",        :precision => 12, :scale => 5
+    t.datetime "created_at",                                    :null => false
+    t.datetime "updated_at",                                    :null => false
   end
 
-  add_index "customer_phones", ["country_ext_id"], :name => "index_customer_phones_on_country_ext_id"
+  create_table "customer_phones", :force => true do |t|
+    t.integer  "customer_id"
+    t.string   "description"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.string   "country_ext"
+    t.string   "phone_number"
+  end
+
   add_index "customer_phones", ["customer_id"], :name => "index_customer_phones_on_customer_id"
-  add_index "customer_phones", ["phone_number_id"], :name => "index_customer_phones_on_phone_number_id"
 
   create_table "customers", :force => true do |t|
     t.string   "name"
@@ -64,11 +72,28 @@ ActiveRecord::Schema.define(:version => 20140203173126) do
     t.text     "notes"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+    t.integer  "group"
   end
 
   add_index "customers", ["city_id"], :name => "index_customers_on_city_id"
   add_index "customers", ["country_id"], :name => "index_customers_on_country_id"
   add_index "customers", ["province_id"], :name => "index_customers_on_province_id"
+
+  create_table "products", :force => true do |t|
+    t.integer  "category_id"
+    t.string   "barcode_id"
+    t.string   "name"
+    t.string   "type"
+    t.string   "merk"
+    t.string   "size"
+    t.integer  "unit_of_measure_id"
+    t.decimal  "sales_price",        :precision => 18, :scale => 2
+    t.datetime "created_at",                                        :null => false
+    t.datetime "updated_at",                                        :null => false
+  end
+
+  add_index "products", ["category_id"], :name => "index_products_on_category_id"
+  add_index "products", ["unit_of_measure_id"], :name => "index_products_on_unit_of_measure_id"
 
   create_table "provinces", :force => true do |t|
     t.integer  "country_id"

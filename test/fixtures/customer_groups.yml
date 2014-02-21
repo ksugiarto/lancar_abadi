@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  initial: MyString
+  name: MyString
+  description: MyText
+  selected_price: 1
+  formula: 9.99
+
+two:
+  initial: MyString
+  name: MyString
+  description: MyText
+  selected_price: 1
+  formula: 9.99

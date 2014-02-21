@@ -1,4 +1,4 @@
-<table class="table">
+<table class="table table-condensed">
   <tr>
     <th><%= t 'supplier.name' %></th>
     <td><b>:</b>&nbsp;<%= @supplier.name %></td>
@@ -6,19 +6,27 @@
     <td><b>:</b>&nbsp;<%= @supplier.address %></td>
   </tr>
   <tr>
-    <th><%= t 'supplier.join_date' %></th>
-    <td><b>:</b>&nbsp;<%= @supplier.join_date %></td>
+    <th><%= t 'supplier.contact_person' %></th>
+    <td><b>:</b>&nbsp;<%= @supplier.contact_person %></td>
     <th><%= t 'supplier.city' %></th>
     <td><b>:</b>&nbsp;<%= @supplier.city.try(:name) %></td>
   </tr>
   <tr>
-    <th rowspan="2"><%= t 'notes' %></th>
-    <td rowspan="2"><b>:</b>&nbsp;<%= @supplier.notes %></td>
+    <th><%= t 'supplier.email' %></th>
+    <td><b>:</b>&nbsp;<%= @supplier.email %></td>
     <th><%= t 'suppllier.province' %>:</th>
     <td><b>:</b>&nbsp;<%= @supplier.province.try(:name) %></td>
   </tr>
   <tr>
+    <th><%= t 'supplier.join_date' %></th>
+    <td><b>:</b>&nbsp;<%= @supplier.join_date %></td>
     <th><%= t 'supplier.country' %></th>
     <td><b>:</b>&nbsp;<%= @supplier.country.try(:name) %></td>
+  </tr>
+  <tr>
+    <th rowspan="2"><%= t 'notes' %></th>
+    <td rowspan="2"><b>:</b>&nbsp;<%= @supplier.notes %></td>
+    <th></th>
+    <td></td>
   </tr>
 </table>

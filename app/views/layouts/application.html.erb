@@ -21,12 +21,13 @@
 			  <!-- Collect the nav links, forms, and other content for toggling -->
 			  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			    <ul class="nav navbar-nav">
+			      <li><a href="/products/"><%= t 'product.product' %></a></li>
+			      <li><a href="/customers/"><%= t 'customer.customer' %></a></li>
+			      <li><a href="/suppliers/"><%= t 'supplier.supplier' %></a></li>
 			      <li class="dropdown">
-		          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Master <b class="caret"></b></a>
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span>&nbsp;<%= t 'setting.setting' %> <b class="caret"></b></a>
 		          <ul class="dropdown-menu">
-					      <li><a href="/customers/"><%= t 'customer.customer' %></a></li>
-					      <li><a href="/suppliers/"><%= t 'supplier.supplier' %></a></li>
-		            <li class="divider"></li>
+					      <li><a href="/customer_groups/"><%= t 'group.group' %></a></li>
 					      <li><a href="/categories/"><%= t 'category.category' %></a></li>
 					      <li><a href="/unit_of_measures/"><%= t 'unit.unit' %></a></li>
 		            <li class="divider"></li>

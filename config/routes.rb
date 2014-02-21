@@ -1,7 +1,14 @@
 LancarAbadi::Application.routes.draw do
-  resources :customer_phones
 
-  resources :customers
+  resources :products
+
+
+  resources :customer_groups
+
+
+  resources :customers do
+    resources :customer_phones
+  end
 
   resources :suppliers do
     resources :supplier_categories

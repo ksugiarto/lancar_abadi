@@ -49,27 +49,42 @@ address:string
 city:references 
 province:references 
 country:references 
-notes:text
-
-CUSTOMER_DISCOUNT
-customer:references 
+notes:text 
+group:integer 
 
 CUSTOMER_PHONE
 customer:references 
-country_ext:references 
-phone_number:references 
+country_ext:string 
+phone_number:string 
 description:string 
+
+CUSTOMER_GROUP
+initial:string 
+name:string 
+description:text 
+selected_price:integer 
+formula:decimal 
 
 PRODUCT
 category:references 
-code:string 
+barcode_id:string 
 name:string 
 type:string 
 merk:string 
 size:string 
 unit_of_measure:references 
 sales_price:decimal 
-mass_sales_price:decimal 
+
+==================== BELOW ARE THOSE NOT YET IMPLEMENT
+
+CUSTOMER_DISCOUNT
+customer:references 
+
+PRODUCT_PURCHASE
+product:references 
+supplier:references 
+purchase_date:date 
+purchase_price:decimal 
 
 PRODUCT_SUPPLIER
 product:references 
@@ -101,6 +116,7 @@ SALE
 si_id:string 
 sale_date:date 
 customer:references 
+customer_group:references 
 sub_amount:decimal 
 percentage_discount:decimal 
 added_discount:decimal 
