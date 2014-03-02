@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140221153417) do
+ActiveRecord::Schema.define(:version => 20140224100233) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -103,6 +103,40 @@ ActiveRecord::Schema.define(:version => 20140221153417) do
   end
 
   add_index "provinces", ["country_id"], :name => "index_provinces_on_country_id"
+
+  create_table "purchase_details", :force => true do |t|
+    t.integer  "purchase_id"
+    t.integer  "product_id"
+    t.decimal  "quantity",       :precision => 12, :scale => 5
+    t.decimal  "price",          :precision => 18, :scale => 2
+    t.decimal  "discount",       :precision => 12, :scale => 5
+    t.decimal  "added_discount", :precision => 18, :scale => 2
+    t.decimal  "amount",         :precision => 18, :scale => 2
+    t.datetime "created_at",                                    :null => false
+    t.datetime "updated_at",                                    :null => false
+  end
+
+  add_index "purchase_details", ["product_id"], :name => "index_purchase_details_on_product_id"
+  add_index "purchase_details", ["purchase_id"], :name => "index_purchase_details_on_purchase_id"
+
+  create_table "purchases", :force => true do |t|
+    t.string   "pi_id"
+    t.date     "transaction_date"
+    t.integer  "supplier_id"
+    t.text     "notes"
+    t.decimal  "sub_amount"
+    t.decimal  "discount",              :precision => 12, :scale => 5
+    t.decimal  "discount_amount"
+    t.decimal  "amount_after_discount"
+    t.decimal  "added_discount"
+    t.boolean  "tax"
+    t.decimal  "tax_amount"
+    t.decimal  "total_amount"
+    t.datetime "created_at",                                           :null => false
+    t.datetime "updated_at",                                           :null => false
+  end
+
+  add_index "purchases", ["supplier_id"], :name => "index_purchases_on_supplier_id"
 
   create_table "supplier_categories", :force => true do |t|
     t.integer  "supplier_id"

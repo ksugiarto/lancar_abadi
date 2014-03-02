@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-md-2">
+    <%= link_to purchases_path, :class => "btn btn-default btn-sm" do %>
+      <span class="glyphicon glyphicon-chevron-left"></span>&nbsp;<%= t 'back' %>
+    <% end %>
+  </div>
+  
+  <div class="col-md-8">
+    <h4 align="center"><%= t 'purchase.purchase' %> - <%= t 'detail' %></h4>
+  </div>
+
+  <div class="col-md-2" align="right">
+    <%= link_to edit_purchase_path(@purchase), :class => "btn btn-warning btn-sm", :remote => true do %>
+      <%= t 'edit' %>&nbsp;<span class="glyphicon glyphicon-pencil"></span>
+    <% end %>
+  </div>
+</div>
+
+<div id="show_header_section"><%= render 'show_header' %></div>
+<div id="detail_section"><%= render 'purchase_details/table' %></div>
+<div id="show_footer_section"><%= render 'show_footer' %></div>
+
+<div id="modal"></div>
+
+<!-- Modal -->
+<div id="general_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="BranchModalLabel" aria-hidden="true">
+  <div class="modal-dialog" style="width:900px;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 class="modal-title"></h3>
+      </div>
+      <div class="modal-body">
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,57 @@
+<div class="row">
+  <div class="col-sm-8"></div>
+
+  <div class="col-sm-4">
+    <hr>
+    <table>
+      <tr>
+        <th class="text-right"><%= t 'purchase.sub_amount' %>:</th>
+        <th width="50">&nbsp;Rp</th>
+        <th class="text-right col-sm-4"><%= @purchase.sub_amount %></th>
+        <th width="50"></th>
+      </tr>
+      <tr>
+        <td class="text-right"><%= t 'purchase.discount' %>:</td>
+        <td></td>
+        <td class="text-right"><%= @purchase.discount %></td>
+        <td>&nbsp;%</td>
+      </tr>
+      <tr>
+        <td class="text-right"><%= t 'purchase.discount_amount' %>:</td>
+        <td>&nbsp;Rp</td>
+        <td class="text-right"><%= @purchase.discount_amount %></td>
+        <td></td>
+      </tr>
+      <tr>
+        <th class="text-right"><%= t 'purchase.amount_after_discount' %>:</th>
+        <th>&nbsp;Rp</th>
+        <th class="text-right"><%= @purchase.amount_after_discount %></th>
+        <th></th>
+      </tr>
+      <tr>
+        <td class="text-right"><%= t 'purchase.added_discount' %>:</td>
+        <td>&nbsp;Rp</td>
+        <td class="text-right"><%= @purchase.added_discount %></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="text-right"><%= t 'purchase.tax' %>:</td>
+        <td></td>
+        <td class="text-right"><%= @purchase.tax %></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="text-right"><%= t 'purchase.tax_amount' %>:</td>
+        <td>&nbsp;Rp</td>
+        <td class="text-right"><%= @purchase.tax_amount %></td>
+        <td></td>
+      </tr>
+      <tr>
+        <th class="text-right"><%= t 'purchase.total_amount' %>:</th>
+        <th>&nbsp;Rp</th>
+        <th class="text-right"><%= @purchase.total_amount %></th>
+        <th></th>
+      </tr>
+    </table>
+  </div>
+</div>

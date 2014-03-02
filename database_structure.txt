@@ -75,6 +75,29 @@ size:string
 unit_of_measure:references 
 sales_price:decimal 
 
+PURCHASE
+pi_id:string 
+transaction_date:date 
+supplier:references 
+notes:text 
+sub_amount:decimal 
+discount:decimal 
+discount_amount:decimal 
+amount_after_discount:decimal 
+added_discount:decimal 
+tax:boolean 
+tax_amount:decimal 
+total_amount:decimal 
+
+PURCHASE_DETAIL
+purchase:references 
+product:references 
+quantity:decimal 
+price:decimal 
+discount:decimal 
+added_discount:decimal 
+amount:decimal 
+
 ==================== BELOW ARE THOSE NOT YET IMPLEMENT
 
 CUSTOMER_DISCOUNT
@@ -91,34 +114,14 @@ product:references
 supplier:references 
 notes:refereces 
 
-PURCHASE
-pi_id:string 
-purchase_date:date 
-supplier:references 
-sub_amount:decimal 
-percentage_discount:decimal 
-percentage_discount_amount:decimal 
-amount_after_discount:decimal 
-added_discount:decimal (?)
-tax:boolean 
-tax_amount:decimal 
-total_amount:decimal 
-
-PURCHASE_DETAIL
-purchase:references 
-product:references 
-quantity:decimal 
-percentage_discount:decimal 
-added_discount:decimal 
-amount:decimal 
-
 SALE
 si_id:string 
-sale_date:date 
+transaction_date:date 
 customer:references 
 customer_group:references 
+notes:text 
 sub_amount:decimal 
-percentage_discount:decimal 
+discount:decimal 
 added_discount:decimal 
 tax:boolean 
 tax_amount:decimal 
@@ -128,6 +131,6 @@ SALE_DETAIL
 sale:references 
 product:references 
 quantity:decimal 
-percentage_discount:decimal 
+discount:decimal 
 added_discount:decimal 
 amount:decimal 

@@ -1,10 +1,8 @@
 LancarAbadi::Application.routes.draw do
 
-  resources :products
-
-
-  resources :customer_groups
-
+  resources :purchases do
+    resources :purchase_details
+  end
 
   resources :customers do
     resources :customer_phones
@@ -15,6 +13,8 @@ LancarAbadi::Application.routes.draw do
     resources :supplier_phones
   end
 
+  resources :products
+  resources :customer_groups
   resources :unit_of_measures
   resources :categories
   resources :cities
