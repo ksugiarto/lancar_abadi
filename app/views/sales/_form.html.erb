@@ -1,0 +1,34 @@
+<%= form_for(@sale, :html => { :class => "form-horizontal" }) do |f| %>
+  <% if @sale.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@sale.errors.count, "error") %> prohibited this sale from being saved:</h2>
+
+      <ul>
+      <% @sale.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :si_id, "#{t 'sale.si_id'}", :class => "col-sm-4 control-label" %>
+    <div class="col-sm-6"><%= f.text_field :si_id, :placeholder => "#{t 'sale.si_id_placeholder'}", :readonly => true, :class => "form-control" %></div>
+  </div>
+  <div class="form-group">
+    <%= f.label :transaction_date, "#{t 'sale.transaction_date'}", :class => "col-sm-4 control-label" %>
+    <div class="col-sm-6"><%= f.text_field :transaction_date, :class => "form-control", :value => "#{Time.now.strftime('%Y-%m-%d')}" %></div>
+  </div>
+  <div class="form-group">
+    <%= f.label :customer, "#{t 'sale.customer'}", :class => "col-sm-4 control-label" %>
+    <div class="col-sm-6"><%= f.select(:customer_id, @customers.collect {|customer| [customer.name, customer.id,]}, {:prompt => "#{t 'prompt'} #{t 'sale.customer'}"}, :class => "form-control") %></div>
+  </div>
+  <div class="form-group">
+    <%= f.label :notes, "#{t 'sale.notes'}", :class => "col-sm-4 control-label" %>
+    <div class="col-sm-6"><%= f.text_area :notes, :rows => 3, :class => "form-control" %></div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-6"><%= f.submit "#{t 'submit'}", :class => "btn btn-success btn-block", :disable_with => "#{t 'disable_with'}" %></div>
+  </div>
+<% end %>

@@ -1,0 +1,31 @@
+<%=# will_paginate @sales, :class => "apple_pagination" 
+%>
+
+<table class="table table-condensed">
+  <tr>
+    <th><%= t 'sale.si_id' %></th>
+    <th><%= t 'sale.transaction_date' %></th>
+    <th><%= t 'sale.customer' %></th>
+    <th><%= t 'sale.notes' %></th>
+    <th><%= t 'sale.total_amount' %></th>
+    <th></th>
+  </tr>
+
+<% @sales.each do |sale| %>
+  <tr>
+    <td><%= sale.si_id %></td>
+    <td><%= sale.transaction_date %></td>
+    <td><%= sale.customer_name %></td>
+    <td><%= sale.notes %></td>
+    <td><%= sale.total_amount %></td>
+    <td class="text-right">
+        <%= link_to "#{t 'show'}", sale, :class => "btn btn-primary btn-xs" %>
+        <%= link_to "#{t 'edit'}", edit_sale_path(sale), :class => "btn btn-warning btn-xs", :remote => true %>
+        <%= link_to "#{t 'destroy'}", sale, method: :delete, data: { confirm: "#{t 'confirm'}" }, :class => "btn btn-danger btn-xs", :remote => true %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<%=# will_paginate @sales, :class => "apple_pagination" 
+%>

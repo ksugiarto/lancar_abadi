@@ -1,4 +1,7 @@
 LancarAbadi::Application.routes.draw do
+  resources :sales do
+    resources :sale_details
+  end
 
   resources :purchases do
     resources :purchase_details

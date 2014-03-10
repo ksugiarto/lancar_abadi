@@ -10,6 +10,7 @@ class CreateCustomers < ActiveRecord::Migration
       t.references :province
       t.references :country
       t.text :notes
+      t.integer :customer_group_id
 
       t.timestamps
     end

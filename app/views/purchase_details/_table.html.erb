@@ -1,22 +1,22 @@
-<table class="table">
+<table id="purchase_detail_table" class="table">
   <tr>
     <th><%= t 'purchase.detail.product' %></th>
-    <th><%= t 'purchase.detail.quantity' %></th>
-    <th><%= t 'purchase.detail.price' %></th>
-    <th><%= t 'purchase.detail.discount' %></th>
-    <th><%= t 'purchase.detail.added_discount' %></th>
-    <th><%= t 'purchase.detail.amount' %></th>
+    <th class="text-right"><%= t 'purchase.detail.quantity' %></th>
+    <th class="text-right"><%= t 'purchase.detail.price' %></th>
+    <th class="text-right"><%= t 'purchase.detail.discount' %></th>
+    <th class="text-right"><%= t 'purchase.detail.added_discount' %></th>
+    <th class="text-right"><%= t 'purchase.detail.amount' %></th>
     <th class="text-right"><%= link_to "#{t 'new'}", new_purchase_purchase_detail_path(@purchase), :class => "btn btn-default btn-xs", :remote => true %></th>
   </tr>
 
 <% @purchase.details.each do |purchase_detail| %>
   <tr>
-    <td><%= purchase_detail.product_name %></td>
-    <td><%= purchase_detail.quantity %></td>
-    <td><%= purchase_detail.price %></td>
-    <td><%= purchase_detail.discount %></td>
-    <td><%= purchase_detail.added_discount %></td>
-    <td><%= purchase_detail.amount %></td>
+    <td><%= purchase_detail.product_detail %></td>
+    <td class="text-right"><%= purchase_detail.quantity %></td>
+    <td class="text-right"><%= purchase_detail.price %></td>
+    <td class="text-right"><%= purchase_detail.discount %></td>
+    <td class="text-right"><%= purchase_detail.added_discount %></td>
+    <td class="text-right"><%= purchase_detail.amount %></td>
     <td class="text-right">
       <%= link_to "#{t 'edit'}", edit_purchase_purchase_detail_path(@purchase, purchase_detail), :class => "btn btn-warning btn-xs", :remote => true %>
       <%= link_to "#{t 'destroy'}", purchase_purchase_detail_path(@purchase, purchase_detail), method: :delete, data: { confirm: "#{t 'confirm'}" }, :class => "btn btn-danger btn-xs", :remote => true %>

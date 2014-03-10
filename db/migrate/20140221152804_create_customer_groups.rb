@@ -5,7 +5,7 @@ class CreateCustomerGroups < ActiveRecord::Migration
       t.string :name
       t.text :description
       t.integer :selected_price
-      t.decimal :formula, :precision => 12, :scale => 5
+      t.decimal :formula, :precision => 12, :scale => 5, :default => 1
 
       t.timestamps
     end
