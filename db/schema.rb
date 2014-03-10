@@ -88,8 +88,10 @@ ActiveRecord::Schema.define(:version => 20140310140346) do
     t.string   "size"
     t.integer  "unit_of_measure_id"
     t.decimal  "sales_price",        :precision => 18, :scale => 2
-    t.datetime "created_at",                                        :null => false
-    t.datetime "updated_at",                                        :null => false
+    t.boolean  "can_be_purchase",                                   :default => false
+    t.boolean  "can_be_sale",                                       :default => false
+    t.datetime "created_at",                                                           :null => false
+    t.datetime "updated_at",                                                           :null => false
   end
 
   add_index "products", ["category_id"], :name => "index_products_on_category_id"
@@ -124,16 +126,17 @@ ActiveRecord::Schema.define(:version => 20140310140346) do
     t.date     "transaction_date"
     t.integer  "supplier_id"
     t.text     "notes"
+    t.integer  "status",                                               :default => 0
     t.decimal  "sub_amount",                                           :default => 0.0
     t.decimal  "discount",              :precision => 12, :scale => 5, :default => 0.0
     t.decimal  "discount_amount",                                      :default => 0.0
     t.decimal  "amount_after_discount",                                :default => 0.0
     t.decimal  "added_discount",                                       :default => 0.0
-    t.boolean  "tax"
+    t.boolean  "tax",                                                  :default => false
     t.decimal  "tax_amount",                                           :default => 0.0
     t.decimal  "total_amount",                                         :default => 0.0
-    t.datetime "created_at",                                                            :null => false
-    t.datetime "updated_at",                                                            :null => false
+    t.datetime "created_at",                                                              :null => false
+    t.datetime "updated_at",                                                              :null => false
   end
 
   add_index "purchases", ["supplier_id"], :name => "index_purchases_on_supplier_id"
@@ -172,7 +175,6 @@ ActiveRecord::Schema.define(:version => 20140310140346) do
     t.datetime "updated_at",                                                              :null => false
   end
 
-  add_index "sales", ["customer_group_id"], :name => "index_sales_on_customer_group_id"
   add_index "sales", ["customer_id"], :name => "index_sales_on_customer_id"
 
   create_table "supplier_categories", :force => true do |t|

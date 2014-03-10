@@ -4,7 +4,7 @@ class CreateSales < ActiveRecord::Migration
       t.string :si_id
       t.date :transaction_date
       t.references :customer
-      t.references :customer_group
+      t.integer :customer_group_id
       t.text :notes
       t.integer :status, :default => 0
       t.decimal :sub_amount, :presicion => 18, :scale => 2, :default => 0
@@ -19,6 +19,5 @@ class CreateSales < ActiveRecord::Migration
       t.timestamps
     end
     add_index :sales, :customer_id
-    add_index :sales, :customer_group_id
   end
 end
