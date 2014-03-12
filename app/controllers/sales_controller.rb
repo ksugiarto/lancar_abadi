@@ -1,6 +1,10 @@
 class SalesController < ApplicationController
-  def get_data
-    @customers = Customer.order(:name)
+  def get_customer
+    @customers = Customer.search_customer(params[:keyword])
+    .order(:name)
+    .paginate(:page => params[:page], :per_page => 1)
+
+    @keyword = params[:keyword] if params[:keyword].present?
   end
 
   # GET /sales
@@ -25,17 +29,41 @@ class SalesController < ApplicationController
     end
   end
 
+  def show_customer
+    get_customer
+  end
+
+  def search_customer
+    get_customer
+  end
+
+  def pick_customer
+    @customer = Customer.find(params[:customer_id])
+  end
+
   # GET /sales/new
   # GET /sales/new.json
   def new
     @sale = Sale.new
-    get_data
+    
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /sales/1/edit
   def edit
     @sale = Sale.find(params[:id])
-    get_data
+    
+    if @sale.status.to_i!=0
+      redirect_to @sale
+    else
+      respond_to do |format|
+        format.html
+        format.js
+      end
+    end
   end
 
   # POST /sales

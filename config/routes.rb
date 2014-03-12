@@ -1,10 +1,34 @@
 LancarAbadi::Application.routes.draw do
   resources :sales do
-    resources :sale_details
+    collection do
+      get 'show_customer'
+      post 'search_customer'
+      get 'pick_customer'
+    end
+
+    resources :sale_details do
+      collection do
+        get 'show_product'
+        post 'search_product'
+        get 'pick_product'
+      end
+    end
   end
 
   resources :purchases do
-    resources :purchase_details
+    collection do
+      get 'show_supplier'
+      post 'search_supplier'
+      get 'pick_supplier'
+    end
+
+    resources :purchase_details do
+      collection do
+        get 'show_product'
+        post 'search_product'
+        get 'pick_product'
+      end
+    end
   end
 
   resources :customers do
@@ -16,7 +40,10 @@ LancarAbadi::Application.routes.draw do
     resources :supplier_phones
   end
 
-  resources :products
+  resources :products do
+    resources :product_purchases
+  end
+
   resources :customer_groups
   resources :unit_of_measures
   resources :categories

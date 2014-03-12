@@ -1,0 +1,19 @@
+<table class="table table-condensed">
+  <tr>
+    <th><%= t 'customer.name' %></th>
+    <th><%= t 'customer.contact_person' %></th>
+    <th></th>
+  </tr>
+
+<% @customers.each do |customer| %>
+  <tr>
+    <td><%= customer.name %></td>
+    <td><%= customer.contact_person %></td>
+    <td class="text-right">
+        <%= link_to "#{t 'pick'}", pick_customer_sales_path(:customer_id => customer.id), :remote => true, :class => "btn btn-default btn-xs" %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<%= will_paginate @customers, :params => {:controller => "sales", :action => "show_customer", :keyword => @keyword}, :class => "apple_pagination" %>

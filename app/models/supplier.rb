@@ -28,4 +28,85 @@ class Supplier < ActiveRecord::Base
       scoped
     end
   end
+
+  def self.search_supplier(name)
+    if name.present?
+      parts = name.split(" ")
+      keyword = String.new
+      parts.each do |part|
+        if part == parts.last
+          keyword+="#{part}"
+        else
+          keyword+="#{part}|"
+        end
+      end
+
+      where("name ~* '#{keyword}'") # operator ~* using for insensitive match
+    else
+      scoped
+    end
+  end
+
+  def self.import(file)
+    spreadsheet = open_spreadsheet(file)
+    header = spreadsheet.row(1)
+    (2..spreadsheet.last_row).each do |i| # looping all excel data
+      row = Hash[[header, spreadsheet.row(i)].transpose]
+
+      # CHECKING IF NECESSARY DATA IS PRESENT
+      existing_supplier = Supplier.where(:name => row["NAMA SUPPLIER"]).last
+      if existing_supplier.present?
+        supplier_id = existing_supplier.id
+        status = 1 # edit old data
+      else
+        status = 0 # create new supplier
+      end
+      # END CHECKING IF NECESSARY DATA IS PRESENT
+
+      country = Country.where(:name => row["NEGARA"]).last
+      if country.blank?
+        country = Country.create(:name => row["NEGARA"])
+      end
+      province = Provice.where(:name => row["PROPINSI"]).last
+      if province.blank?
+        province = country.provinces.create(:name => row["PROPINSI"])
+      end
+      city = City.where(:name => row["KOTA"]).last
+      if city.blank?
+        city = City.create(:name => row["KOTA"], :country_id => country.id, :province_id => province.id)
+      end
+
+
+      if status.to_i==1
+        existing_supplier.update_attributes(:name => row["NAMA SUPPLIER"],
+                                            :contact_person => row["CONTACT PERSON"],
+                                            :email => row["EMAIL"],
+                                            :join_date => row["TGL GABUNG"],
+                                            :address => row["ALAMAT"],
+                                            :city_id => city.id,
+                                            :province_id => province.id,
+                                            :country_id => country.id,
+                                            :notes => row["NOTES"])
+      else
+        Supplier.create(:name => row["NAMA SUPPLIER"],
+                        :contact_person => row["CONTACT PERSON"],
+                        :email => row["EMAIL"],
+                        :join_date => row["TGL GABUNG"],
+                        :address => row["ALAMAT"],
+                        :city_id => city.id,
+                        :province_id => province.id,
+                        :country_id => country.id,
+                        :notes => row["NOTES"])
+      end
+    end # looping all excel data
+  end
+
+  def self.open_spreadsheet(file)
+    case File.extname(file.original_filename)
+    when '.csv' then Roo::Csv.new(file.path, nil, :ignore)
+    when '.xls' then Roo::Excel.new(file.path, nil, :ignore)
+    when '.xlsx' then Roo::Excelx.new(file.path, nil, :ignore)
+    else raise "Unknown file type: #{file.original_filename}"
+    end
+  end
 end

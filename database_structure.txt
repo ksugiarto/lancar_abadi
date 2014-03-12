@@ -124,16 +124,16 @@ discount:decimal
 added_discount:decimal 
 amount:decimal 
 
-==================== BELOW ARE THOSE NOT YET IMPLEMENT
-
-CUSTOMER_DISCOUNT
-customer:references 
-
 PRODUCT_PURCHASE
 product:references 
 supplier:references 
 purchase_date:date 
 purchase_price:decimal 
+
+==================== BELOW ARE THOSE NOT YET IMPLEMENT
+
+CUSTOMER_DISCOUNT
+customer:references 
 
 PRODUCT_SUPPLIER
 product:references 

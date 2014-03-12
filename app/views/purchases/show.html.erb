@@ -10,10 +10,37 @@
   </div>
 
   <div class="col-md-2" align="right">
-    <%= link_to edit_purchase_path(@purchase), :class => "btn btn-warning btn-sm", :remote => true do %>
-      <%= t 'edit' %>&nbsp;<span class="glyphicon glyphicon-pencil"></span>
-    <% end %>
+    <% if @purchase.status==0 %>
+      <%= form_for(@purchase) do |f| %>
+        <%= f.hidden_field :status, :value => 1 %>
+        <%= button_tag :type => "submit", :class => "btn btn-success btn-sm", :disable_with => "#{t 'disable_with'}" do %>
+          <%= t 'close' %>&nbsp;<span class="glyphicon glyphicon-lock"></span>
+        <% end -%>
+
+        <%= link_to edit_purchase_path(@purchase), :class => "btn btn-warning btn-sm" do %>
+          <%= t 'edit' %>&nbsp;<span class="glyphicon glyphicon-pencil"></span>
+        <% end %>
+      <% end -%>
+    <% else %>
+      <%= form_for(@purchase) do |f| %>
+        <%= f.hidden_field :status, :value => 5 %>
+        <%= button_tag :type => "submit", :class => "btn btn-danger btn-sm", :disable_with => "#{t 'disable_with'}", data: { confirm: "#{t 'confirm'}" } do %>
+          <%= t 'void' %>&nbsp;<span class="glyphicon glyphicon-lock"></span>
+        <% end -%>
+      <% end -%>
+    <% end -%>
   </div>
+</div>
+
+<div class="status_<%= @purchase.status.to_i %>" align="center">
+  <% case @purchase.status.to_i %>
+  <% when 0 %>
+    <%= "#{t 'purchase.status'}#{t 'new'} #{t 'purchase.editable'}" %>, <%= "#{t 'purchase.created_at'}#{@purchase.created_at}" %>
+  <% when 1 %>
+    <%= "#{t 'purchase.status'}#{t 'close'} #{t 'purchase.uneditable'}" %>, <%= "#{t 'purchase.updated_at'}#{@purchase.updated_at}" %>
+  <% when 5 %>
+    <%= "#{t 'purchase.status'}#{t 'void'} #{t 'purchase.uneditable'}" %>, <%= "#{t 'purchase.updated_at'}#{@purchase.updated_at}" %>
+    <% end -%>
 </div>
 
 <div id="show_header_section"><%= render 'show_header' %></div>

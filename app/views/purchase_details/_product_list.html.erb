@@ -1,0 +1,25 @@
+<table class="table table-condensed">
+  <tr>
+    <th><%= t 'product.barcode_id' %></th>
+    <th><%= t 'product.name' %></th>
+    <th><%= t 'product.product_type' %></th>
+    <th><%= t 'product.merk' %></th>
+    <th><%= t 'product.size' %></th>
+    <th></th>
+  </tr>
+
+<% @products.each do |product| %>
+  <tr>
+    <td><%= product.barcode_id %></td>
+    <td><%= product.name %></td>
+    <td><%= product.product_type %></td>
+    <td><%= product.merk %></td>
+    <td><%= product.size %></td>
+    <td class="text-right">
+        <%= link_to "#{t 'pick'}", pick_product_purchase_purchase_details_path(@purchase.id, :product_id => product.id), :remote => true, :class => "btn btn-default btn-xs" %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<%= will_paginate @products, :params => {:controller => "purchase_details", :action => "show_product", :purchase_id => @purchase.id, :keyword => @keyword}, :class => "apple_pagination" %>

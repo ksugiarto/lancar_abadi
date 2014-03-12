@@ -5,6 +5,7 @@ class Purchase < ActiveRecord::Base
   attr_accessible :added_discount, :amount_after_discount, :discount, :discount_amount, :notes, :pi_id, :sub_amount, :tax, :tax_amount, :total_amount, :transaction_date, :supplier_id, :status
 
   before_create :id_generator
+  after_update :populate_product_purchase
 
   def supplier_name
   	supplier.try(:name)
@@ -29,5 +30,22 @@ class Purchase < ActiveRecord::Base
     self.tax_amount = (self.amount_after_discount - self.added_discount.to_f) * 0.1 if self.tax==true || 0
     self.total_amount = self.amount_after_discount - self.added_discount.to_f + self.tax_amount
     self.save
+  end
+
+  def populate_product_purchase
+    if self.status.to_i==1
+      purchase = Purchase.find(self.id)
+      purchase.details.each do |detail|
+        ProductPurchase.create(:purchase_id => self.id, 
+                               :supplier_id => self.supplier_id, 
+                               :product_id => detail.product_id, 
+                               :purchase_date => self.transaction_date, 
+                               :purchase_price => detail.price) # still taking standart price
+      end
+    elsif self.status.to_i==5
+      ProductPurchase.where(:purchase_id => self.id).each do |history|
+        history.destroy
+      end
+    end
   end
 end

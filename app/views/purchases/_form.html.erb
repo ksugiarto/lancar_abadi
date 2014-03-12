@@ -13,22 +13,34 @@
 
   <div class="form-group">
     <%= f.label :pi_id, "#{t 'purchase.pi_id'}", :class => "col-sm-4 control-label" %>
-    <div class="col-sm-6"><%= f.text_field :pi_id, :placeholder => "#{t 'purchase.pi_id_placeholder'}", :readonly => true, :class => "form-control" %></div>
+    <div class="col-sm-7"><%= f.text_field :pi_id, :placeholder => "#{t 'purchase.pi_id_placeholder'}", :readonly => true, :class => "form-control" %></div>
   </div>
   <div class="form-group">
     <%= f.label :transaction_date, "#{t 'purchase.transaction_date'}", :class => "col-sm-4 control-label" %>
-    <div class="col-sm-6"><%= f.text_field :transaction_date, :class => "form-control", :value => "#{Time.now.strftime('%Y-%m-%d')}" %></div>
+    <div class="col-sm-7"><%= f.text_field :transaction_date, :class => "form-control", :value => "#{Time.now.strftime('%Y-%m-%d')}" %></div>
   </div>
   <div class="form-group">
     <%= f.label :supplier, "#{t 'purchase.supplier'}", :class => "col-sm-4 control-label" %>
-    <div class="col-sm-6"><%= f.select(:supplier_id, @suppliers.collect {|supplier| [supplier.name, supplier.id,]}, {:prompt => "#{t 'prompt'} #{t 'purchase.supplier'}"}, :class => "form-control") %></div>
+    <div class="col-sm-5">
+      <%= f.hidden_field :supplier_id %>
+      <% if @purchase.supplier_id.nil? %>
+        <%= text_field_tag :supplier_name, nil, :placeholder => "#{t 'purchase.supplier_placeholder'}", :readonly => true, :class => "form-control" %>
+      <% else %>
+        <%= text_field_tag :supplier_name, @purchase.supplier_name, :placeholder => "#{t 'purchase.supplier_placeholder'}", :readonly => true, :class => "form-control" %>
+      <% end -%>
+    </div>
+    <div class="col-sm-1">
+      <%= link_to show_supplier_purchases_path, :remote => true, :class => "btn btn-default" do %>
+        <span class="glyphicon glyphicon-chevron-right"></span>
+      <% end -%>
+    </div>
   </div>
   <div class="form-group">
     <%= f.label :notes, "#{t 'purchase.notes'}", :class => "col-sm-4 control-label" %>
-    <div class="col-sm-6"><%= f.text_area :notes, :rows => 3, :class => "form-control" %></div>
+    <div class="col-sm-7"><%= f.text_area :notes, :rows => 3, :class => "form-control" %></div>
   </div>
   <div class="form-group">
     <div class="col-sm-4"></div>
-    <div class="col-sm-6"><%= f.submit "#{t 'submit'}", :class => "btn btn-success btn-block", :disable_with => "#{t 'disable_with'}" %></div>
+    <div class="col-sm-7"><%= f.submit "#{t 'submit'}", :class => "btn btn-success btn-block", :disable_with => "#{t 'disable_with'}" %></div>
   </div>
 <% end %>

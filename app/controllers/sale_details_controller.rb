@@ -3,19 +3,38 @@ class SaleDetailsController < ApplicationController
     @sale = Sale.find(params[:sale_id])
   end
 
+  def get_product
+    @products = Product.search_product(params[:keyword]).order(:name)
+    .paginate(:page => params[:page], :per_page => 1)
+
+    @keyword = params[:keyword] if params[:keyword].present?
+  end
+
+  def show_product
+    get_data
+    get_product
+  end
+
+  def search_product
+    get_data
+    get_product
+  end
+
+  def pick_product
+    @product = Product.find(params[:product_id])
+  end
+
   # GET /sale_details/new
   # GET /sale_details/new.json
   def new
     get_data
     @sale_detail = @sale.details.new
-    @products = Product.order(:name)
   end
 
   # GET /sale_details/1/edit
   def edit
     get_data
     @sale_detail = @sale.details.find(params[:id])
-    @products = Product.order(:name)
   end
 
   # POST /sale_details

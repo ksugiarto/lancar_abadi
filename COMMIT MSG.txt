@@ -1,0 +1,11 @@
+Things Done:
+(1) Adding new Gem: will_paginate, roo.
+(2) Make supplier on Purchase form, and product on Purchase Detail form being advanced.
+(3) Added [Close] and [Void] button on Purchase and Sale.
+(4) Preparing for import from excel feature.
+
+Next to-do:
+(1) Get price for Sale Detail.
+(2) Finish import feature for Supplier, Supplier Phone, Supplier Categories, Customer, Customer Phone, Product.
+(3) Take purchase price product purchase.
+(4) Search Price feature.

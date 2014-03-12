@@ -20,8 +20,7 @@
     <td><%= sale.total_amount %></td>
     <td class="text-right">
         <%= link_to "#{t 'show'}", sale, :class => "btn btn-primary btn-xs" %>
-        <%= link_to "#{t 'edit'}", edit_sale_path(sale), :class => "btn btn-warning btn-xs", :remote => true %>
-        <%= link_to "#{t 'destroy'}", sale, method: :delete, data: { confirm: "#{t 'confirm'}" }, :class => "btn btn-danger btn-xs", :remote => true %>
+        <%= link_to "#{t 'edit'}", edit_sale_path(sale), :class => "btn btn-warning btn-xs" %>
     </td>
   </tr>
 <% end %>

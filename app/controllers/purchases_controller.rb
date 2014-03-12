@@ -1,6 +1,10 @@
 class PurchasesController < ApplicationController
-  def get_data
-    @suppliers = Supplier.order(:name)
+  def get_supplier
+    @suppliers = Supplier.search_supplier(params[:keyword])
+    .order(:name)
+    .paginate(:page => params[:page], :per_page => 1)
+
+    @keyword = params[:keyword] if params[:keyword].present?
   end
 
   # GET /purchases
@@ -25,17 +29,41 @@ class PurchasesController < ApplicationController
     end
   end
 
+  def show_supplier
+    get_supplier
+  end
+
+  def search_supplier
+    get_supplier
+  end
+
+  def pick_supplier
+    @supplier = Supplier.find(params[:supplier_id])
+  end
+
   # GET /purchases/new
   # GET /purchases/new.json
   def new
     @purchase = Purchase.new
-    get_data
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /purchases/1/edit
   def edit
     @purchase = Purchase.find(params[:id])
-    get_data
+
+    if @purchase.status.to_i!=0
+      redirect_to @purchase
+    else
+      respond_to do |format|
+        format.html
+        format.js
+      end
+    end
   end
 
   # POST /purchases

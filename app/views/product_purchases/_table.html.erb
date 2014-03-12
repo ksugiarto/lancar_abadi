@@ -1,0 +1,23 @@
+<%=# will_paginate @purchases, :class => "apple_pagination" 
+%>
+
+<table class="table table-condensed">
+  <tr style="background-color:#708DC6;">
+    <th><%= t 'product.purchase.ref_id' %></th>
+    <th><%= t 'product.purchase.supplier' %></th>
+    <th><%= t 'product.purchase.purchase_date' %></th>
+    <th><%= t 'product.purchase.purchase_price' %></th>
+  </tr>
+
+<% @product.purchases.each do |purchase| %>
+  <tr>
+    <td><i>need migrate first</i></td>
+    <td><%= purchase.supplier.try(:name) %></td>
+    <td><%= purchase.purchase_date %></td>
+    <td><%= purchase.purchase_price %></td>
+  </tr>
+<% end %>
+</table>
+
+<%=# will_paginate @purchases, :class => "apple_pagination" 
+%>

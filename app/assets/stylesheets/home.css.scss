@@ -2,19 +2,14 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.status_0 /*STATUS NEW => LIGHT YELLOW*/
+{
+  background-color: #FFE57F;
+}
+
 .status_1 /*STATUS POST => LIGHT GREEN*/
 {
   background-color: #E0FFD6;
-}
-
-.status_7 /*PAYMENT POST => LIGHT GREEN*/
-{
-  background-color: #E0FFD6;
-}
-
-.status_4 /*STATUS WAITING => LIGHT YELLOW*/
-{
-  background-color: #FFE57F;
 }
 
 .status_5 /*STATUS VOID => LIGHT RED*/
@@ -25,6 +20,14 @@
 .status_false /*STATUS VOID => LIGHT RED*/
 {
   background-color: #FFE6E6;
+}
+
+.hidden>div {
+    display:none;
+}
+
+.visible>div {
+    display:block;
 }
 
 div.login

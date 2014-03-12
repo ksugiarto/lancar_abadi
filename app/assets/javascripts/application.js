@@ -60,3 +60,10 @@ $.fn.ajaxPagination = function() {
     return false;
   });
 }
+
+$(document).ready(function() {
+  /* Activating Best In Place */
+  // jQuery(".best_in_place").best_in_place();
+
+  $(".apple_pagination a").ajaxPagination();
+});

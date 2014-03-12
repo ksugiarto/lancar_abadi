@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  product: 
+  supplier: 
+  purchase_date: 2014-03-12
+  purchase_price: 9.99
+
+two:
+  product: 
+  supplier: 
+  purchase_date: 2014-03-12
+  purchase_price: 9.99

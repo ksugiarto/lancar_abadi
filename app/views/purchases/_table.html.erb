@@ -20,8 +20,7 @@
     <td><%= purchase.total_amount %></td>
     <td class="text-right">
         <%= link_to "#{t 'show'}", purchase, :class => "btn btn-primary btn-xs" %>
-        <%= link_to "#{t 'edit'}", edit_purchase_path(purchase), :class => "btn btn-warning btn-xs", :remote => true %>
-        <%= link_to "#{t 'destroy'}", purchase, method: :delete, data: { confirm: "#{t 'confirm'}" }, :class => "btn btn-danger btn-xs", :remote => true %>
+        <%= link_to "#{t 'edit'}", edit_purchase_path(purchase), :class => "btn btn-warning btn-xs" %>
     </td>
   </tr>
 <% end %>

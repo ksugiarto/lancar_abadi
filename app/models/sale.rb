@@ -6,6 +6,7 @@ class Sale < ActiveRecord::Base
   attr_accessible :added_discount, :amount_after_discount, :discount, :discount_amount, :notes, :si_id, :sub_amount, :tax, :tax_amount, :total_amount, :transaction_date, :customer_id, :customer_group_id, :status
 
   before_create :id_generator
+  before_save :get_customer_group
 
   def customer_name
   	customer.try(:name)
@@ -21,6 +22,10 @@ class Sale < ActiveRecord::Base
     end
 
   	self.si_id = "SI-#{Time.now.strftime("%y")}#{Time.now.strftime("%m")}-%04i" % new_id
+  end
+
+  def get_customer_group
+    self.customer_group_id = self.customer.try(:customer_group_id)
   end
 
   def sum_sub_amount
