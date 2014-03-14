@@ -1,0 +1,17 @@
+<%= form_tag city_filter_index_path, :method => "get", :class => "form-horizontal", :remote => true do %>
+<div class="form-group">
+	<div class="col-sm-3">
+	  <%= select_tag(:country_id, options_from_collection_for_select(@countries, 'id', 'name'), :prompt => "#{t 'search'} #{t 'country.country'}", :class => "form-control") %>
+	</div>
+	<div class="col-sm-3">
+	  <%= select_tag(:province_id, options_from_collection_for_select(@provinces, 'id', 'name'), :prompt => "#{t 'search'} #{t 'province.province'}", :class => "form-control") %>
+	</div>
+	<div class="col-sm-4">
+	  <%= text_field_tag 'name','', :placeholder => "#{t 'search'} #{t 'city.city'}", :class => "form-control" %>
+	</div>
+	<div class="col-sm-2">
+	  <%= submit_tag "#{t 'process'}", :disable_with => "#{t 'disable_with'}", :class => "btn btn-success" %>
+	  <%= link_to "#{t 'reset'}", cities_path, :class => "btn btn-default" %>
+	</div>
+</div>
+<% end %>

@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
   def get_data
-    @categories = Category.order(:name)
+    @categories = Category.order(:name).pagination(params[:page])
   end
 
   # GET /categories

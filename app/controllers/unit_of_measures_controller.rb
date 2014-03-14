@@ -1,6 +1,6 @@
 class UnitOfMeasuresController < ApplicationController
   def get_data
-    @unit_of_measures = UnitOfMeasure.order(:name)
+    @unit_of_measures = UnitOfMeasure.order(:name).pagination(params[:page])
   end
 
   # GET /unit_of_measures

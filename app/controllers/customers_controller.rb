@@ -8,7 +8,8 @@ class CustomersController < ApplicationController
   # GET /customers
   # GET /customers.json
   def index
-    @customers = Customer.order(:name)
+    @customers = Customer.order(:name).pagination(params[:page])
+    @cities = City.order(:name)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -78,10 +79,22 @@ class CustomersController < ApplicationController
   def destroy
     @customer = Customer.find(params[:id])
     @customer.destroy
+    @customers = Customer.order(:name)
+  end
 
-    respond_to do |format|
-      format.html { redirect_to customers_url }
-      format.json { head :no_content }
-    end
+  def import
+  end
+
+  def import_submit
+    Customer.import(params[:file])
+    redirect_to customers_path
+  end
+
+  def import_phone
+  end
+
+  def import_phone_submit
+    Customer.import_phone(params[:file])
+    redirect_to customers_path
   end
 end

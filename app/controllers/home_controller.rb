@@ -1,5 +1,16 @@
 class HomeController < ApplicationController
   def index
+    @products = Product.where(:id => 0).order(:name).pagination(params[:page])
+    @suppliers = Supplier.order(:name)
+
+    @store_cust_group = CustomerGroup.find_by_name("Bakul/Toko")
+    @workshop_cust_group = CustomerGroup.find_by_name("Bengkel/Montir")
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @products }
+      format.js
+    end
   end
 
   def provinces_by_country

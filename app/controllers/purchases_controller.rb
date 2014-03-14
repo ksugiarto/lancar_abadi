@@ -10,7 +10,12 @@ class PurchasesController < ApplicationController
   # GET /purchases
   # GET /purchases.json
   def index
-    @purchases = Purchase.order(:created_at).reverse_order
+    @purchases = Purchase
+    .where("EXTRACT(MONTH FROM transaction_date)=EXTRACT(MONTH FROM CURRENT_DATE) AND EXTRACT(YEAR FROM transaction_date)=EXTRACT(YEAR FROM CURRENT_DATE)")
+    .order(:created_at).reverse_order
+    .pagination(params[:page])
+
+    @suppliers = Supplier.order(:name)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -64,6 +69,10 @@ class PurchasesController < ApplicationController
         format.js
       end
     end
+  end
+
+  def edit_footer
+    @purchase = Purchase.find(params[:id])
   end
 
   # POST /purchases

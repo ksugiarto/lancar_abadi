@@ -1,0 +1,39 @@
+<%= form_tag purchase_filter_index_path, :method => "get", :class => "form-horizontal", :remote => true do %>
+<div class="form-group">
+	<div class="col-sm-3">
+		<%= select_tag(:month, options_for_select([
+      ["#{t 'date.month.january'}", "01"],
+      ["#{t 'date.month.february'}", "02"], 
+      ["#{t 'date.month.march'}", "03"],
+      ["#{t 'date.month.april'}", "04"],
+      ["#{t 'date.month.may'}", "05"],
+      ["#{t 'date.month.june'}", "06"],
+      ["#{t 'date.month.july'}", "07"],
+      ["#{t 'date.month.august'}", "08"],
+      ["#{t 'date.month.september'}", "09"],
+      ["#{t 'date.month.october'}", "10"],
+      ["#{t 'date.month.november'}", "11"],
+      ["#{t 'date.month.december'}", "12"]], :selected => Date.today.strftime("%m")), :class => "form-control") %>
+	</div>
+	<div class="col-sm-2">
+    <%= select_tag(:year, options_for_select([
+      [Date.today.strftime("%Y").to_i, Date.today.strftime("%Y").to_i],
+      [Date.today.strftime("%Y").to_i-1, Date.today.strftime("%Y").to_i-1], 
+      [Date.today.strftime("%Y").to_i-2, Date.today.strftime("%Y").to_i-2]], :selected => Date.today.strftime("%Y")), :class => "form-control") %>
+	</div>
+	<div class="col-sm-3">
+		<%= select_tag(:supplier_id, options_from_collection_for_select(@suppliers, 'id', 'name'), :prompt => "#{t 'search'} #{t 'supplier.supplier'}", :class => "form-control") %>
+	</div>
+	<div class="col-sm-2">
+		<%= select_tag(:status, options_for_select([
+      ["#{t 'search'} #{t 'purchase.status_short'}", ""],
+      ["#{t 'new'}", "0"],
+      ["#{t 'close'}", "1"], 
+      ["#{t 'void'}", "5"]]), :class => "form-control") %>
+	</div>
+	<div class="col-sm-2">
+	  <%= submit_tag "#{t 'process'}", :disable_with => "#{t 'disable_with'}", :class => "btn btn-success" %>
+	  <%= link_to "#{t 'reset'}", purchases_path, :class => "btn btn-default" %>
+	</div>
+</div>
+<% end %>

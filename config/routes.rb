@@ -1,46 +1,91 @@
 LancarAbadi::Application.routes.draw do
-  resources :sales do
+  resources :filter do
     collection do
-      get 'show_customer'
-      post 'search_customer'
-      get 'pick_customer'
+      get :country
+      get :province
+      get :city
+      get :unit_of_measure
+      get :category
+      get :customer_group
+      get :supplier
+      get :customer
+      get :product
+      get :product_home
+      get :purchase
+      get :sale
+    end
+  end
+
+  resources :sales do
+    member do
+      get :edit_footer
+      get :print
+    end
+    
+    collection do
+      get :show_customer
+      post :search_customer
+      get :pick_customer
     end
 
     resources :sale_details do
       collection do
-        get 'show_product'
-        post 'search_product'
-        get 'pick_product'
+        get :show_product
+        post :search_product
+        get :pick_product
       end
     end
   end
 
   resources :purchases do
+    member do
+      get :edit_footer
+    end
+    
     collection do
-      get 'show_supplier'
-      post 'search_supplier'
-      get 'pick_supplier'
+      get :show_supplier
+      post :search_supplier
+      get :pick_supplier
     end
 
     resources :purchase_details do
       collection do
-        get 'show_product'
-        post 'search_product'
-        get 'pick_product'
+        get :show_product
+        post :search_product
+        get :pick_product
       end
     end
   end
 
   resources :customers do
+    collection do
+      get :import
+      post :import_submit
+      get :import_phone
+      post :import_phone_submit
+    end
+    
     resources :customer_phones
   end
 
   resources :suppliers do
-    resources :supplier_categories
+    collection do
+      get :import
+      post :import_submit
+      get :import_phone
+      post :import_phone_submit
+    end
+    
     resources :supplier_phones
+    resources :supplier_categories
   end
 
   resources :products do
+    collection do
+      get :import
+      post :import_submit
+    end
+    
     resources :product_purchases
   end
 

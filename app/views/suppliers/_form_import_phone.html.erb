@@ -1,0 +1,6 @@
+<%= form_tag(import_phone_submit_suppliers_path, :class => "form-inline", :multipart => true) do %>
+  <div class="form-group">
+    <div class="col-sm-8"><%= file_field_tag :file, :class => "form-control" %></div>
+    <div class="col-sm-2"><%= submit_tag "#{t 'submit'}", :class => "btn btn-success", :disable_with => "#{t 'disable_with'}" %></div>
+  </div>
+<% end %>

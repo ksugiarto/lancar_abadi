@@ -1,0 +1,6 @@
+$("#sale_detail_product_id").val("<%= @product.id %>");
+$("#product_name").val("<%= @product.name %>");
+
+$("#product_filter").hide();
+$("#product_list").html("<%= escape_javascript(render 'product_price_list') %>");
+// $("#product_list").html("");

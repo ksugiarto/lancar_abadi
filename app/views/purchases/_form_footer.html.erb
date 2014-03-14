@@ -1,0 +1,33 @@
+<%= form_for(@purchase, :html => { :class => "form-horizontal" }) do |f| %>
+  <% if @purchase.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@purchase.errors.count, "error") %> prohibited this purchase from being saved:</h2>
+
+      <ul>
+      <% @purchase.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :discount, "#{t 'purchase.discount'}", :class => "col-sm-4 control-label" %>
+    <div class="col-sm-6"><%= f.text_field :discount, :class => "form-control" %></div>
+  </div>
+  <div class="form-group">
+    <%= f.label :added_discount, "#{t 'purchase.added_discount'}", :class => "col-sm-4 control-label" %>
+    <div class="col-sm-6"><%= f.text_field :added_discount, :class => "form-control" %></div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-4 col-sm-6">
+      <div class="checkbox">
+        <%= f.check_box :tax %><%= f.label :tax, "#{t 'purchase.tax'}" %>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-6"><%= f.submit "#{t 'submit'}", :class => "btn btn-success btn-block", :disable_with => "#{t 'disable_with'}" %></div>
+  </div>
+<% end %>

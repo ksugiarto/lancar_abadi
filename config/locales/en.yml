@@ -31,6 +31,7 @@ en:
   read_more: "Read more"
   all: "All"
   process: "Process"
+  print: "Print"
   printing: "Printing.."
   reset: "Reset"
   select_all: "Select All"
@@ -38,7 +39,9 @@ en:
   updated: "successfully updated."
   search: "Search"
   import: "Import"
-  number: "No."
+  import_excel: "Import from Excel"
+  import_excel_for: "Import Excel for"
+  row_number: "No."
 
   # DATE
   date:
@@ -168,6 +171,17 @@ en:
     province: "Province"
     country: "Country"
     notes: "Notes"
+    product:
+      product: "Product"
+      category: "Category"
+      barcode_id: "Barcode ID"
+      name: "Name"
+      product_type: "Type"
+      merk: "Merk"
+      size: "Size"
+      unit_of_measure: "Unit of Measure"
+      sales_price: "Sales Price"
+      price: "Price"
     category:
       category: "Category"
       notes: "Notes"
@@ -230,8 +244,10 @@ en:
     product_type: "Type"
     merk: "Merk"
     size: "Size"
+    supplier: "Supplier"
     unit_of_measure: "Unit of Measure"
     sales_price: "Sales Price"
+    price: "Price"
     purchase:
       purchase: "History of Product Purchasing"
       ref_id: "Reference ID"
@@ -332,6 +348,7 @@ en:
     total_amount: "Total Amount"
     total_amount_rp: "Total Amount (Rp)"
     status: "Transaction status: "
+    status_short: "Status"
     editable: "(Editable)"
     uneditable: "(Uneditable)"
     created_at: "Created at: "
@@ -353,6 +370,7 @@ en:
   sale:
     sales: "Sales List"
     sale: "Sales"
+    sales_invoice: "Sales Invoice"
     si_id: "SI ID"
     si_id_placeholder: "Auto added when saving"
     transaction_date: "Sales Date"
@@ -361,6 +379,7 @@ en:
     search_customer_placeholder: "Search Customer's Name"
     notes: "Notes"
     sub_amount: "Sub Amount"
+    sub_amount_rp: "Sub Amount (Rp)"
     discount: "Discount"
     discount_amount: "Discount Amount"
     amount_after_discount: "Amount After Discount"
@@ -370,6 +389,7 @@ en:
     total_amount: "Total Amount"
     total_amount_rp: "Total Amount (Rp)"
     status: "Transaction status: "
+    status_short: "Status"
     editable: "(Editable)"
     uneditable: "(Uneditable)"
     created_at: "Created at: "
@@ -383,9 +403,9 @@ en:
       price: "Price"
       price_rp: "Price (Rp)"
       discount: "Discount"
-      discount_%: "Discount (%)"
+      discount_%: "Disc. (%)"
       added_discount: "Added Discount"
-      added_discount_rp: "Added Discount (Rp)"
+      added_discount_rp: "Added Disc. (Rp)"
       amount_rp: "Amount (Rp)"
 
   invoice:

@@ -2,8 +2,7 @@ class CitiesController < ApplicationController
   def get_data
     @countries = Country.order(:name)
     @provinces = Province.order(:name)
-    # @cities = City.order(:name).pagination(params[:page])
-    @cities = City.order(:name)
+    @cities = City.order(:name).pagination(params[:page])
   end
 
   # GET /cities

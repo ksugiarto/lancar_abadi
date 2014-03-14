@@ -1,14 +1,20 @@
 <div class="row">
-  <div class="col-sm-8"></div>
+  <div class="col-sm-6"></div>
 
-  <div class="col-sm-4">
+  <div class="col-sm-6">
     <hr>
     <table>
       <tr>
-        <th class="text-right" width="200"><%= t 'purchase.sub_amount' %>:</th>
+        <th class="text-right" width="400"><%= t 'purchase.sub_amount' %>:</th>
         <th width="50">&nbsp;Rp</th>
         <th class="text-right" width="150"><%= @purchase.sub_amount %></th>
-        <th width="50"></th>
+        <th width="50">
+          <% if @purchase.status==0 %>
+            <%= link_to edit_footer_purchase_path(@purchase), :class => "btn btn-warning btn-xs", :remote => true do %>
+              <span class="glyphicon glyphicon-pencil"></span>
+            <% end %>
+          <% end -%>
+        </th>
       </tr>
       <tr>
         <td class="text-right"><%= t 'purchase.discount' %>:</td>
@@ -37,7 +43,7 @@
       <tr>
         <td class="text-right"><%= t 'purchase.tax' %>:</td>
         <td></td>
-        <td class="text-right"><%= @purchase.tax %></td>
+        <td class="text-right"><%= "&#10004;".html_safe if @purchase.tax==true %></td>
         <td></td>
       </tr>
       <tr>

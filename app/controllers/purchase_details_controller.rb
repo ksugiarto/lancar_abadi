@@ -4,7 +4,10 @@ class PurchaseDetailsController < ApplicationController
   end
 
   def get_product
-    @products = Product.search_product(params[:keyword]).order(:name)
+    @products = Product
+    .search_product(params[:keyword])
+    .where(:supplier_id => @purchase.supplier_id)
+    .order(:name)
     .paginate(:page => params[:page], :per_page => 1)
 
     @keyword = params[:keyword] if params[:keyword].present?

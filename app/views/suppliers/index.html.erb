@@ -1,20 +1,41 @@
 <div class="row">
-  <div class="col-md-2">
+  <div class="col-md-4">
+    <%= link_to import_suppliers_path, :class => "btn btn-success btn-sm", :remote => true do %>
+      <span class="glyphicon glyphicon-open"></span>&nbsp;<%= t 'import_excel' %>
+    <% end %>
+
+    <%= link_to import_phone_suppliers_path, :class => "btn btn-success btn-sm", :remote => true do %>
+      <span class="glyphicon glyphicon-open"></span>&nbsp;<%= t 'import_excel_for' %> <%= t 'supplier.phone.phone' %>
+    <% end %>
   </div>
   
-  <div class="col-md-8">
+  <div class="col-md-4">
     <h4 align="center"><%= t 'supplier.suppliers' %></h4>
   </div>
 
-  <div class="col-md-2" align="right">
+  <div class="col-md-4" align="right">
     <%= link_to new_supplier_path, :class => "btn btn-default btn-sm", :remote => true do %>
       <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;<%= t 'new' %>
     <% end %>
   </div>
 </div>
 
-<%=# render 'filter/supplier' 
-%>
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+          <b>FILTER</b>
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse">
+      <div class="panel-body">
+        <%= render 'filter/supplier' %>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div id="table"><%= render 'table' %></div>
 

@@ -8,7 +8,11 @@ class SaleDetail < ActiveRecord::Base
   after_destroy :sub_amount_calculation
 
   def product_detail
-  	"#{product.try(:name)} #{product.try(:product_type)} #{product.try(:size)}-#{product.try(:merk)} (#{product.try(:barcode_id)})"
+    "#{product.try(:name)} #{product.try(:product_type)} #{product.try(:size)}-#{product.try(:merk)} (#{product.try(:barcode_id)})"
+  end
+
+  def product_detail_wo_code
+  	"#{product.try(:name)} #{product.try(:product_type)} #{product.try(:size)}-#{product.try(:merk)}"
   end
 
   def amount_calculation

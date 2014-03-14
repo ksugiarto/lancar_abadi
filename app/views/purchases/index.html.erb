@@ -13,8 +13,22 @@
   </div>
 </div>
 
-<%=# render 'filter/purchase' 
-%>
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+          <b>FILTER</b>
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse">
+      <div class="panel-body">
+        <%= render 'filter/purchase' %>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div id="table"><%= render 'table' %></div>
 

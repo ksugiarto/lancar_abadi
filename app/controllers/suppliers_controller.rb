@@ -8,7 +8,8 @@ class SuppliersController < ApplicationController
   # GET /suppliers
   # GET /suppliers.json
   def index
-    @suppliers = Supplier.order(:name)
+    @suppliers = Supplier.order(:name).pagination(params[:page])
+    @cities = City.order(:name)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -22,9 +23,15 @@ class SuppliersController < ApplicationController
   def show
     @supplier = Supplier.find(params[:id])
 
+    @products = @supplier.products.order(:name).paginate(:per_page => 10, :page => params[:page])
+
+    @store_cust_group = CustomerGroup.find_by_name("Bakul/Toko")
+    @workshop_cust_group = CustomerGroup.find_by_name("Bengkel/Montir")
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @supplier }
+      format.js
     end
   end
 
@@ -78,10 +85,22 @@ class SuppliersController < ApplicationController
   def destroy
     @supplier = Supplier.find(params[:id])
     @supplier.destroy
+    @suppliers = Supplier.order(:name)
+  end
 
-    respond_to do |format|
-      format.html { redirect_to suppliers_url }
-      format.json { head :no_content }
-    end
+  def import
+  end
+
+  def import_submit
+    Supplier.import(params[:file])
+    redirect_to suppliers_path
+  end
+
+  def import_phone
+  end
+
+  def import_phone_submit
+    Supplier.import_phone(params[:file])
+    redirect_to suppliers_path
   end
 end

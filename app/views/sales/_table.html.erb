@@ -1,5 +1,4 @@
-<%=# will_paginate @sales, :class => "apple_pagination" 
-%>
+<%= will_paginate @sales, :class => "apple_pagination" %>
 
 <table class="table table-condensed">
   <tr>
@@ -12,19 +11,18 @@
   </tr>
 
 <% @sales.each do |sale| %>
-  <tr>
+  <tr class="status_<%= sale.status.to_i %>">
     <td><%= sale.si_id %></td>
     <td><%= sale.transaction_date %></td>
     <td><%= sale.customer_name %></td>
     <td><%= sale.notes %></td>
     <td><%= sale.total_amount %></td>
     <td class="text-right">
+        <%= link_to "#{t 'edit'}", edit_sale_path(sale), :class => "btn btn-warning btn-xs" if sale.status.to_i==0 %>
         <%= link_to "#{t 'show'}", sale, :class => "btn btn-primary btn-xs" %>
-        <%= link_to "#{t 'edit'}", edit_sale_path(sale), :class => "btn btn-warning btn-xs" %>
     </td>
   </tr>
 <% end %>
 </table>
 
-<%=# will_paginate @sales, :class => "apple_pagination" 
-%>
+<%= will_paginate @sales, :class => "apple_pagination" %>

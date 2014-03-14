@@ -1,15 +1,15 @@
 <div class="row">
-  <div class="col-md-2">
+  <div class="col-md-4">
   	<%= link_to suppliers_path, :class => "btn btn-default btn-sm" do %>
   		<span class="glyphicon glyphicon-chevron-left"></span>&nbsp;<%= t 'back' %>
   	<% end %>
   </div>
   
-  <div class="col-md-8">
+  <div class="col-md-4">
     <h4 align="center"><%= t 'supplier.supplier' %> - <%= t 'detail' %></h4>
   </div>
 
-  <div class="col-md-2" align="right">
+  <div class="col-md-4" align="right">
   	<%= link_to edit_supplier_path(@supplier), :class => "btn btn-warning btn-sm", :remote => true do %>
   		<%= t 'edit' %>&nbsp;<span class="glyphicon glyphicon-pencil"></span>
   	<% end %>
@@ -20,13 +20,15 @@
 
 <!-- Nav tabs -->
 <ul class="nav nav-tabs">
-  <li class="active"><a href="#phone" data-toggle="tab"><%= t 'supplier.phone.phone' %></a></li>
+  <li class="active"><a href="#product" data-toggle="tab"><%= t 'supplier.product.product' %></a></li>
+  <li><a href="#phone" data-toggle="tab"><%= t 'supplier.phone.phone' %></a></li>
   <li><a href="#category" data-toggle="tab"><%= t 'supplier.category.category' %></a></li>
 </ul>
 
 <!-- Tab panes -->
 <div class="tab-content">
-  <div class="tab-pane active" id="phone"><%= render 'supplier_phones/table' %></div>
+  <div class="tab-pane active" id="product"><div id="table_product"><%= render 'table_product' %></div></div>
+  <div class="tab-pane" id="phone"><%= render 'supplier_phones/table' %></div>
   <div class="tab-pane" id="category"><%= render 'supplier_categories/table' %></div>
 </div>
 

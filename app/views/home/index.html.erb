@@ -1,8 +1,18 @@
-<h4>UD. Lancar Abadi Application</h4>
-<br>
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+          <b>CARI HARGA PRODUCT</b>
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in">
+      <div class="panel-body">
+        <%= render 'filter/product_home' %>
+      </div>
+    </div>
+  </div>
+</div>
 
-Applikasi ini masih dalam tahap pengerjaan, halaman depan ini akan menjadi halaman yang paling banyak dibutuhkan dan mudah diakses, akan diganti dengan halaman pencari harga.
-<br>Untuk transaksi lainnya silahkan pilih di menu atas.
-
-<hr>
-<div class="text-right">Develop by Kristono Sugiarto, S.Kom.</div>
+<div id="table"><%= render 'table_product' %></div>

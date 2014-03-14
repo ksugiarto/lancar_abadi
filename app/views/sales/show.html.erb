@@ -21,8 +21,12 @@
           <%= t 'edit' %>&nbsp;<span class="glyphicon glyphicon-pencil"></span>
         <% end %>
       <% end -%>
-    <% else %>
+    <% elsif @sale.status==1 %>
       <%= form_for(@sale) do |f| %>
+        <%= link_to sale_path(@sale, :format => "pdf"), :target => "_blank", :class => "btn btn-warning btn-sm" do %>
+          <%= t 'print' %>&nbsp;<span class="glyphicon glyphicon-print"></span>
+        <% end %>
+
         <%= f.hidden_field :status, :value => 5 %>
         <%= button_tag :type => "submit", :class => "btn btn-danger btn-sm", :disable_with => "#{t 'disable_with'}", data: { confirm: "#{t 'confirm'}" } do %>
           <%= t 'void' %>&nbsp;<span class="glyphicon glyphicon-lock"></span>

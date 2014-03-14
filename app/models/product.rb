@@ -1,9 +1,14 @@
 class Product < ActiveRecord::Base
   belongs_to :category
+  belongs_to :supplier
   belongs_to :unit_of_measure
   has_many :purchases, :class_name => "ProductPurchase"
 
-  attr_accessible :category_id, :barcode_id, :merk, :name, :sales_price, :size, :product_type, :unit_of_measure_id, :can_be_purcase, :can_be_sale
+  attr_accessible :category_id, :barcode_id, :merk, :name, :sales_price, :size, :product_type, :unit_of_measure_id, :can_be_purchase, :can_be_sale, :supplier_id
+
+  def self.pagination(page)
+    paginate(:per_page => 20, :page => page)
+  end
 
   def category_name
   	category.try(:name)
@@ -11,6 +16,22 @@ class Product < ActiveRecord::Base
 
   def unit_of_measure_name
   	unit_of_measure.try(:name)
+  end
+
+  def self.filter_name(name)
+    if name.present?
+      where("name ~* '#{name}' OR product_type ~* '#{name}' OR merk ~* '#{name}' OR size ~* '#{name}'")
+    else
+      scoped
+    end
+  end
+
+  def self.filter_supplier(id)
+    if id.present?
+      where(:supplier_id => id)
+    else
+      scoped
+    end
   end
 
   def self.search_product(name)
@@ -31,49 +52,56 @@ class Product < ActiveRecord::Base
   	end
   end
 
-  def self.import(file, or_temp_header_id, location_route_id)
+  def self.import(file)
     spreadsheet = open_spreadsheet(file)
-    header = spreadsheet.row(1)
-    (2..spreadsheet.last_row).each do |i| # looping all excel data
-      row = Hash[[header, spreadsheet.row(i)].transpose]
+    spreadsheet.sheets.each do |sheet| # looping all sheet
+      spreadsheet.default_sheet = "#{sheet}" # picking current sheet as default to be processing
+      header = spreadsheet.row(1)
+      (2..spreadsheet.last_row).each do |i| # looping all excel data
+        row = Hash[[header, spreadsheet.row(i)].transpose]
 
-      # CHECKING IF NECESSARY DATA IS PRESENT
-      existing_product = Product.where(:barcode_id => row["CODE"]).last
-      if existing_product.present?
-        product_id = existing_product.id
-        status=true
-      else
-        status=false
-      end
+        # CHECKING IF NECESSARY DATA IS PRESENT
+        existing_product = Product.where(:barcode_id => row["CODE"]).last
+        if existing_product.present?
+          product_id = existing_product.id
+          status="edit"
+        else
+          status="new"
+        end
+        # END CHECKING IF NECESSARY DATA IS PRESENT
 
-      if row["Estimate Delivered"].blank? || row["Volume?"].blank? || row["Rec. Name"].blank? || row["Rec. Address"].blank?
-        status=false
-      else
-        status=true
-      end
-      # END CHECKING IF NECESSARY DATA IS PRESENT
+        supplier = Supplier.where("name ~* '#{row['SUPPLIER']}'").last
+        if supplier.blank?
+          supplier = Supplier.create(:name => row["SUPPLIER"])
+        end
 
-      @or_temp_detail = OrderRequestTempDetail.create(:row_number => row["No."], 
-                                                      :or_temp_header_id => or_temp_header_id, 
-                                                      :description => row["Description"], 
-                                                      :is_volume => row["Volume?"], 
-                                                      :weight_kg => row["Weight (KG)"], 
-                                                      :length => row["Length (P)"], 
-                                                      :width => row["Width (L)"], 
-                                                      :height => row["Height (T)"], 
-                                                      :amount => row["Amount (Rp)"], 
-                                                      :recipient_company => row["Rec. Company"], 
-                                                      :recipient_name => row["Rec. Name"], 
-                                                      :recipient_address => row["Rec. Address"], 
-                                                      :recipient_city_id => city_id, 
-                                                      :recipient_province_id => province_id, 
-                                                      :recipient_country_id => country_id, 
-                                                      :recipient_phone_number => row["Rec. Phone Number"], 
-                                                      :estimate_delivered => row["Estimate Delivered"], 
-                                                      :courier_delivery_id => courier_delivery_id, 
-                                                      :courier_delivery_name => courier_delivery_name,
-                                                      :status => status)
-    end # looping all excel data
+        if status=="new"
+          Product.create(:category_id => 0,
+                         :barcode_id => row["CODE"], 
+                         :name => row["NAMA BARANG"], 
+                         :product_type => row["TYPE"], 
+                         :merk => row["MERK"], 
+                         :size => "", 
+                         :supplier_id => supplier.id,
+                         :unit_of_measure_id => 0, 
+                         :sales_price => row["HARGA"], 
+                         :can_be_purchase => true, 
+                         :can_be_sale => true)
+        elsif status=="edit"
+          existing_product.update_attributes(:category_id => 0,
+                                             :barcode_id => row["CODE"], 
+                                             :name => row["NAMA BARANG"], 
+                                             :product_type => row["TYPE"], 
+                                             :merk => row["MERK"], 
+                                             :size => "", 
+                                             :supplier_id => supplier.id,
+                                             :unit_of_measure_id => 0, 
+                                             :sales_price => row["HARGA"], 
+                                             :can_be_purchase => true, 
+                                             :can_be_sale => true)
+        end
+      end # looping all excel data
+    end # looping all sheet
   end
 
   def self.open_spreadsheet(file)

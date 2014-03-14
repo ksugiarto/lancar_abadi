@@ -21,7 +21,27 @@ class SaleDetailsController < ApplicationController
   end
 
   def pick_product
+    get_data
     @product = Product.find(params[:product_id])
+    @purchase_prices = @product.purchases.order(:purchase_date).reverse_order.limit(5)
+
+    store_cust_group = CustomerGroup.find_by_name("Bakul/Toko")
+    case store_cust_group.selected_price.to_i
+    when 1
+      @store_cust_price = @product.sales_price.to_f * store_cust_group.formula.to_f
+    when 2
+      @store_cust_price = @product.purchases.last.try(:purchase_price).to_f * store_cust_group.formula.to_f
+    else
+      @store_cust_price = 0
+    end
+
+    workshop_cust_group = CustomerGroup.find_by_name("Bengkel/Montir")
+    case workshop_cust_group.selected_price.to_i
+    when 1
+      @workshop_cust_price = @product.sales_price.to_f * workshop_cust_group.formula.to_f
+    when 2
+      @workshop_cust_price = @product.purchases.last.try(:purchase_price).to_f * workshop_cust_group.formula.to_f
+    end
   end
 
   # GET /sale_details/new

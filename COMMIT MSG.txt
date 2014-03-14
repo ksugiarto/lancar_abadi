@@ -1,11 +1,21 @@
 Things Done:
+(1) Get price for Sale Detail.
+(2) Take purchase price product purchase.
+(3) Finish import feature for Supplier, Supplier Phone, Customer, Customer Phone, Product.
+(4) Fixing several bugs.
+(5) Adding list product that Supplier have.
+(6) Finish pagination.
+(7) Now Closed Sale have a feature to Print to PDF.
+(8) Finish filter for all index
+(9) Now Home page become page to search product.
+
+Next to-do:
+(1) Date and number format
+(2) Right align for number format on table.
+
+============
+Things Done:
 (1) Adding new Gem: will_paginate, roo.
 (2) Make supplier on Purchase form, and product on Purchase Detail form being advanced.
 (3) Added [Close] and [Void] button on Purchase and Sale.
 (4) Preparing for import from excel feature.
-
-Next to-do:
-(1) Get price for Sale Detail.
-(2) Finish import feature for Supplier, Supplier Phone, Supplier Categories, Customer, Customer Phone, Product.
-(3) Take purchase price product purchase.
-(4) Search Price feature.

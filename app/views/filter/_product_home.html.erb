@@ -1,0 +1,13 @@
+<%= form_tag product_home_filter_index_path, :method => "get", :class => "form-horizontal", :remote => true do %>
+<div class="form-group">
+	<div class="col-sm-7">
+	  <%= text_field_tag 'name','', :placeholder => "#{t 'search'} #{t 'product.product'}", :class => "form-control" %>
+	</div>
+	<div class="col-sm-3">
+	  <%= select_tag(:supplier_id, options_from_collection_for_select(@suppliers, 'id', 'name'), :prompt => "#{t 'search'} #{t 'supplier.supplier'}", :class => "form-control") %>
+	</div>
+	<div class="col-sm-2">
+	  <%= submit_tag "#{t 'process'}", :disable_with => "#{t 'disable_with'}", :class => "btn btn-success" %>
+	</div>
+</div>
+<% end %>

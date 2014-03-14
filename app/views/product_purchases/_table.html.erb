@@ -11,7 +11,7 @@
 
 <% @product.purchases.each do |purchase| %>
   <tr>
-    <td><i>need migrate first</i></td>
+    <td><%= purchase.purchase.try(:pi_id) %></td>
     <td><%= purchase.supplier.try(:name) %></td>
     <td><%= purchase.purchase_date %></td>
     <td><%= purchase.purchase_price %></td>

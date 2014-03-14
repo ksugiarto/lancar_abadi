@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(:version => 20140311190222) do
   add_index "customers", ["province_id"], :name => "index_customers_on_province_id"
 
   create_table "product_purchases", :force => true do |t|
+    t.integer  "purchase_id"
     t.integer  "product_id"
     t.integer  "supplier_id"
     t.date     "purchase_date"
@@ -89,6 +90,7 @@ ActiveRecord::Schema.define(:version => 20140311190222) do
   end
 
   add_index "product_purchases", ["product_id"], :name => "index_product_purchases_on_product_id"
+  add_index "product_purchases", ["purchase_id"], :name => "index_product_purchases_on_purchase_id"
   add_index "product_purchases", ["supplier_id"], :name => "index_product_purchases_on_supplier_id"
 
   create_table "products", :force => true do |t|
@@ -99,6 +101,7 @@ ActiveRecord::Schema.define(:version => 20140311190222) do
     t.string   "merk"
     t.string   "size"
     t.integer  "unit_of_measure_id"
+    t.integer  "supplier_id"
     t.decimal  "sales_price",        :precision => 18, :scale => 2
     t.boolean  "can_be_purchase",                                   :default => false
     t.boolean  "can_be_sale",                                       :default => false
@@ -107,6 +110,7 @@ ActiveRecord::Schema.define(:version => 20140311190222) do
   end
 
   add_index "products", ["category_id"], :name => "index_products_on_category_id"
+  add_index "products", ["supplier_id"], :name => "index_products_on_supplier_id"
   add_index "products", ["unit_of_measure_id"], :name => "index_products_on_unit_of_measure_id"
 
   create_table "provinces", :force => true do |t|

@@ -5,17 +5,17 @@ class Supplier < ActiveRecord::Base
   
   has_many :categories, :class_name => "SupplierCategory"
   has_many :phones, :class_name => "SupplierPhone"
+  has_many :products, :class_name => "Product"
 
   attr_accessible :address, :contact_person, :email, :join_date, :name, :notes, :city_id, :province_id, :country_id
 
   def self.pagination(page)
-    paginate(:per_page => 15, :page => page)
+    paginate(:per_page => 20, :page => page)
   end
 
   def self.filter_name(name)
     if name.present?
-      # where("name LIKE (?) OR contact_person LIKE (?)", "%#{name}%", "%#{name}%")
-      where("name LIKE (?)", "%#{name}%")
+      where("name ~* '#{name}'")
     else
       scoped
     end
@@ -54,7 +54,7 @@ class Supplier < ActiveRecord::Base
       row = Hash[[header, spreadsheet.row(i)].transpose]
 
       # CHECKING IF NECESSARY DATA IS PRESENT
-      existing_supplier = Supplier.where(:name => row["NAMA SUPPLIER"]).last
+      existing_supplier = Supplier.where("name ~* '#{row['NAMA SUPPLIER']}'").last
       if existing_supplier.present?
         supplier_id = existing_supplier.id
         status = 1 # edit old data
@@ -63,15 +63,15 @@ class Supplier < ActiveRecord::Base
       end
       # END CHECKING IF NECESSARY DATA IS PRESENT
 
-      country = Country.where(:name => row["NEGARA"]).last
+      country = Country.where("name ~* '#{row['NEGARA']}'").last
       if country.blank?
         country = Country.create(:name => row["NEGARA"])
       end
-      province = Provice.where(:name => row["PROPINSI"]).last
+      province = Province.where("name ~* '#{row['PROPINSI']}'").last
       if province.blank?
         province = country.provinces.create(:name => row["PROPINSI"])
       end
-      city = City.where(:name => row["KOTA"]).last
+      city = City.where("name ~* '#{row['KOTA']}'").last
       if city.blank?
         city = City.create(:name => row["KOTA"], :country_id => country.id, :province_id => province.id)
       end
@@ -81,7 +81,7 @@ class Supplier < ActiveRecord::Base
         existing_supplier.update_attributes(:name => row["NAMA SUPPLIER"],
                                             :contact_person => row["CONTACT PERSON"],
                                             :email => row["EMAIL"],
-                                            :join_date => row["TGL GABUNG"],
+                                            :join_date => row["TGL GABUNG (YYYY-MM-DD)"],
                                             :address => row["ALAMAT"],
                                             :city_id => city.id,
                                             :province_id => province.id,
@@ -91,12 +91,36 @@ class Supplier < ActiveRecord::Base
         Supplier.create(:name => row["NAMA SUPPLIER"],
                         :contact_person => row["CONTACT PERSON"],
                         :email => row["EMAIL"],
-                        :join_date => row["TGL GABUNG"],
+                        :join_date => row["TGL GABUNG (YYYY-MM-DD)"],
                         :address => row["ALAMAT"],
                         :city_id => city.id,
                         :province_id => province.id,
                         :country_id => country.id,
                         :notes => row["NOTES"])
+      end
+    end # looping all excel data
+  end
+
+  def self.import_phone(file)
+    spreadsheet = open_spreadsheet(file)
+    header = spreadsheet.row(1)
+    (2..spreadsheet.last_row).each do |i| # looping all excel data
+      row = Hash[[header, spreadsheet.row(i)].transpose]
+
+      # CHECKING IF NECESSARY DATA IS PRESENT
+      supplier = Supplier.where("name ~* '#{row['NAMA SUPPLIER']}'").last
+      if supplier.blank?
+        supplier = Supplier.create(:name => row["NAMA SUPPLIER"])
+      end
+      country_ext = supplier.try(:country).try(:country_ext)
+
+      supplier_phone = supplier.phones.where("phone_number ~* '#{row['NOMOR TELEPON'].to_i}'")
+      if supplier_phone.present?
+        supplier_phone.update_attributes(:description => row["DESKRIPSI"])
+      else
+        supplier.phones.create(:country_ext => country_ext, 
+                               :phone_number => row["NOMOR TELEPON"].to_i, 
+                               :description => row["DESKRIPSI"])
       end
     end # looping all excel data
   end

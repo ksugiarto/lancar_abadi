@@ -8,7 +8,13 @@
         <th class="text-right" width="200"><%= t 'sale.sub_amount' %>:</th>
         <th width="50">&nbsp;Rp</th>
         <th class="text-right" width="150"><%= @sale.sub_amount %></th>
-        <th width="50"></th>
+        <th width="50">
+          <% if @sale.status==0 %>
+            <%= link_to edit_footer_sale_path(@sale), :class => "btn btn-warning btn-xs", :remote => true do %>
+              <span class="glyphicon glyphicon-pencil"></span>
+            <% end %>
+          <% end -%>
+        </th>
       </tr>
       <tr>
         <td class="text-right"><%= t 'sale.discount' %>:</td>
@@ -37,7 +43,7 @@
       <tr>
         <td class="text-right"><%= t 'sale.tax' %>:</td>
         <td></td>
-        <td class="text-right"><%= @sale.tax %></td>
+        <td class="text-right"><%= "&#10004;".html_safe if @sale.tax==true %></td>
         <td></td>
       </tr>
       <tr>

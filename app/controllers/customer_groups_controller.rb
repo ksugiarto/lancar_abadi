@@ -1,6 +1,6 @@
 class CustomerGroupsController < ApplicationController
   def get_data
-    @customer_groups = CustomerGroup.order(:name)
+    @customer_groups = CustomerGroup.order(:name).pagination(params[:page])
   end
 
   # GET /customer_groups

@@ -1,0 +1,11 @@
+<%= form_tag category_filter_index_path, :method => "get", :class => "form-horizontal", :remote => true do %>
+<div class="form-group">
+	<div class="col-sm-10">
+	  <%= text_field_tag 'name','', :placeholder => "#{t 'search'} #{t 'category.category'}", :class => "form-control" %>
+	</div>
+	<div class="col-sm-2">
+	  <%= submit_tag "#{t 'process'}", :disable_with => "#{t 'disable_with'}", :class => "btn btn-success" %>
+	  <%= link_to "#{t 'reset'}", categories_path, :class => "btn btn-default" %>
+	</div>
+</div>
+<% end %>

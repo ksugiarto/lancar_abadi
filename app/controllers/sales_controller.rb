@@ -10,7 +10,12 @@ class SalesController < ApplicationController
   # GET /sales
   # GET /sales.json
   def index
-    @sales = Sale.order(:created_at).reverse_order
+    @sales = Sale
+    .where("EXTRACT(MONTH FROM transaction_date)=EXTRACT(MONTH FROM CURRENT_DATE) AND EXTRACT(YEAR FROM transaction_date)=EXTRACT(YEAR FROM CURRENT_DATE)")
+    .order(:created_at).reverse_order
+    .pagination(params[:page])
+
+    @customers = Customer.order(:name)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -26,6 +31,11 @@ class SalesController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @sale }
+      format.pdf do
+        pdf = SaleIndividualPdf.new(@sale.id)
+        send_data pdf.render, filename: "#{I18n.t 'sale.sales_invoice'} #{Time.now.strftime("%Y-%m-%d %H:%M:%S")}.pdf",
+        type: "application/pdf", :disposition => "inline"
+      end
     end
   end
 
@@ -64,6 +74,10 @@ class SalesController < ApplicationController
         format.js
       end
     end
+  end
+
+  def edit_footer
+    @sale = Sale.find(params[:id])
   end
 
   # POST /sales

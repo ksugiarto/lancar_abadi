@@ -1,0 +1,23 @@
+Harga Ecer: Rp <%= @product.sales_price.to_f %><br>
+Harga Bakul: Rp <%= @store_cust_price %><br>
+Harga Bengkel: Rp <%= @workshop_cust_price %><br>
+
+5 Harga Beli Terakhir:
+
+<table class="table table-condensed">
+  <tr style="background-color:#708DC6;">
+    <th><%= t 'product.purchase.ref_id' %></th>
+    <th><%= t 'product.purchase.supplier' %></th>
+    <th><%= t 'product.purchase.purchase_date' %></th>
+    <th><%= t 'product.purchase.purchase_price' %></th>
+  </tr>
+
+<% @purchase_prices.each do |purchase| %>
+  <tr>
+    <td><i>need migrate first</i></td>
+    <td><%= purchase.supplier.try(:name) %></td>
+    <td><%= purchase.purchase_date %></td>
+    <td><%= purchase.purchase_price %></td>
+  </tr>
+<% end %>
+</table>

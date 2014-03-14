@@ -1,7 +1,6 @@
 class CountriesController < ApplicationController
   def get_data
-    # @countries = Country.order(:name).pagination(params[:page])
-    @countries = Country.order(:name)
+    @countries = Country.order(:name).pagination(params[:page])
   end
 
   # GET /countries

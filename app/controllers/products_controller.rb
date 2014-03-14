@@ -1,5 +1,13 @@
 class ProductsController < ApplicationController
   def get_data
+    @products = Product.order(:name).pagination(params[:page])
+    @suppliers = Supplier.order(:name)
+
+    @store_cust_group = CustomerGroup.find_by_name("Bakul/Toko")
+    @workshop_cust_group = CustomerGroup.find_by_name("Bengkel/Montir")
+  end
+
+  def get_data_form
     @categories = Category.order(:name)
     @unit_of_measures = UnitOfMeasure.order(:name)
   end
@@ -7,11 +15,12 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+    get_data
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @products }
+      format.js
     end
   end
 
@@ -30,13 +39,13 @@ class ProductsController < ApplicationController
   # GET /products/new.json
   def new
     @product = Product.new
-    get_data
+    get_data_form
   end
 
   # GET /products/1/edit
   def edit
     @product = Product.find(params[:id])
-    get_data
+    get_data_form
   end
 
   # POST /products
@@ -76,10 +85,14 @@ class ProductsController < ApplicationController
   def destroy
     @product = Product.find(params[:id])
     @product.destroy
+    get_data
+  end
 
-    respond_to do |format|
-      format.html { redirect_to products_url }
-      format.json { head :no_content }
-    end
+  def import
+  end
+
+  def import_submit
+    Product.import(params[:file])
+    redirect_to products_path
   end
 end

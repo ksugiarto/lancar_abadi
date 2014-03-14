@@ -17,7 +17,7 @@ class Country < ActiveRecord::Base
 
   def self.filter_name(name)
     if name.present?
-      where("name LIKE (?)", "%#{name}%")
+      where("name ~* '#{name}'")
     else
       scoped
     end

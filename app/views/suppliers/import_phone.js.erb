@@ -1,0 +1,3 @@
+$('#general_modal').modal('show');
+$('#general_modal .modal-title').html("<%= escape_javascript(t 'supplier.supplier') %> - <%= escape_javascript(t 'supplier.supplier.phone') %> - <%= escape_javascript(t 'import') %>");
+$('#general_modal .modal-body').html("<%= escape_javascript(render 'form_import_phone') %>");
