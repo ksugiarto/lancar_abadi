@@ -12,11 +12,11 @@
 <% @purchase.details.each do |purchase_detail| %>
   <tr>
     <td><%= purchase_detail.product_detail %></td>
-    <td class="text-right"><%= purchase_detail.quantity %></td>
-    <td class="text-right"><%= purchase_detail.price %></td>
-    <td class="text-right"><%= purchase_detail.discount %></td>
-    <td class="text-right"><%= purchase_detail.added_discount %></td>
-    <td class="text-right"><%= purchase_detail.amount %></td>
+    <td class="text-right"><%= precision(purchase_detail.quantity) %></td>
+    <td class="text-right"><%= precision(purchase_detail.price) %></td>
+    <td class="text-right"><%= precision(purchase_detail.discount) %></td>
+    <td class="text-right"><%= precision(purchase_detail.added_discount) %></td>
+    <td class="text-right"><%= precision(purchase_detail.amount) %></td>
     <td class="text-right">
       <%= link_to "#{t 'edit'}", edit_purchase_purchase_detail_path(@purchase, purchase_detail), :class => "btn btn-warning btn-xs", :remote => true if @purchase.status==0 %>
       <%= link_to "#{t 'destroy'}", purchase_purchase_detail_path(@purchase, purchase_detail), method: :delete, data: { confirm: "#{t 'confirm'}" }, :class => "btn btn-danger btn-xs", :remote => true if @purchase.status==0 %>

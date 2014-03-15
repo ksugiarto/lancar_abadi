@@ -35,11 +35,11 @@
 <div class="status_<%= @purchase.status.to_i %>" align="center">
   <% case @purchase.status.to_i %>
   <% when 0 %>
-    <%= "#{t 'purchase.status'}#{t 'new'} #{t 'purchase.editable'}" %>, <%= "#{t 'purchase.created_at'}#{@purchase.created_at}" %>
+    <%= "#{t 'purchase.status'}#{t 'new'} #{t 'purchase.editable'}" %>, <%= "#{t 'purchase.created_at'}#{date(@purchase.created_at)}" %>
   <% when 1 %>
-    <%= "#{t 'purchase.status'}#{t 'close'} #{t 'purchase.uneditable'}" %>, <%= "#{t 'purchase.updated_at'}#{@purchase.updated_at}" %>
+    <%= "#{t 'purchase.status'}#{t 'close'} #{t 'purchase.uneditable'}" %>, <%= "#{t 'purchase.updated_at'}#{date(@purchase.updated_at)}" %>
   <% when 5 %>
-    <%= "#{t 'purchase.status'}#{t 'void'} #{t 'purchase.uneditable'}" %>, <%= "#{t 'purchase.updated_at'}#{@purchase.updated_at}" %>
+    <%= "#{t 'purchase.status'}#{t 'void'} #{t 'purchase.uneditable'}" %>, <%= "#{t 'purchase.updated_at'}#{date(@purchase.updated_at)}" %>
     <% end -%>
 </div>
 

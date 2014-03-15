@@ -8,9 +8,9 @@
     <th><%= t 'product.merk' %></th>
     <th><%= t 'product.size' %></th>
     <th><%= t 'product.supplier' %></th>
-    <th><%= t 'product.sales_price' %></th>
-    <th>Bakul/Toko</th>
-    <th>Bengkel/Montir</th>
+    <th class="text-right"><%= t 'product.sales_price' %></th>
+    <th class="text-right">Bakul/Toko</th>
+    <th class="text-right">Bengkel/Montir</th>
     <th></th>
   </tr>
 
@@ -22,21 +22,21 @@
     <td><%= product.merk %></td>
     <td><%= product.size %></td>
     <td><%= product.supplier.try(:name) %></td>
-    <td><%= product.sales_price.to_f %></td>
-    <td>
+    <td class="text-right"><%= precision(product.sales_price) %></td>
+    <td class="text-right">
         <% if @store_cust_group.selected_price.to_i==1 %>
-            <%= product.sales_price.to_f * @store_cust_group.formula.to_f %>
+            <%= precision(product.sales_price.to_f * @store_cust_group.formula.to_f) %>
         <% elsif @store_cust_group.selected_price.to_i==2 %>
-            <%= product.purchases.last.try(:purchase_price).to_f * @store_cust_group.formula.to_f %>
+            <%= precision(product.purchases.last.try(:purchase_price).to_f * @store_cust_group.formula.to_f) %>
         <% else %>
             0
         <% end %>
     </td>
-    <td>
+    <td class="text-right">
         <% if @workshop_cust_group.selected_price.to_i==1 %>
-            <%= product.sales_price.to_f * @workshop_cust_group.formula.to_f %>
+            <%= precision(product.sales_price.to_f * @workshop_cust_group.formula.to_f) %>
         <% elsif @workshop_cust_group.selected_price.to_i==2 %>
-            <%= product.purchases.last.try(:purchase_price).to_f * @workshop_cust_group.formula.to_f %>
+            <%= precision(product.purchases.last.try(:purchase_price).to_f * @workshop_cust_group.formula.to_f) %>
         <% else %>
             0
         <% end %>

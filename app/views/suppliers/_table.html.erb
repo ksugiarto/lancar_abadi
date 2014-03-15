@@ -15,7 +15,7 @@
   <tr>
     <td><%= supplier.name %></td>
     <td><%= supplier.contact_person %></td>
-    <td><%= supplier.join_date %></td>
+    <td><%= date(supplier.join_date) %></td>
     <td><%= supplier.address %></td>
     <td><%= supplier.city.try(:name) %></td>
     <td><%= supplier.province.try(:name) %></td>

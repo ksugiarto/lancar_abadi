@@ -4,6 +4,8 @@ class Product < ActiveRecord::Base
   belongs_to :unit_of_measure
   has_many :purchases, :class_name => "ProductPurchase"
 
+  before_create :generate_barcode_id
+
   attr_accessible :category_id, :barcode_id, :merk, :name, :sales_price, :size, :product_type, :unit_of_measure_id, :can_be_purchase, :can_be_sale, :supplier_id
 
   def self.pagination(page)
@@ -18,9 +20,28 @@ class Product < ActiveRecord::Base
   	unit_of_measure.try(:name)
   end
 
+  def product_detail
+    "#{name} #{product_type} #{size}-#{merk} (#{barcode_id})"
+  end
+
+  def generate_barcode_id
+    self.barcode_id = "%013i" % (Product.maximum(:barcode_id).to_i+1).to_s
+  end
+
   def self.filter_name(name)
     if name.present?
-      where("name ~* '#{name}' OR product_type ~* '#{name}' OR merk ~* '#{name}' OR size ~* '#{name}'")
+      parts = name.split(" ")
+
+      if parts.length.to_i==1
+        where("name ~* '#{parts[0]}'")
+      elsif parts.length.to_i==2
+        where("name ~* '#{parts[0]}' OR product_type ~* '#{parts[1]}'")
+      elsif parts.length.to_i==3
+        where("name ~* '#{parts[0]}' OR product_type ~* '#{parts[1]}' OR merk ~* '#{parts[2]}'")
+      else
+        where("name ~* '#{parts[0]}' OR product_type ~* '#{parts[1]}' OR merk ~* '#{parts[2]}' OR size ~* '#{parts[3]}'")
+      end
+      # where("name ~* '#{name}' OR product_type ~* '#{name}' OR merk ~* '#{name}' OR size ~* '#{name}'")
     else
       scoped
     end
@@ -37,16 +58,26 @@ class Product < ActiveRecord::Base
   def self.search_product(name)
   	if name.present?
   		parts = name.split(" ")
-      keyword = String.new
-      parts.each do |part|
-        if part == parts.last
-          keyword+="#{part}"
-        else
-          keyword+="#{part}|"
-        end
+      # keyword = String.new
+      # parts.each do |part|
+      #   if part == parts.last
+      #     keyword+="#{part}"
+      #   else
+      #     keyword+="#{part}|"
+      #   end
+      # end
+
+      if parts.length.to_i==1
+        where("name ~* '#{parts[0]}'")
+      elsif parts.length.to_i==2
+        where("name ~* '#{parts[0]}' OR product_type ~* '#{parts[1]}'")
+      elsif parts.length.to_i==3
+        where("name ~* '#{parts[0]}' OR product_type ~* '#{parts[1]}' OR merk ~* '#{parts[2]}'")
+      else
+        where("name ~* '#{parts[0]}' OR product_type ~* '#{parts[1]}' OR merk ~* '#{parts[2]}' OR size ~* '#{parts[3]}'")
       end
 
-  		where("name ~* '#{keyword}' OR product_type ~* '#{keyword}' OR merk ~* '#{keyword}' OR size ~* '#{keyword}'")
+  		# where("name ~* '#{keyword}' OR product_type ~* '#{keyword}' OR merk ~* '#{keyword}' OR size ~* '#{keyword}'")
   	else
   		scoped
   	end
@@ -61,7 +92,7 @@ class Product < ActiveRecord::Base
         row = Hash[[header, spreadsheet.row(i)].transpose]
 
         # CHECKING IF NECESSARY DATA IS PRESENT
-        existing_product = Product.where(:barcode_id => row["CODE"]).last
+        existing_product = Product.where(:name => row["NAMA BARANG"], :product_type => row["TYPE"], :merk => row["MERK"]).last
         if existing_product.present?
           product_id = existing_product.id
           status="edit"
@@ -77,7 +108,7 @@ class Product < ActiveRecord::Base
 
         if status=="new"
           Product.create(:category_id => 0,
-                         :barcode_id => row["CODE"], 
+                         :barcode_id => "%013i" % (Product.maximum(:barcode_id).to_i+1).to_s, 
                          :name => row["NAMA BARANG"], 
                          :product_type => row["TYPE"], 
                          :merk => row["MERK"], 
@@ -89,11 +120,6 @@ class Product < ActiveRecord::Base
                          :can_be_sale => true)
         elsif status=="edit"
           existing_product.update_attributes(:category_id => 0,
-                                             :barcode_id => row["CODE"], 
-                                             :name => row["NAMA BARANG"], 
-                                             :product_type => row["TYPE"], 
-                                             :merk => row["MERK"], 
-                                             :size => "", 
                                              :supplier_id => supplier.id,
                                              :unit_of_measure_id => 0, 
                                              :sales_price => row["HARGA"], 

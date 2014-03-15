@@ -1,5 +1,6 @@
 $("#purchase_detail_product_id").val("<%= @product.id %>");
-$("#product_name").val("<%= @product.name %>");
+$("#product_name").val("<%= @product.product_detail %>");
+$("#purchase_detail_price").val("<%= @last_purchase_price %>");
 
 $("#product_filter").hide();
 $("#product_list").html("");

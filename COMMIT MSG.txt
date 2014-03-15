@@ -1,4 +1,13 @@
 Things Done:
+(1) Date and number format
+(2) Right align for number format on table.
+(3) Purchase detail price default: last purchase price
+(4) Quantity on purchase and sale detail default: 1
+(5) Sale for Gross Sales
+(6) Search Product Formula
+(7) Generate product barcode_id => xxxxxxxxxxxxx (13 digit)
+
+Things Done:
 (1) Get price for Sale Detail.
 (2) Take purchase price product purchase.
 (3) Finish import feature for Supplier, Supplier Phone, Customer, Customer Phone, Product.
@@ -10,8 +19,8 @@ Things Done:
 (9) Now Home page become page to search product.
 
 Next to-do:
-(1) Date and number format
-(2) Right align for number format on table.
+(7) Supplier Code, Price Issue => Import Excel from Product
+(8) Harga dibawah 10.000, 2x harga beli. Haga diatas 10.000, 1,5x harga beli. Pembulatan +-5.000.
 
 ============
 Things Done:

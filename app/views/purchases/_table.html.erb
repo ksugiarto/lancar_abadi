@@ -6,17 +6,17 @@
     <th><%= t 'purchase.transaction_date' %></th>
     <th><%= t 'purchase.supplier' %></th>
     <th><%= t 'purchase.notes' %></th>
-    <th><%= t 'purchase.total_amount' %></th>
+    <th class="text-right"><%= t 'purchase.total_amount' %></th>
     <th></th>
   </tr>
 
 <% @purchases.each do |purchase| %>
   <tr class="status_<%= purchase.status.to_i %>">
     <td><%= purchase.pi_id %></td>
-    <td><%= purchase.transaction_date %></td>
+    <td><%= date(purchase.transaction_date) %></td>
     <td><%= purchase.supplier_name %></td>
     <td><%= purchase.notes %></td>
-    <td><%= purchase.total_amount %></td>
+    <td class="text-right"><%= precision(purchase.total_amount) %></td>
     <td class="text-right">
         <%= link_to "#{t 'edit'}", edit_purchase_path(purchase), :class => "btn btn-warning btn-xs" if purchase.status.to_i==0 %>
         <%= link_to "#{t 'show'}", purchase, :class => "btn btn-primary btn-xs" %>

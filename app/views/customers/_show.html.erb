@@ -19,7 +19,7 @@
   </tr>
   <tr>
     <th><%= t 'customer.join_date' %></th>
-    <td><b>:</b>&nbsp;<%= @customer.join_date %></td>
+    <td><b>:</b>&nbsp;<%= date(@customer.join_date) %></td>
     <th><%= t 'customer.country' %></th>
     <td><b>:</b>&nbsp;<%= @customer.country.try(:name) %></td>
   </tr>

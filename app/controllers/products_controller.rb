@@ -9,6 +9,7 @@ class ProductsController < ApplicationController
 
   def get_data_form
     @categories = Category.order(:name)
+    @suppliers = Supplier.order(:name)
     @unit_of_measures = UnitOfMeasure.order(:name)
   end
 
@@ -28,6 +29,9 @@ class ProductsController < ApplicationController
   # GET /products/1.json
   def show
     @product = Product.find(params[:id])
+
+    @store_cust_group = CustomerGroup.find_by_name("Bakul/Toko")
+    @workshop_cust_group = CustomerGroup.find_by_name("Bengkel/Montir")
 
     respond_to do |format|
       format.html # show.html.erb

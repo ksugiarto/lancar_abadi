@@ -25,6 +25,7 @@ class PurchaseDetailsController < ApplicationController
 
   def pick_product
     @product = Product.find(params[:product_id])
+    @last_purchase_price = @product.purchases.last.try(:purchase_price).to_f
   end
 
   # GET /purchase_details/new
@@ -32,6 +33,7 @@ class PurchaseDetailsController < ApplicationController
   def new
     get_data
     @purchase_detail = @purchase.details.new
+    @purchase_detail.quantity = 1
   end
 
   # GET /purchase_details/1/edit

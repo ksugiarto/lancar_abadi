@@ -240,6 +240,8 @@ en:
     product: "Product"
     category: "Category"
     barcode_id: "Barcode ID"
+    barcode_id_placeholder: "Auto added when save"
+    supplier: "Supplier"
     name: "Name"
     product_type: "Type"
     merk: "Merk"

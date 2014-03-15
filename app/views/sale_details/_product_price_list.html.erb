@@ -1,7 +1,7 @@
-Harga Ecer: Rp <%= @product.sales_price.to_f %><br>
-Harga Bakul: Rp <%= @store_cust_price %><br>
-Harga Bengkel: Rp <%= @workshop_cust_price %><br>
-
+Harga Ecer: <b>Rp <%= precision(@product.sales_price) %></b><br>
+Harga Bakul: <b>Rp <%= precision(@store_cust_price) %></b><br>
+Harga Bengkel: <b>Rp <%= precision(@workshop_cust_price) %></b><br>
+<br>
 5 Harga Beli Terakhir:
 
 <table class="table table-condensed">
@@ -9,15 +9,15 @@ Harga Bengkel: Rp <%= @workshop_cust_price %><br>
     <th><%= t 'product.purchase.ref_id' %></th>
     <th><%= t 'product.purchase.supplier' %></th>
     <th><%= t 'product.purchase.purchase_date' %></th>
-    <th><%= t 'product.purchase.purchase_price' %></th>
+    <th class="text-right"><%= t 'product.purchase.purchase_price' %></th>
   </tr>
 
 <% @purchase_prices.each do |purchase| %>
   <tr>
-    <td><i>need migrate first</i></td>
+    <td><%= purchase.purchase.try(:pi_id) %></td>
     <td><%= purchase.supplier.try(:name) %></td>
-    <td><%= purchase.purchase_date %></td>
-    <td><%= purchase.purchase_price %></td>
+    <td><%= date(purchase.purchase_date) %></td>
+    <td class="text-right"><%= precision(purchase.purchase_price) %></td>
   </tr>
 <% end %>
 </table>

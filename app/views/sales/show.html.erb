@@ -39,11 +39,11 @@
 <div class="status_<%= @sale.status.to_i %>" align="center">
   <% case @sale.status.to_i %>
   <% when 0 %>
-    <%= "#{t 'sale.status'}#{t 'new'} #{t 'sale.editable'}" %>, <%= "#{t 'sale.created_at'}#{@sale.created_at}" %>
+    <%= "#{t 'sale.status'}#{t 'new'} #{t 'sale.editable'}" %>, <%= "#{t 'sale.created_at'}#{date(@sale.created_at)}" %>
   <% when 1 %>
-    <%= "#{t 'sale.status'}#{t 'close'} #{t 'sale.uneditable'}" %>, <%= "#{t 'sale.updated_at'}#{@sale.updated_at}" %>
+    <%= "#{t 'sale.status'}#{t 'close'} #{t 'sale.uneditable'}" %>, <%= "#{t 'sale.updated_at'}#{date(@sale.updated_at)}" %>
   <% when 5 %>
-    <%= "#{t 'sale.status'}#{t 'void'} #{t 'sale.uneditable'}" %>, <%= "#{t 'sale.updated_at'}#{@sale.updated_at}" %>
+    <%= "#{t 'sale.status'}#{t 'void'} #{t 'sale.uneditable'}" %>, <%= "#{t 'sale.updated_at'}#{date(@sale.updated_at)}" %>
     <% end -%>
 </div>
 

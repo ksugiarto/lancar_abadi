@@ -3,7 +3,7 @@
     <th><%= t 'purchase.pi_id' %></th>
     <td><b>:</b>&nbsp;<%= @purchase.pi_id %></td>
     <th><%= t 'purchase.transaction_date' %></th>
-    <td><b>:</b>&nbsp;<%= @purchase.transaction_date %></td>
+    <td><b>:</b>&nbsp;<%= date(@purchase.transaction_date) %></td>
   </tr>
   <tr>
     <th><%= t 'purchase.supplier' %></th>

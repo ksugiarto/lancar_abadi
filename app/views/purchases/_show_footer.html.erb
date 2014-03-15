@@ -7,7 +7,7 @@
       <tr>
         <th class="text-right" width="400"><%= t 'purchase.sub_amount' %>:</th>
         <th width="50">&nbsp;Rp</th>
-        <th class="text-right" width="150"><%= @purchase.sub_amount %></th>
+        <th class="text-right" width="150"><%= precision(@purchase.sub_amount) %></th>
         <th width="50">
           <% if @purchase.status==0 %>
             <%= link_to edit_footer_purchase_path(@purchase), :class => "btn btn-warning btn-xs", :remote => true do %>
@@ -17,27 +17,21 @@
         </th>
       </tr>
       <tr>
-        <td class="text-right"><%= t 'purchase.discount' %>:</td>
-        <td></td>
-        <td class="text-right"><%= @purchase.discount %></td>
-        <td>&nbsp;%</td>
-      </tr>
-      <tr>
-        <td class="text-right"><%= t 'purchase.discount_amount' %>:</td>
+        <td class="text-right"><%= "#{t 'purchase.discount'} (#{precision(@purchase.discount)}%)" %>:</td>
         <td>&nbsp;Rp</td>
-        <td class="text-right"><%= @purchase.discount_amount %></td>
+        <td class="text-right"><%= precision(@purchase.discount_amount) %></td>
         <td></td>
       </tr>
       <tr>
         <th class="text-right"><%= t 'purchase.amount_after_discount' %>:</th>
         <th>&nbsp;Rp</th>
-        <th class="text-right"><%= @purchase.amount_after_discount %></th>
+        <th class="text-right"><%= precision(@purchase.amount_after_discount) %></th>
         <th></th>
       </tr>
       <tr>
         <td class="text-right"><%= t 'purchase.added_discount' %>:</td>
         <td>&nbsp;Rp</td>
-        <td class="text-right"><%= @purchase.added_discount %></td>
+        <td class="text-right"><%= precision(@purchase.added_discount) %></td>
         <td></td>
       </tr>
       <tr>
@@ -49,13 +43,13 @@
       <tr>
         <td class="text-right"><%= t 'purchase.tax_amount' %>:</td>
         <td>&nbsp;Rp</td>
-        <td class="text-right"><%= @purchase.tax_amount %></td>
+        <td class="text-right"><%= precision(@purchase.tax_amount) %></td>
         <td></td>
       </tr>
       <tr>
         <th class="text-right"><%= t 'purchase.total_amount' %>:</th>
         <th>&nbsp;Rp</th>
-        <th class="text-right"><%= @purchase.total_amount %></th>
+        <th class="text-right"><%= precision(@purchase.total_amount) %></th>
         <th></th>
       </tr>
     </table>
