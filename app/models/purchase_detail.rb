@@ -1,9 +1,10 @@
 class PurchaseDetail < ActiveRecord::Base
   belongs_to :purchase
   belongs_to :product
-  attr_accessible :purchase_id, :product_id, :added_discount, :amount, :discount, :price, :quantity
+  attr_accessible :purchase_id, :product_id, :added_discount, :amount, :discount, :price, :quantity, :quantity_print
 
   before_save :amount_calculation
+  before_save :get_quantity_print
   after_save :sub_amount_calculation
   after_destroy :sub_amount_calculation
 
@@ -23,5 +24,11 @@ class PurchaseDetail < ActiveRecord::Base
 
   def sub_amount_calculation
     Purchase.find(self.purchase_id).sum_sub_amount
+  end
+
+  def get_quantity_print
+    if self.quantity_print.to_i==0
+      self.quantity_print=self.quantity.to_i
+    end
   end
 end

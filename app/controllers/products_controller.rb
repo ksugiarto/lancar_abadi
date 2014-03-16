@@ -99,4 +99,27 @@ class ProductsController < ApplicationController
     Product.import(params[:file])
     redirect_to products_path
   end
+
+  def generate_barcode
+  end
+
+  def generate_barcode_submit
+    if params[:start_barcode].to_i==0 && params[:end_barcode].to_i==0
+      @products = Product.order(:barcode_id)
+    elsif params[:start_barcode].to_i!=0 && params[:end_barcode].to_i==0
+      @products = Product.order(:barcode_id).where("barcode_id > '#{params[:start_barcode]}'")
+    elsif params[:start_barcode].to_i==0 && params[:end_barcode].to_i!=0
+      @products = Product.order(:barcode_id).where("barcode_id < '#{params[:end_barcode]}'")
+    else
+      @products = Product.order(:barcode_id).where("barcode_id > '#{params[:start_barcode]}' AND barcode_id < '#{params[:end_barcode]}'")
+    end
+
+    respond_to do |format|
+      format.pdf do
+        pdf = ProductBarcodePdf.new(@products)
+        send_data pdf.render, filename: "#{I18n.t 'product.barcode_id'} #{Time.now.strftime("%Y-%m-%d %H:%M:%S")}.pdf",
+        type: "application/pdf", :disposition => "inline"
+      end 
+    end
+  end
 end

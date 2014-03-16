@@ -8,7 +8,7 @@ class PurchaseDetailsController < ApplicationController
     .search_product(params[:keyword])
     .where(:supplier_id => @purchase.supplier_id)
     .order(:name)
-    .paginate(:page => params[:page], :per_page => 1)
+    .paginate(:page => params[:page], :per_page => 5)
 
     @keyword = params[:keyword] if params[:keyword].present?
   end
@@ -33,7 +33,7 @@ class PurchaseDetailsController < ApplicationController
   def new
     get_data
     @purchase_detail = @purchase.details.new
-    @purchase_detail.quantity = 1
+    @purchase_detail.quantity_print = ""
   end
 
   # GET /purchase_details/1/edit

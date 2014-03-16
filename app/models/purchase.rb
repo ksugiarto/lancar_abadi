@@ -57,7 +57,8 @@ class Purchase < ActiveRecord::Base
     if self.status.to_i==1
       purchase = Purchase.find(self.id)
       purchase.details.each do |detail|
-        ProductPurchase.create(:purchase_id => self.id, 
+        ProductPurchase.create(:barcode_id => "#{self.supplier.try(:supplier_code)}#{Time.now.localtime.strftime('%d%m%y')}", 
+                               :purchase_id => self.id, 
                                :supplier_id => self.supplier_id, 
                                :product_id => detail.product_id, 
                                :purchase_date => self.transaction_date, 

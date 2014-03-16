@@ -7,7 +7,7 @@ class Supplier < ActiveRecord::Base
   has_many :phones, :class_name => "SupplierPhone"
   has_many :products, :class_name => "Product"
 
-  attr_accessible :address, :contact_person, :email, :join_date, :name, :notes, :city_id, :province_id, :country_id
+  attr_accessible :supplier_code, :address, :contact_person, :email, :join_date, :name, :notes, :city_id, :province_id, :country_id
 
   def self.pagination(page)
     paginate(:per_page => 20, :page => page)

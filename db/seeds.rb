@@ -49,10 +49,10 @@ UnitOfMeasure.create(:name => "Meter")
 UnitOfMeasure.create(:name => "Cm")
 
 # PRODUCT
-Product.create(:category_id => filter.id, :barcode_id => "0000000000001",:name => "Air Filter", :product_type => "R175", :merk => "FUBORU", :size => "", :unit_of_measure_id => pcs.id, :sales_price => 7200)
-Product.create(:category_id => filter.id, :barcode_id => "0000000000002",:name => "Air Filter", :product_type => "R180", :merk => "FUBORU", :size => "", :unit_of_measure_id => pcs.id, :sales_price => 6000)
-Product.create(:category_id => filter.id, :barcode_id => "0000000000003",:name => "Air Filter", :product_type => "SENSO 5200-O11", :merk => "V-TECH", :size => "", :unit_of_measure_id => pcs.id, :sales_price => 7500)
+Product.create(:category_id => filter.id, :barcode_id => "00001",:name => "Air Filter", :product_type => "R175", :merk => "FUBORU", :size => "", :unit_of_measure_id => pcs.id, :sales_price => 7200)
+Product.create(:category_id => filter.id, :barcode_id => "00002",:name => "Air Filter", :product_type => "R180", :merk => "FUBORU", :size => "", :unit_of_measure_id => pcs.id, :sales_price => 6000)
+Product.create(:category_id => filter.id, :barcode_id => "00003",:name => "Air Filter", :product_type => "SENSO 5200-O11", :merk => "V-TECH", :size => "", :unit_of_measure_id => pcs.id, :sales_price => 7500)
 
-Product.create(:category_id => bearing.id, :barcode_id => "0000000000004",:name => "Bearing Pin Crank", :product_type => "SENSO A64", :merk => "NEW WEST", :size => "", :unit_of_measure_id => pcs.id, :sales_price => 12000)
-Product.create(:category_id => bearing.id, :barcode_id => "0000000000005",:name => "Bearing Pin Crank", :product_type => "SENSO A64", :merk => "TASTO TL", :size => "", :unit_of_measure_id => pcs.id, :sales_price => 5600)
+Product.create(:category_id => bearing.id, :barcode_id => "000004",:name => "Bearing Pin Crank", :product_type => "SENSO A64", :merk => "NEW WEST", :size => "", :unit_of_measure_id => pcs.id, :sales_price => 12000)
+Product.create(:category_id => bearing.id, :barcode_id => "00005",:name => "Bearing Pin Crank", :product_type => "SENSO A64", :merk => "TASTO TL", :size => "", :unit_of_measure_id => pcs.id, :sales_price => 5600)
 # END PRODUCT

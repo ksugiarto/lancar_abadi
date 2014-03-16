@@ -2,7 +2,7 @@ class PurchasesController < ApplicationController
   def get_supplier
     @suppliers = Supplier.search_supplier(params[:keyword])
     .order(:name)
-    .paginate(:page => params[:page], :per_page => 1)
+    .paginate(:page => params[:page], :per_page => 5)
 
     @keyword = params[:keyword] if params[:keyword].present?
   end
@@ -116,6 +116,18 @@ class PurchasesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to purchases_url }
       format.json { head :no_content }
+    end
+  end
+
+  def print_barcode
+    @purchase = Purchase.find(params[:id])
+
+    respond_to do |format|
+      format.pdf do
+        pdf = ProductBarcodePdf.new(@purchase)
+        send_data pdf.render, filename: "#{I18n.t 'print'} #{I18n.t 'product.barcode_id'} #{Time.now.strftime("%Y-%m-%d %H:%M:%S")}.pdf",
+        type: "application/pdf", :disposition => "inline"
+      end 
     end
   end
 end

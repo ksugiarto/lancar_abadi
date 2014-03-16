@@ -1,0 +1,10 @@
+<%= form_tag(generate_barcode_submit_products_path, :class => "form-inline", :multipart => true) do %>
+  <div class="form-group">
+    <div class="col-sm-3"><%= text_field_tag :start_barcode, nil, :placeholder => "Barcode Awal" , :class => "form-control" %></div>
+    <%= label_tag :sd, "s.d.", :class => "col-sm-1 control-label" %>
+    <div class="col-sm-3"><%= text_field_tag :end_barcode, nil, :placeholder => "Barcode Akhir" , :class => "form-control" %></div>
+    <%= label_tag :at, "@", :class => "col-sm-1 control-label" %>
+    <div class="col-sm-2"><%= text_field_tag :copy, nil, :placeholder => "Copy Barcode" , :class => "form-control" %></div>
+    <div class="col-sm-1"><%= submit_tag "#{t 'print'}", :class => "btn btn-success", :disable_with => "#{t 'disable_with'}" %></div>
+  </div>
+<% end %>

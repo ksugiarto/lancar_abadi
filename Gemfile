@@ -18,6 +18,7 @@ gem 'spreadsheet'                   # required for roo
 gem 'nokogiri'                      # required for roo
 gem 'roo', '~> 1.11.2'
 gem "will_paginate", "~> 3.0.4"     # required for pagination
+gem 'barby'													# required for barcode
 
 # Gems used only for assets and not required
 # in production environments by default.

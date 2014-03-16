@@ -1,15 +1,20 @@
 <div class="row">
-  <div class="col-md-2">
+  <div class="col-md-4">
     <%= link_to import_products_path, :class => "btn btn-success btn-sm", :remote => true do %>
       <span class="glyphicon glyphicon-open"></span>&nbsp;<%= t 'import_excel' %>
     <% end %>
+    <!-- 
+    <%= link_to generate_barcode_products_path, :class => "btn btn-info btn-sm", :remote => true do %>
+      <span class="glyphicon glyphicon-barcode"></span>&nbsp;<%= t 'print' %>&nbsp;<%= t 'product.barcode_id' %>
+    <% end %>
+     -->
   </div>
   
-  <div class="col-md-8">
+  <div class="col-md-4">
     <h4 align="center"><%= t 'product.products' %></h4>
   </div>
 
-  <div class="col-md-2" align="right">
+  <div class="col-md-4" align="right">
     <%= link_to new_product_path, :class => "btn btn-default btn-sm", :remote => true do %>
       <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;<%= t 'new' %>
     <% end %>

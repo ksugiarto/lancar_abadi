@@ -12,7 +12,7 @@
 <% @sale.details.each do |sale_detail| %>
   <tr>
     <td><%= sale_detail.product_detail %></td>
-    <td class="text-right"><%= precision(sale_detail.quantity) %></td>
+    <td class="text-right"><%= round_precision(sale_detail.quantity) %></td>
     <td class="text-right"><%= precision(sale_detail.price) %></td>
     <td class="text-right"><%= precision(sale_detail.discount) %></td>
     <td class="text-right"><%= precision(sale_detail.added_discount) %></td>

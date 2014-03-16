@@ -1,6 +1,7 @@
 class CreateProductPurchases < ActiveRecord::Migration
   def change
     create_table :product_purchases do |t|
+      t.string :barcode_id
       t.references :purchase
       t.references :product
       t.references :supplier
