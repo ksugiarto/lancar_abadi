@@ -46,10 +46,10 @@ class Product < ActiveRecord::Base
         end
       end
 
-  		where("name ~* '#{keyword}' OR product_type ~* '#{keyword}' OR merk ~* '#{keyword}' OR size ~* '#{keyword}'")
-  	else
-  		scoped
-  	end
+      where("name ~* '#{keyword}' OR product_type ~* '#{keyword}' OR merk ~* '#{keyword}' OR size ~* '#{keyword}'")
+    else
+      scoped
+    end
   end
 
   def self.import(file)
