@@ -6,15 +6,15 @@
     <th><%= t 'product.purchase.ref_id' %></th>
     <th><%= t 'product.purchase.supplier' %></th>
     <th><%= t 'product.purchase.purchase_date' %></th>
-    <th><%= t 'product.purchase.purchase_price' %></th>
+    <th class="text-right"><%= t 'product.purchase.purchase_price' %></th>
   </tr>
 
 <% @product.purchases.each do |purchase| %>
   <tr>
     <td><%= purchase.purchase.try(:pi_id) %></td>
     <td><%= purchase.supplier.try(:name) %></td>
-    <td><%= purchase.purchase_date %></td>
-    <td><%= purchase.purchase_price %></td>
+    <td><%= date(purchase.purchase_date) %></td>
+    <td class="text-right"><%= precision(purchase.purchase_price) %></td>
   </tr>
 <% end %>
 </table>

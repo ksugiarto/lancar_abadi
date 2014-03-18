@@ -5,7 +5,7 @@ class SaleDetailsController < ApplicationController
 
   def get_product
     @products = Product.search_product(params[:keyword]).order(:name)
-    .paginate(:page => params[:page], :per_page => 1)
+    .paginate(:page => params[:page], :per_page => 5)
 
     @keyword = params[:keyword] if params[:keyword].present?
   end
@@ -23,7 +23,7 @@ class SaleDetailsController < ApplicationController
   def pick_product
     get_data
     @product = Product.find(params[:product_id])
-    @purchase_prices = @product.purchases.order(:purchase_date).reverse_order.limit(5)
+    @purchase_prices = @product.purchases.order(:id).reverse_order.limit(5)
 
     store_cust_group = CustomerGroup.find_by_name("Bakul/Toko")
     case store_cust_group.selected_price.to_i
@@ -42,6 +42,14 @@ class SaleDetailsController < ApplicationController
     when 2
       @workshop_cust_price = @product.purchases.last.try(:purchase_price).to_f * workshop_cust_group.formula.to_f
     end
+
+    if @sale.customer_group_id.to_i==store_cust_group.id
+      @default_price = @store_cust_group.to_f
+    elsif @sale.customer_group_id.to_i==workshop_cust_group.id
+      @default_price = @workshop_cust_group.to_f
+    else
+      @default_price = @product.sales_price.to_f
+    end
   end
 
   # GET /sale_details/new
@@ -49,6 +57,7 @@ class SaleDetailsController < ApplicationController
   def new
     get_data
     @sale_detail = @sale.details.new
+    @sale_detail.quantity = 1
   end
 
   # GET /sale_details/1/edit

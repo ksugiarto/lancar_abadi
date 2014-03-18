@@ -1,15 +1,15 @@
 <div class="row">
-  <div class="col-md-2">
+  <div class="col-md-4">
     <%= link_to purchases_path, :class => "btn btn-default btn-sm" do %>
       <span class="glyphicon glyphicon-chevron-left"></span>&nbsp;<%= t 'back' %>
     <% end %>
   </div>
   
-  <div class="col-md-8">
+  <div class="col-md-4">
     <h4 align="center"><%= t 'purchase.purchase' %> - <%= t 'detail' %></h4>
   </div>
 
-  <div class="col-md-2" align="right">
+  <div class="col-md-4" align="right">
     <% if @purchase.status==0 %>
       <%= form_for(@purchase) do |f| %>
         <%= f.hidden_field :status, :value => 1 %>
@@ -24,6 +24,10 @@
     <% else %>
       <%= form_for(@purchase) do |f| %>
         <%= f.hidden_field :status, :value => 5 %>
+        <%= link_to print_barcode_purchase_path(@purchase, :format => "pdf"), :target => "_blank", :class => "btn btn-warning btn-sm" do %>
+          <%= "#{t 'print'} #{t 'product.barcode_id'}" %>&nbsp;<span class="glyphicon glyphicon-barcode"></span>
+        <% end %>
+
         <%= button_tag :type => "submit", :class => "btn btn-danger btn-sm", :disable_with => "#{t 'disable_with'}", data: { confirm: "#{t 'confirm'}" } do %>
           <%= t 'void' %>&nbsp;<span class="glyphicon glyphicon-lock"></span>
         <% end -%>
@@ -35,11 +39,11 @@
 <div class="status_<%= @purchase.status.to_i %>" align="center">
   <% case @purchase.status.to_i %>
   <% when 0 %>
-    <%= "#{t 'purchase.status'}#{t 'new'} #{t 'purchase.editable'}" %>, <%= "#{t 'purchase.created_at'}#{@purchase.created_at}" %>
+    <%= "#{t 'purchase.status'}#{t 'new'} #{t 'purchase.editable'}" %>, <%= "#{t 'purchase.created_at'}#{date(@purchase.created_at)}" %>
   <% when 1 %>
-    <%= "#{t 'purchase.status'}#{t 'close'} #{t 'purchase.uneditable'}" %>, <%= "#{t 'purchase.updated_at'}#{@purchase.updated_at}" %>
+    <%= "#{t 'purchase.status'}#{t 'close'} #{t 'purchase.uneditable'}" %>, <%= "#{t 'purchase.updated_at'}#{date(@purchase.updated_at)}" %>
   <% when 5 %>
-    <%= "#{t 'purchase.status'}#{t 'void'} #{t 'purchase.uneditable'}" %>, <%= "#{t 'purchase.updated_at'}#{@purchase.updated_at}" %>
+    <%= "#{t 'purchase.status'}#{t 'void'} #{t 'purchase.uneditable'}" %>, <%= "#{t 'purchase.updated_at'}#{date(@purchase.updated_at)}" %>
     <% end -%>
 </div>
 

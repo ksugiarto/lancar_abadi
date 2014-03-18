@@ -21,6 +21,28 @@
     <th><%= t 'product.unit_of_measure' %></th>
     <td><b>:</b>&nbsp;<%= @product.unit_of_measure_name %></td>
     <th><%= t 'product.sales_price' %></th>
-    <td><b>:</b>&nbsp;<%= @product.sales_price %></td>
+    <td><b>:</b>&nbsp;<%= precision(@product.sales_price) %></td>
+  </tr>
+  <tr>
+    <th>Bakul/Toko</th>
+    <td><b>:</b>
+      <% if @store_cust_group.try(:selected_price).to_i==1 %>
+          <%= precision(@product.sales_price.to_f * @store_cust_group.try(:formula).to_f) %>
+      <% elsif @store_cust_group.try(:selected_price).to_i==2 %>
+          <%= precision(@product.purchases.last.try(:purchase_price).to_f * @store_cust_group.try(:formula).to_f) %>
+      <% else %>
+          0
+      <% end %>
+    </td>
+    <th>Bengkel/Montir</th>
+    <td><b>:</b>
+      <% if @workshop_cust_group.try(:selected_price).to_i==1 %>
+          <%= precision(@product.sales_price.to_f * @workshop_cust_group.try(:formula).to_f) %>
+      <% elsif @workshop_cust_group.try(:selected_price).to_i==2 %>
+          <%= precision(@product.purchases.last.try(:purchase_price).to_f * @workshop_cust_group.try(:formula).to_f) %>
+      <% else %>
+          0
+      <% end %>
+    </td>
   </tr>
 </table>

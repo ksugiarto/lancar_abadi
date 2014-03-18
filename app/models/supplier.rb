@@ -7,7 +7,7 @@ class Supplier < ActiveRecord::Base
   has_many :phones, :class_name => "SupplierPhone"
   has_many :products, :class_name => "Product"
 
-  attr_accessible :address, :contact_person, :email, :join_date, :name, :notes, :city_id, :province_id, :country_id
+  attr_accessible :supplier_code, :address, :contact_person, :email, :join_date, :name, :notes, :city_id, :province_id, :country_id
 
   def self.pagination(page)
     paginate(:per_page => 20, :page => page)
@@ -78,7 +78,8 @@ class Supplier < ActiveRecord::Base
 
 
       if status.to_i==1
-        existing_supplier.update_attributes(:name => row["NAMA SUPPLIER"],
+        existing_supplier.update_attributes(:supplier_code => row["KODE SUPPLIER"],
+                                            :name => row["NAMA SUPPLIER"],
                                             :contact_person => row["CONTACT PERSON"],
                                             :email => row["EMAIL"],
                                             :join_date => row["TGL GABUNG (YYYY-MM-DD)"],
@@ -88,7 +89,8 @@ class Supplier < ActiveRecord::Base
                                             :country_id => country.id,
                                             :notes => row["NOTES"])
       else
-        Supplier.create(:name => row["NAMA SUPPLIER"],
+        Supplier.create(:supplier_code => row["KODE SUPPLIER"],
+                        :name => row["NAMA SUPPLIER"],
                         :contact_person => row["CONTACT PERSON"],
                         :email => row["EMAIL"],
                         :join_date => row["TGL GABUNG (YYYY-MM-DD)"],

@@ -1,4 +1,27 @@
 Things Done:
+(1) Supplier Code, Price Issue => Import Excel from Product
+(2) Harga dibawah 10.000, 2x harga beli. Haga diatas 10.000, 1,5x harga beli. Pembulatan +-5.000.
+(3) Adding new Gem: 'Barby' for barcode.
+(4) Adding 'quantity_print' to Purchase Detail.
+(5) Barcode ID can be filled, or let it blank.
+
+Next things to-do:
+(1) Product purchase has it's own Barcode. [productBarcode][SS][ddmmYYYY]
+(2) Supplier list, Customer list, Product List on Purchase and Sale doesn't need pagination.
+(3) Devise and Can Can.
+
+============
+Things Done:
+(1) Date and number format
+(2) Right align for number format on table.
+(3) Purchase detail price default: last purchase price
+(4) Quantity on purchase and sale detail default: 1
+(5) Sale for Gross Sales
+(6) Search Product Formula
+(7) Generate product barcode_id => xxxxxxxxxxxxx (13 digit)
+
+============
+Things Done:
 (1) Get price for Sale Detail.
 (2) Take purchase price product purchase.
 (3) Finish import feature for Supplier, Supplier Phone, Customer, Customer Phone, Product.
@@ -8,10 +31,6 @@ Things Done:
 (7) Now Closed Sale have a feature to Print to PDF.
 (8) Finish filter for all index
 (9) Now Home page become page to search product.
-
-Next to-do:
-(1) Date and number format
-(2) Right align for number format on table.
 
 ============
 Things Done:

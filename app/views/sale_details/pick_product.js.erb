@@ -1,5 +1,6 @@
 $("#sale_detail_product_id").val("<%= @product.id %>");
-$("#product_name").val("<%= @product.name %>");
+$("#product_name").val("<%= @product.product_detail %>");
+$("#sale_detail_price").val("<%= @default_price %>");
 
 $("#product_filter").hide();
 $("#product_list").html("<%= escape_javascript(render 'product_price_list') %>");

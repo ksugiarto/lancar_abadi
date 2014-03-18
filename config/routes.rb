@@ -40,6 +40,7 @@ LancarAbadi::Application.routes.draw do
   resources :purchases do
     member do
       get :edit_footer
+      get :print_barcode
     end
     
     collection do
@@ -84,6 +85,8 @@ LancarAbadi::Application.routes.draw do
     collection do
       get :import
       post :import_submit
+      get :generate_barcode
+      post :generate_barcode_submit
     end
     
     resources :product_purchases

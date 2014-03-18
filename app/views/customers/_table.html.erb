@@ -15,7 +15,7 @@
   <tr>
     <td><%= customer.name %></td>
     <td><%= customer.contact_person %></td>
-    <td><%= customer.join_date %></td>
+    <td><%= date(customer.join_date) %></td>
     <td><%= customer.address %></td>
     <td><%= customer.city.try(:name) %></td>
     <td><%= customer.province.try(:name) %></td>
