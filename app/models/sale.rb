@@ -17,6 +17,10 @@ class Sale < ActiveRecord::Base
   	customer.try(:name)
   end
 
+  def customer_group_name
+    customer_group.try(:name)
+  end
+
   def id_generator
   	# si_id = SI-YYMM-0001
   	last_trans = Sale.last

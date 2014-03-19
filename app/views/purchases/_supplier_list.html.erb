@@ -1,19 +1,22 @@
-<table class="table table-condensed">
+<table class="table table-condensed table-striped">
   <tr>
+    <th width="1%"></th>
     <th><%= t 'supplier.name' %></th>
     <th><%= t 'supplier.contact_person' %></th>
-    <th></th>
   </tr>
 
 <% @suppliers.each do |supplier| %>
   <tr>
+    <td>
+        <%= link_to pick_supplier_purchases_path(:supplier_id => supplier.id), :remote => true, :class => "btn btn-default btn-xs" do %>
+          <span class="glyphicon glyphicon-ok"></span>
+        <% end -%>
+    </td>
     <td><%= supplier.name %></td>
     <td><%= supplier.contact_person %></td>
-    <td class="text-right">
-        <%= link_to "#{t 'pick'}", pick_supplier_purchases_path(:supplier_id => supplier.id), :remote => true, :class => "btn btn-default btn-xs" %>
-    </td>
   </tr>
 <% end %>
 </table>
 
-<%= will_paginate @suppliers, :params => {:controller => "purchases", :action => "show_supplier", :keyword => @keyword}, :class => "apple_pagination" %>
+<%=# will_paginate @suppliers, :params => {:controller => "purchases", :action => "show_supplier", :keyword => @keyword}, :class => "apple_pagination" 
+%>

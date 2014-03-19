@@ -4,8 +4,9 @@ class SaleDetailsController < ApplicationController
   end
 
   def get_product
-    @products = Product.search_product(params[:keyword]).order(:name)
-    .paginate(:page => params[:page], :per_page => 5)
+    @products = Product.search_product(params[:keyword])
+    .order(:name, :product_type, :merk)
+    # .paginate(:page => params[:page], :per_page => 5)
 
     @keyword = params[:keyword] if params[:keyword].present?
   end
@@ -44,9 +45,9 @@ class SaleDetailsController < ApplicationController
     end
 
     if @sale.customer_group_id.to_i==store_cust_group.id
-      @default_price = @store_cust_group.to_f
+      @default_price = @store_cust_price.to_f
     elsif @sale.customer_group_id.to_i==workshop_cust_group.id
-      @default_price = @workshop_cust_group.to_f
+      @default_price = @workshop_cust_price.to_f
     else
       @default_price = @product.sales_price.to_f
     end

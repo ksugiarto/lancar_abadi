@@ -1,4 +1,4 @@
-<table id="purchase_detail_table" class="table">
+<table id="purchase_detail_table" class="table table-condensed table-striped">
   <tr>
     <th><%= t 'purchase.detail.product' %></th>
     <th class="text-right"><%= t 'purchase.detail.quantity' %></th>
@@ -21,7 +21,7 @@
     <td class="text-right"><%= precision(purchase_detail.amount) %></td>
     <td class="text-right">
       <%= link_to "#{t 'edit'}", edit_purchase_purchase_detail_path(@purchase, purchase_detail), :class => "btn btn-warning btn-xs", :remote => true if @purchase.status==0 %>
-      <%= link_to "#{t 'destroy'}", purchase_purchase_detail_path(@purchase, purchase_detail), method: :delete, data: { confirm: "#{t 'confirm'}" }, :class => "btn btn-danger btn-xs", :remote => true if @purchase.status==0 %>
+      <%= link_to "#{t 'delete'}", purchase_purchase_detail_path(@purchase, purchase_detail), method: :delete, data: { confirm: "#{t 'confirm'}" }, :class => "btn btn-danger btn-xs", :remote => true if @purchase.status==0 %>
     </td>
   </tr>
 <% end %>

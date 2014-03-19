@@ -1,4 +1,14 @@
 Things Done:
+(1) Supplier list, Customer list, Product List on Purchase and Sale doesn't need pagination.
+(2) Now purchase pi_id can be filled. And if keep blank, then sytem would generate it.
+(3) Adding 'required => true' to mostly forms.
+(4) Product purchase has it's own Barcode. [productBarcode][SS][ddmmYYYY].
+(5) Fixing several bugs.
+(6) Adding precision to Sale Individual report.
+(7) Change 'destroy' word to 'delete'. Sounds more polite, or is it just my personal opinion?
+
+============
+Things Done:
 (1) Supplier Code, Price Issue => Import Excel from Product
 (2) Harga dibawah 10.000, 2x harga beli. Haga diatas 10.000, 1,5x harga beli. Pembulatan +-5.000.
 (3) Adding new Gem: 'Barby' for barcode.
@@ -6,8 +16,6 @@ Things Done:
 (5) Barcode ID can be filled, or let it blank.
 
 Next things to-do:
-(1) Product purchase has it's own Barcode. [productBarcode][SS][ddmmYYYY]
-(2) Supplier list, Customer list, Product List on Purchase and Sale doesn't need pagination.
 (3) Devise and Can Can.
 
 ============

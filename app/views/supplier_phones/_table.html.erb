@@ -13,7 +13,7 @@
     <td><%= supplier_phone.description %></td>
     <td class="text-right">
       <%= link_to "#{t 'edit'}", edit_supplier_supplier_phone_path(@supplier, supplier_phone), :class => "btn btn-warning btn-xs", :remote => true %>
-      <%= link_to "#{t 'destroy'}", supplier_supplier_phone_path(@supplier, supplier_phone), method: :delete, data: { confirm: "#{t 'confirm'}" }, :class => "btn btn-danger btn-xs", :remote => true %>
+      <%= link_to "#{t 'delete'}", supplier_supplier_phone_path(@supplier, supplier_phone), method: :delete, data: { confirm: "#{t 'confirm'}" }, :class => "btn btn-danger btn-xs", :remote => true %>
     </td>
   </tr>
 <% end %>

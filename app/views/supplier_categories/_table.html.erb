@@ -11,7 +11,7 @@
     <td><%= supplier_category.notes %></td>
     <td class="text-right">
       <%= link_to "#{t 'edit'}", edit_supplier_supplier_category_path(@supplier, supplier_category), :class => "btn btn-warning btn-xs", :remote => true %>
-      <%= link_to "#{t 'destroy'}", supplier_supplier_category_path(@supplier, supplier_category), method: :delete, data: { confirm: "#{t 'confirm'}" }, :class => "btn btn-danger btn-xs", :remote => true %>
+      <%= link_to "#{t 'delete'}", supplier_supplier_category_path(@supplier, supplier_category), method: :delete, data: { confirm: "#{t 'confirm'}" }, :class => "btn btn-danger btn-xs", :remote => true %>
     </td>
   </tr>
 <% end %>

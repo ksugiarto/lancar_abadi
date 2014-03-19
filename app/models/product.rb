@@ -37,11 +37,11 @@ class Product < ActiveRecord::Base
       if parts.length.to_i==1
         where("name ~* '#{parts[0]}'")
       elsif parts.length.to_i==2
-        where("name ~* '#{parts[0]}' OR product_type ~* '#{parts[1]}'")
+        where("name ~* '#{parts[0]}' AND product_type ~* '#{parts[1]}'")
       elsif parts.length.to_i==3
-        where("name ~* '#{parts[0]}' OR product_type ~* '#{parts[1]}' OR merk ~* '#{parts[2]}'")
+        where("name ~* '#{parts[0]}' AND product_type ~* '#{parts[1]}' AND merk ~* '#{parts[2]}'")
       else
-        where("name ~* '#{parts[0]}' OR product_type ~* '#{parts[1]}' OR merk ~* '#{parts[2]}' OR size ~* '#{parts[3]}'")
+        where("name ~* '#{parts[0]}' AND product_type ~* '#{parts[1]}' AND merk ~* '#{parts[2]}' AND size ~* '#{parts[3]}'")
       end
       # where("name ~* '#{name}' OR product_type ~* '#{name}' OR merk ~* '#{name}' OR size ~* '#{name}'")
     else
@@ -72,11 +72,11 @@ class Product < ActiveRecord::Base
       if parts.length.to_i==1
         where("name ~* '#{parts[0]}'")
       elsif parts.length.to_i==2
-        where("name ~* '#{parts[0]}' OR product_type ~* '#{parts[1]}'")
+        where("name ~* '#{parts[0]}' AND product_type ~* '#{parts[1]}'")
       elsif parts.length.to_i==3
-        where("name ~* '#{parts[0]}' OR product_type ~* '#{parts[1]}' OR merk ~* '#{parts[2]}'")
+        where("name ~* '#{parts[0]}' AND product_type ~* '#{parts[1]}' AND merk ~* '#{parts[2]}'")
       else
-        where("name ~* '#{parts[0]}' OR product_type ~* '#{parts[1]}' OR merk ~* '#{parts[2]}' OR size ~* '#{parts[3]}'")
+        where("name ~* '#{parts[0]}' AND product_type ~* '#{parts[1]}' AND merk ~* '#{parts[2]}' AND size ~* '#{parts[3]}'")
       end
 
   		# where("name ~* '#{keyword}' OR product_type ~* '#{keyword}' OR merk ~* '#{keyword}' OR size ~* '#{keyword}'")

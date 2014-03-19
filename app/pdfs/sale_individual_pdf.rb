@@ -1,18 +1,23 @@
 class SaleIndividualPdf < Prawn::Document
-  def initialize(sale_id)
+  def initialize(sale_id, view)
   super(:page_layout => :landscape)
     @sale = Sale.find(sale_id)
+    @view = view
     header
     content
     footer
   end
 
   def precision(num)
-    @view.number_with_precision(num, :delimiter => ",", :separator => ".", :precision => 2)
+    @view.number_with_precision(num.to_f, :delimiter => ",", :separator => ".", :precision => 2)
+  end
+
+  def precision_zero(num)
+    @view.number_with_precision(num.to_f, :delimiter => ",", :separator => ".", :precision => 0)
   end
 
   def delimiter(num)
-    @view.number_with_delimiter(num, :delimiter => ",", :separator => ".")
+    @view.number_with_delimiter(num.to_f, :delimiter => ",", :separator => ".")
   end
 
   def logo
@@ -31,6 +36,7 @@ class SaleIndividualPdf < Prawn::Document
 
     grid([0,0], [0,4]).bounding_box do
       font("Times-Roman") do
+        text "UD. LANCAR ABADI"
         text "Ponorogo, #{@sale.transaction_date.to_time.localtime.strftime('%d %B %Y')}"
         move_down 10
         text "No: #{@sale.si_id}"
@@ -66,15 +72,15 @@ class SaleIndividualPdf < Prawn::Document
       "#{I18n.t 'sale.detail.discount_%'}", "#{I18n.t 'sale.detail.added_discount_rp'}", "#{I18n.t 'sale.detail.amount_rp'}"]] +
     
     @sale.details.map do |detail|
-      ["#{@row_number+=1}.", detail.product_detail_wo_code, detail.quantity, detail.price, detail.discount, detail.added_discount, detail.amount]
+      ["#{@row_number+=1}.", detail.product_detail_wo_code, precision_zero(detail.quantity), precision(detail.price), precision(detail.discount), precision(detail.added_discount), precision(detail.amount)]
     end +
 
     [[{:content => "PERHATIAN: APABILA ADA KEKELIRUAN DAN KERUSAKAN BARANG HARAP DIBERITAHUKAN DALAM WAKTU 7 HARI.", :rowspan => 5, :colspan => 3}, 
-      {:content => "#{I18n.t 'sale.sub_amount'}", :colspan => 2}, "Rp", @sale.sub_amount], 
-     [{:content => "#{I18n.t 'sale.discount'} (#{@sale.discount}%)", :colspan => 2}, "Rp", @sale.discount_amount], 
-     [{:content => "#{I18n.t 'sale.added_discount'}", :colspan => 2}, "Rp", @sale.added_discount],
-     [{:content => "#{I18n.t 'sale.tax'} (#{'10' if @sale.tax==true} #{'0' if @sale.tax==false}%)", :colspan => 2}, "Rp", @sale.tax_amount],
-     [{:content => "#{I18n.t 'sale.total_amount'}", :colspan => 2}, "Rp", @sale.total_amount]]
+      {:content => "#{I18n.t 'sale.sub_amount'}", :colspan => 2}, "Rp", precision(@sale.sub_amount)], 
+     [{:content => "#{I18n.t 'sale.discount'} (#{precision(@sale.discount)}%)", :colspan => 2}, "Rp", precision(@sale.discount_amount)], 
+     [{:content => "#{I18n.t 'sale.added_discount'}", :colspan => 2}, "Rp", precision(@sale.added_discount)],
+     [{:content => "#{I18n.t 'sale.tax'} (#{precision(10) if @sale.tax==true} #{precision(0) if @sale.tax==false}%)", :colspan => 2}, "Rp", precision(@sale.tax_amount)],
+     [{:content => "#{I18n.t 'sale.total_amount'}", :colspan => 2}, "Rp", precision(@sale.total_amount)]]
   end
 
   def content

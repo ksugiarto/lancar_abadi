@@ -2,7 +2,7 @@ class SalesController < ApplicationController
   def get_customer
     @customers = Customer.search_customer(params[:keyword])
     .order(:name)
-    .paginate(:page => params[:page], :per_page => 5)
+    # .paginate(:page => params[:page], :per_page => 5)
 
     @keyword = params[:keyword] if params[:keyword].present?
   end
@@ -32,7 +32,7 @@ class SalesController < ApplicationController
       format.html # show.html.erb
       format.json { render json: @sale }
       format.pdf do
-        pdf = SaleIndividualPdf.new(@sale.id)
+        pdf = SaleIndividualPdf.new(@sale.id, view_context)
         send_data pdf.render, filename: "#{I18n.t 'sale.sales_invoice'} #{Time.now.strftime("%Y-%m-%d %H:%M:%S")}.pdf",
         type: "application/pdf", :disposition => "inline"
       end

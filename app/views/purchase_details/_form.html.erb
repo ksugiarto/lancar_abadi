@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-5">
     <%= form_for([@purchase, @purchase_detail], :html => { :class => "form-horizontal" }, :remote => true) do |f| %>
       <% if @purchase_detail.errors.any? %>
         <div id="error_explanation">
@@ -55,7 +55,7 @@
     <% end %>
   </div>
 
-  <div class="col-md-6">
+  <div class="col-md-7">
     <div id="product_filter" style="display:none;">
       <%= form_tag(search_product_purchase_purchase_details_path, :class => "form-horizontal", :remote => true) do |f| %>
         <div class="form-group">
@@ -65,7 +65,7 @@
       <% end -%>
     </div>
 
-    <div id="product_list">
+    <div id="product_list" style="width:550px; height:350px; overflow:auto;">
     </div>
   </div>
 </div>

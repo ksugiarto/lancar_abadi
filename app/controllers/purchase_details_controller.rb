@@ -7,8 +7,8 @@ class PurchaseDetailsController < ApplicationController
     @products = Product
     .search_product(params[:keyword])
     .where(:supplier_id => @purchase.supplier_id)
-    .order(:name)
-    .paginate(:page => params[:page], :per_page => 5)
+    .order(:name, :product_type, :merk)
+    # .paginate(:page => params[:page], :per_page => 5)
 
     @keyword = params[:keyword] if params[:keyword].present?
   end

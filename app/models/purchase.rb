@@ -17,15 +17,17 @@ class Purchase < ActiveRecord::Base
   end
 
   def id_generator
-  	# pi_id = PI-YYMM-0001
-  	last_trans = Purchase.last
-  	
-    new_id = 1
-    if last_trans.present?
-  		new_id = last_trans.try(:pi_id)[8,4].to_i + 1 if last_trans.created_at.localtime.strftime("%Y")==Time.now.strftime("%Y") && last_trans.created_at.localtime.strftime("%m")==Time.now.strftime("%m")
-    end
+    if self.pi_id.blank?
+    	# pi_id = PI-YYMM-0001
+    	last_trans = Purchase.last
+    	
+      new_id = 1
+      if last_trans.present?
+    		new_id = last_trans.try(:pi_id)[8,4].to_i + 1 if last_trans.created_at.localtime.strftime("%Y")==Time.now.strftime("%Y") && last_trans.created_at.localtime.strftime("%m")==Time.now.strftime("%m")
+      end
 
-  	self.pi_id = "PI-#{Time.now.strftime("%y")}#{Time.now.strftime("%m")}-%04i" % new_id
+    	self.pi_id = "PI-#{Time.now.strftime("%y")}#{Time.now.strftime("%m")}-%04i" % new_id
+    end
   end
 
   def sum_sub_amount

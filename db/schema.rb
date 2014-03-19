@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(:version => 20140311190222) do
   add_index "customers", ["province_id"], :name => "index_customers_on_province_id"
 
   create_table "product_purchases", :force => true do |t|
+    t.string   "barcode_id"
     t.integer  "purchase_id"
     t.integer  "product_id"
     t.integer  "supplier_id"
@@ -126,7 +127,7 @@ ActiveRecord::Schema.define(:version => 20140311190222) do
     t.integer  "purchase_id"
     t.integer  "product_id"
     t.decimal  "quantity",       :precision => 12, :scale => 5, :default => 1.0
-    t.integer  "quantity_print",                                :default => 1
+    t.integer  "quantity_print"
     t.decimal  "price",          :precision => 18, :scale => 2, :default => 0.0
     t.decimal  "discount",       :precision => 12, :scale => 5, :default => 0.0
     t.decimal  "added_discount", :precision => 18, :scale => 2, :default => 0.0
@@ -217,6 +218,7 @@ ActiveRecord::Schema.define(:version => 20140311190222) do
   add_index "supplier_phones", ["supplier_id"], :name => "index_supplier_phones_on_supplier_id"
 
   create_table "suppliers", :force => true do |t|
+    t.string   "supplier_code"
     t.string   "name"
     t.string   "contact_person"
     t.string   "email"

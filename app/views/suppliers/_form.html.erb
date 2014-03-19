@@ -14,8 +14,12 @@
   <div class="row">
     <div class="col-md-6">
       <div class="form-group">
+        <%= f.label :supplier_code, "#{t 'supplier.supplier_code'}", :class => "col-sm-3 control-label" %>
+        <div class="col-sm-8"><%= f.text_field :supplier_code, :class => "form-control", :required => true %></div>
+      </div>
+      <div class="form-group">
         <%= f.label :name, "#{t 'supplier.name'}", :class => "col-sm-3 control-label" %>
-        <div class="col-sm-8"><%= f.text_field :name, :class => "form-control" %></div>
+        <div class="col-sm-8"><%= f.text_field :name, :class => "form-control", :required => true %></div>
       </div>
       <div class="form-group">
         <%= f.label :contact_person, "#{t 'supplier.contact_person'}", :class => "col-sm-3 control-label" %>
@@ -26,16 +30,16 @@
         <div class="col-sm-8"><%= f.text_field :email, :class => "form-control" %></div>
       </div>
       <div class="form-group">
-        <%= f.label :join_date, "#{t 'supplier.join_date'}", :class => "col-sm-3 control-label" %>
-        <div class="col-sm-8"><%= f.text_field :join_date, :class => "form-control" %></div>
-      </div>
-      <div class="form-group">
         <%= f.label :notes, "#{t 'supplier.notes'}", :class => "col-sm-3 control-label" %>
         <div class="col-sm-8"><%= f.text_area :notes, :rows => 2, :class => "form-control" %></div>
       </div>
     </div>
 
     <div class="col-md-6">
+      <div class="form-group">
+        <%= f.label :join_date, "#{t 'supplier.join_date'}", :class => "col-sm-3 control-label" %>
+        <div class="col-sm-8"><%= f.text_field :join_date, :class => "form-control" %></div>
+      </div>
       <div class="form-group">
         <%= f.label :address, "#{t 'supplier.address'}", :class => "col-sm-3 control-label" %>
         <div class="col-sm-8"><%= f.text_field :address, :class => "form-control" %></div>
