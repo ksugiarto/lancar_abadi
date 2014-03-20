@@ -123,9 +123,9 @@ class Product < ActiveRecord::Base
         end
 
         if row["HARGA"].to_f < 10000
-          sales_price = row["HARGA"]*2
+          sales_price = row["HARGA"].to_f*2
         else
-          sales_price = row["HARGA"]*1.5
+          sales_price = row["HARGA"].to_f*1.5
         end
 
         if status=="new"
