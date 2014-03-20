@@ -2,7 +2,7 @@ class SalesController < ApplicationController
   def get_customer
     @customers = Customer.search_customer(params[:keyword])
     .order(:name)
-    # .paginate(:page => params[:page], :per_page => 5)
+    .paginate(:page => params[:page], :per_page => 100)
 
     @keyword = params[:keyword] if params[:keyword].present?
   end

@@ -1,3 +1,5 @@
+<%= will_paginate @products, :params => {:controller => "sale_details", :action => "show_product", :sale_id => @sale.id, :keyword => @keyword}, :class => "apple_pagination" %>
+
 <table class="table table-condensed table-striped">
   <tr>
     <th width="1%"></th>
@@ -21,6 +23,3 @@
   </tr>
 <% end %>
 </table>
-
-<%=# will_paginate @products, :params => {:controller => "sale_details", :action => "show_product", :sale_id => @sale.id, :keyword => @keyword}, :class => "apple_pagination" 
-%>

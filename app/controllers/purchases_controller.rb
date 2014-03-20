@@ -2,7 +2,7 @@ class PurchasesController < ApplicationController
   def get_supplier
     @suppliers = Supplier.search_supplier(params[:keyword])
     .order(:name)
-    # .paginate(:page => params[:page], :per_page => 5)
+    .paginate(:page => params[:page], :per_page => 100)
 
     @keyword = params[:keyword] if params[:keyword].present?
   end

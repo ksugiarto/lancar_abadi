@@ -6,7 +6,7 @@ class SaleDetailsController < ApplicationController
   def get_product
     @products = Product.search_product(params[:keyword])
     .order(:name, :product_type, :merk)
-    # .paginate(:page => params[:page], :per_page => 5)
+    .paginate(:page => params[:page], :per_page => 500)
 
     @keyword = params[:keyword] if params[:keyword].present?
   end
