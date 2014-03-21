@@ -2,18 +2,20 @@
 
 <table class="table table-condensed">
   <tr style="background-color:#708DC6;">
-    <th><%= t 'supplier.name' %></th>
-    <th><%= t 'supplier.contact_person' %></th>
-    <th><%= t 'supplier.join_date' %></th>
-    <th><%= t 'supplier.address' %></th>
-    <th><%= t 'supplier.city' %></th>
-    <th><%= t 'supplier.province' %></th>
+    <th><%= t 'customer.name' %></th>
+    <th><%= t 'customer.group' %></th>
+    <th><%= t 'customer.contact_person' %></th>
+    <th><%= t 'customer.join_date' %></th>
+    <th><%= t 'customer.address' %></th>
+    <th><%= t 'customer.city' %></th>
+    <th><%= t 'customer.province' %></th>
     <th></th>
   </tr>
 
 <% @customers.each do |customer| %>
   <tr>
     <td><%= customer.name %></td>
+    <td><%= customer.customer_group_name %></td>
     <td><%= customer.contact_person %></td>
     <td><%= date(customer.join_date) %></td>
     <td><%= customer.address %></td>

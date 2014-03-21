@@ -62,8 +62,8 @@ class SaleIndividualPdf < Prawn::Document
 
   def customer_info
     [["Kepada Yth.:", (@sale.customer.try(:name)).upcase],
-     ["", (@sale.customer.try(:address)).upcase], 
-     ["", "#{(@sale.customer.try(:city).try(:name)).upcase}-#{(@sale.customer.try(:province).try(:name)).upcase}"]]
+     ["", @sale.customer.try(:address)], 
+     ["", "#{@sale.customer.try(:city).try(:name)}-#{@sale.customer.try(:province).try(:name)}"]]
   end
 
   def details

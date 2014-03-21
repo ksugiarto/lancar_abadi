@@ -1,32 +1,32 @@
 <table class="table table-condensed">
   <tr>
     <th><%= t 'customer.name' %></th>
-    <td><b>:</b>&nbsp;<%= @customer.name %></td>
-    <th><%= t 'customer.address' %></th>
-    <td><b>:</b>&nbsp;<%= @customer.address %></td>
-  </tr>
-  <tr>
+    <td><b>:&nbsp;<%= @customer.name %></b></td>
     <th><%= t 'customer.contact_person' %></th>
     <td><b>:</b>&nbsp;<%= @customer.contact_person %></td>
-    <th><%= t 'customer.city' %></th>
-    <td><b>:</b>&nbsp;<%= @customer.city.try(:name) %></td>
+  </tr>
+  <tr>
+    <th><%= t 'customer.group' %></th>
+    <td><b>:&nbsp;<%= @customer.customer_group_name %></b></td>
+    <th><%= t 'customer.join_date' %></th>
+    <td><b>:</b>&nbsp;<%= date(@customer.join_date) %></td>
   </tr>
   <tr>
     <th><%= t 'customer.email' %></th>
     <td><b>:</b>&nbsp;<%= @customer.email %></td>
-    <th><%= t 'suppllier.province' %>:</th>
-    <td><b>:</b>&nbsp;<%= @customer.province.try(:name) %></td>
+    <th><%= t 'customer.address' %></th>
+    <td><b>:</b>&nbsp;<%= @customer.address %></td>
   </tr>
   <tr>
-    <th><%= t 'customer.join_date' %></th>
-    <td><b>:</b>&nbsp;<%= date(@customer.join_date) %></td>
-    <th><%= t 'customer.country' %></th>
-    <td><b>:</b>&nbsp;<%= @customer.country.try(:name) %></td>
+    <th><%= t 'suppllier.province' %>:</th>
+    <td><b>:</b>&nbsp;<%= @customer.province.try(:name) %></td>
+    <th><%= t 'customer.city' %></th>
+    <td><b>:</b>&nbsp;<%= @customer.city.try(:name) %></td>
   </tr>
   <tr>
     <th rowspan="2"><%= t 'notes' %></th>
     <td rowspan="2"><b>:</b>&nbsp;<%= @customer.notes %></td>
-    <th></th>
-    <td></td>
+    <th><%= t 'customer.country' %></th>
+    <td><b>:</b>&nbsp;<%= @customer.country.try(:name) %></td>
   </tr>
 </table>

@@ -18,16 +18,16 @@
         <div class="col-sm-8"><%= f.text_field :name, :required => true, :class => "form-control" %></div>
       </div>
       <div class="form-group">
+        <%= f.label :customer_group, "#{t 'customer.group'}", :class => "col-sm-3 control-label" %>
+        <div class="col-sm-8"><%= f.select(:customer_group_id, @customer_groups.collect {|group| [group.name, group.id,]}, {:prompt => "#{t 'prompt'} #{t 'customer.group'}"}, {:class => "form-control"}) %></div>
+      </div>
+      <div class="form-group">
         <%= f.label :contact_person, "#{t 'customer.contact_person'}", :class => "col-sm-3 control-label" %>
         <div class="col-sm-8"><%= f.text_field :contact_person, :class => "form-control" %></div>
       </div>
       <div class="form-group">
         <%= f.label :email, "#{t 'customer.email'}", :class => "col-sm-3 control-label" %>
         <div class="col-sm-8"><%= f.text_field :email, :class => "form-control" %></div>
-      </div>
-      <div class="form-group">
-        <%= f.label :join_date, "#{t 'customer.join_date'}", :class => "col-sm-3 control-label" %>
-        <div class="col-sm-8"><%= f.text_field :join_date, :class => "form-control" %></div>
       </div>
       <div class="form-group">
         <%= f.label :notes, "#{t 'customer.notes'}", :class => "col-sm-3 control-label" %>
@@ -37,19 +37,23 @@
 
     <div class="col-md-6">
       <div class="form-group">
-        <%= f.label :address, :class => "col-sm-3 control-label" %>
+        <%= f.label :join_date, "#{t 'customer.join_date'}", :class => "col-sm-3 control-label" %>
+        <div class="col-sm-8"><%= f.text_field :join_date, :class => "form-control" %></div>
+      </div>
+      <div class="form-group">
+        <%= f.label :address, "#{t 'customer.address'}", :class => "col-sm-3 control-label" %>
         <div class="col-sm-8"><%= f.text_field :address, :class => "form-control" %></div>
       </div>
       <div class="form-group">
-        <%= f.label :country, :class => "col-sm-3 control-label" %>
+        <%= f.label :country, "#{t 'customer.country'}", :class => "col-sm-3 control-label" %>
         <div class="col-sm-8"><%= f.select(:country_id, @countries.collect {|country| [country.name, country.id,]}, {:prompt => "#{t 'prompt'} #{t 'city.country'}"}, {:class => "form-control"}) %></div>
       </div>
       <div class="form-group">
-        <%= f.label :province, :class => "col-sm-3 control-label" %>
+        <%= f.label :province, "#{t 'customer.province'}", :class => "col-sm-3 control-label" %>
         <div class="col-sm-8"><%= f.select(:province_id, @provinces.collect {|province| [province.name, province.id,]}, {:prompt => "#{t 'prompt'} #{t 'city.province'}"}, :class => "form-control") %></div>
       </div>
       <div class="form-group">
-        <%= f.label :city, :class => "col-sm-3 control-label" %>
+        <%= f.label :city, "#{t 'customer.city'}", :class => "col-sm-3 control-label" %>
         <div class="col-sm-8"><%= f.select(:city_id, @cities.collect {|city| [city.name, city.id,]}, {:prompt => "#{t 'prompt'} #{t 'city.city'}"}, :class => "form-control") %></div>
       </div>
       <div class="form-group">

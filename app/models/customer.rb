@@ -12,6 +12,10 @@ class Customer < ActiveRecord::Base
     paginate(:per_page => 20, :page => page)
   end
 
+  def customer_group_name
+    customer_group.try(:name)
+  end
+
   def self.filter_name(name)
     if name.present?
       where("name ~* '#{name}'")

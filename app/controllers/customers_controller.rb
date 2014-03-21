@@ -3,6 +3,7 @@ class CustomersController < ApplicationController
     @countries = Country.order(:name)
     @provinces = Province.order(:name)
     @cities = City.order(:name)
+    @customer_groups = CustomerGroup.order(:name)
   end
 
   # GET /customers
