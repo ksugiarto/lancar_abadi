@@ -1,0 +1,21 @@
+<table class="table table-condensed">
+  <tr>
+    <td>
+      <div class="label label-default">B</div>&nbsp;
+      <%= t 'layout.setting.setting' %>
+    </td>
+  </tr>
+
+  <% @setting_menus.each do |menu| %>
+    <tr>
+      <td>
+        <% if menu.visible==true %>
+          <label class="checkbox">
+            <%= check_box_tag "user_group[user_menu_ids][]", menu.id, @user_group.user_menus.include?(menu) %>
+            <%= menu.name %>
+          </label>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>

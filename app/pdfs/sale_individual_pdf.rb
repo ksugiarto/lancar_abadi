@@ -1,6 +1,7 @@
 class SaleIndividualPdf < Prawn::Document
   def initialize(sale_id, view)
-  super(:page_layout => :landscape)
+  # super(:page_layout => :landscape)
+  super()
     @sale = Sale.find(sale_id)
     @view = view
     header
@@ -75,28 +76,29 @@ class SaleIndividualPdf < Prawn::Document
       ["#{@row_number+=1}.", detail.product_detail_wo_code, precision_zero(detail.quantity), precision(detail.price), precision(detail.discount), precision(detail.added_discount), precision(detail.amount)]
     end +
 
-    [[{:content => "PERHATIAN: APABILA ADA KEKELIRUAN DAN KERUSAKAN BARANG HARAP DIBERITAHUKAN DALAM WAKTU 7 HARI.", :rowspan => 5, :colspan => 3}, 
+    [[{:content => "PERHATIAN: APABILA ADA KEKELIRUAN DAN KERUSAKAN BARANG HARAP DIBERITAHUKAN DALAM WAKTU 7 HARI.", :rowspan => 3, :colspan => 3}, 
       {:content => "#{I18n.t 'sale.sub_amount'}", :colspan => 2}, "Rp", precision(@sale.sub_amount)], 
      [{:content => "#{I18n.t 'sale.discount'} (#{precision(@sale.discount)}%)", :colspan => 2}, "Rp", precision(@sale.discount_amount)], 
-     [{:content => "#{I18n.t 'sale.added_discount'}", :colspan => 2}, "Rp", precision(@sale.added_discount)],
-     [{:content => "#{I18n.t 'sale.tax'} (#{precision(10) if @sale.tax==true} #{precision(0) if @sale.tax==false}%)", :colspan => 2}, "Rp", precision(@sale.tax_amount)],
+     # [{:content => "#{I18n.t 'sale.added_discount'}", :colspan => 2}, "Rp", precision(@sale.added_discount)],
+     # [{:content => "#{I18n.t 'sale.tax'} (#{precision(10) if @sale.tax==true} #{precision(0) if @sale.tax==false}%)", :colspan => 2}, "Rp", precision(@sale.tax_amount)],
      [{:content => "#{I18n.t 'sale.total_amount'}", :colspan => 2}, "Rp", precision(@sale.total_amount)]]
   end
 
   def content
     sale=@sale
 
-    table details, :cell_style => { :font => "Times-Roman", :size => 10 }, :width => 720 do
+    # table details, :cell_style => { :font => "Times-Roman", :size => 10 }, :width => 720 do
+    table details, :cell_style => { :font => "Times-Roman", :size => 10 }, :width => 540 do
       self.header = true
       cells.borders=[]
-      self.row_colors = ["FFFFFF", "F5F5F5"]
-      self.column_widths = {0=>30, 1=>350, 2=>50, 3=>80, 4=>50, 5=>80, 6=>80}
-      row(0).background_color = "708DC6"
-      row(sale.details.count+1).column(0).background_color = "FFFFFF"
+      # self.row_colors = ["FFFFFF", "F5F5F5"]
+      self.column_widths = {0=>30, 1=>170, 2=>50, 3=>80, 4=>50, 5=>80, 6=>80}
+      # row(0).background_color = "708DC6"
+      # row(sale.details.count+1).column(0).background_color = "FFFFFF"
 
       column(0).align=:right
       columns(2..6).align=:right
-      row(sale.details.count+1..sale.details.count+5).column(0..4).align=:left
+      row(sale.details.count+1..sale.details.count+3).column(0..4).align=:left
       column(0).borders=[:left]
       column(6).borders=[:right]
       row(0).borders=[:top, :bottom]
@@ -105,13 +107,13 @@ class SaleIndividualPdf < Prawn::Document
       row(sale.details.count).borders=[:bottom]
       row(sale.details.count).column(0).borders=[:bottom, :left]
       row(sale.details.count).column(6).borders=[:bottom, :right]
-      row(sale.details.count+5).borders=[:bottom]
-      row(sale.details.count+1..sale.details.count+5).column(3).borders=[:left]
-      row(sale.details.count+1..sale.details.count+5).column(6).borders=[:right]
+      row(sale.details.count+3).borders=[:bottom]
+      row(sale.details.count+1..sale.details.count+3).column(3).borders=[:left]
+      row(sale.details.count+1..sale.details.count+3).column(6).borders=[:right]
       row(sale.details.count+1).column(0).borders=[:bottom, :left]
-      row(sale.details.count+5).column(0).borders=[:bottom, :left]
-      row(sale.details.count+5).column(3).borders=[:bottom, :left]
-      row(sale.details.count+5).column(6).borders=[:bottom, :right]
+      row(sale.details.count+3).column(0).borders=[:bottom, :left]
+      row(sale.details.count+3).column(3).borders=[:bottom, :left]
+      row(sale.details.count+3).column(6).borders=[:bottom, :right]
     end
   end
 
@@ -126,10 +128,10 @@ class SaleIndividualPdf < Prawn::Document
   def footer
     move_down 10
 
-    grid([5,0], [5,8]).bounding_box do
-    table authorization, :cell_style => { :font => "Times-Roman", :size => 10 }, :width => 500 do
+    # grid([5,0], [5,8]).bounding_box do
+    table authorization, :cell_style => { :font => "Times-Roman", :size => 10 }, :width => 300 do
       row(0).align=:center
     end
-    end
+    # end
   end
 end

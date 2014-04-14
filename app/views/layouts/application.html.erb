@@ -10,6 +10,7 @@
 	<nav class="navbar navbar-default" role="navigation">
 		<div class="container">
 		  <div class="row">
+			  <% if user_signed_in? %>
 			  <!-- Brand and toggle get grouped for better mobile display -->
 			  <div class="navbar-header">
 			    <a class="navbar-brand" href="/">
@@ -17,38 +18,91 @@
 			    	Lancar Abadi
 			    </a>
 			  </div>
+				  <!-- Collect the nav links, forms, and other content for toggling -->
+				  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				    <ul class="nav navbar-nav">
+				    	<!-- TRANSACTION -->
+		          <!-- CHECK IF TRANSACTION HAD LIST OF MENU TO SHOW -->
+		          <% @count=0 %>
+		          <% @main_menus.each do |menu| %><!-- looping menus -->
+		            <% if menu.visible==true %><!-- check if menu visible -->
+		              <% if can? :create, "#{menu.url}" %><!-- cancan authority -->
+		                <% if menu.name!="separator" %><!-- check if separator -->
+		                  <% @count+=1 %>
+		                <% end %><!-- check if separator -->
+		              <% end %><!-- cancan authority -->
+		            <% end %><!-- check if menu visible -->
+		          <% end %><!-- looping menus -->
 
-			  <!-- Collect the nav links, forms, and other content for toggling -->
-			  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			    <ul class="nav navbar-nav">
-			      <li><a href="/purchases/"><%= t 'purchase.purchase' %></a></li>
-			      <li><a href="/sales/"><%= t 'sale.sale' %></a></li>
-			      <li><a href="/products/"><%= t 'product.product' %></a></li>
-			      <li><a href="/customers/"><%= t 'customer.customer' %></a></li>
-			      <li><a href="/suppliers/"><%= t 'supplier.supplier' %></a></li>
-			      <li class="dropdown">
-		          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span>&nbsp;<%= t 'setting.setting' %> <b class="caret"></b></a>
-		          <ul class="dropdown-menu">
-					      <li><a href="/customer_groups/"><%= t 'group.group' %></a></li>
-					      <li><a href="/categories/"><%= t 'category.category' %></a></li>
-					      <li><a href="/unit_of_measures/"><%= t 'unit.unit' %></a></li>
-		            <li class="divider"></li>
-					      <li><a href="/cities/"><%= t 'city.city' %></a></li>
-					      <li><a href="/provinces/"><%= t 'province.province' %></a></li>
-					      <li><a href="/countries/"><%= t 'country.country' %></a></li>
-		          </ul>
-		        </li>
-			    </ul>
+		          <% if @count!=0 %>
+	              <!-- GENERATE TRANSACTION MENU BASED ON USER GROUP AND CANCAN
+	                   Purchase, Sale, Product, Customer, Supplier -->
+	              <% @main_menus.each do |menu| %><!-- looping menus -->
+	                <% if menu.visible==true %><!-- check if menu visible -->
+	                  <% if can? :create, "#{menu.url}" %><!-- cancan authority -->
+	                    <% if menu.name!="separator" %><!-- check if separator -->
+	                      <li><a href="<%= menu.url %>"><%= t "layout.transaction.#{(menu.name).underscore}" %></a></li>
+	                    <% else %><!-- check if separator -->
+	                      <li class="divider"></li>
+	                    <% end %><!-- check if separator -->
+	                  <% end %><!-- cancan authority -->
+	                <% end %><!-- check if menu visible -->
+	              <% end %><!-- looping menus -->
+		          <% end %>
+		          <!-- END TRANSACTION MENU -->
 
-			  <p class="navbar-text navbar-right">Login as Admin</p>
-			  </div><!-- /.navbar-collapse -->
+		          <!-- SETTING -->
+		          <!-- CHECK IF SETTING HAD LIST OF MENU TO SHOW -->
+		          <% @count=0 %>
+		          <% @setting_menus.each do |menu| %><!-- looping menus -->
+		            <% if menu.visible==true %><!-- check if menu visible -->
+		              <% if can? :create, "#{menu.url}" %><!-- cancan authority -->
+		                <% if menu.name!="separator" %><!-- check if separator -->
+		                  <% @count+=1 %>
+		                <% end %><!-- check if separator -->
+		              <% end %><!-- cancan authority -->
+		            <% end %><!-- check if menu visible -->
+		          <% end %><!-- looping menus -->
+
+		          <% if @count!=0 %>
+		          <li class="dropdown">
+			          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span>&nbsp;<%= t 'layout.setting.setting' %> <b class="caret"></b></a>
+			          <ul class="dropdown-menu">
+		              <!-- GENERATE SETTING MENU BASED ON USER GROUP AND CANCAN
+		                   User Menu, User Group, Company Profile -->
+		              <% @setting_menus.each do |menu| %><!-- looping menus -->
+		                <% if menu.visible==true %><!-- check if menu visible -->
+		                  <% if can? :create, "#{menu.url}" %><!-- cancan authority -->
+		                    <% if menu.name!="separator" %><!-- check if separator -->
+		                      <li><a href="<%= menu.url %>"><%= t "layout.setting.#{(menu.name).underscore}" %></a></li>
+		                    <% else %><!-- check if separator -->
+		                      <li class="divider"></li>
+		                    <% end %><!-- check if separator -->
+		                  <% end %><!-- cancan authority -->
+		                <% end %><!-- check if menu visible -->
+		              <% end %><!-- looping menus -->
+		            </ul>
+		          </li>
+		          <% end %>
+		          <!-- END SETTING MENU -->
+
+				    </ul>
+
+				  <p class="navbar-text navbar-right">Login as <%= current_user.try(:username) %> (<%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>)</p>
+				  </div><!-- /.navbar-collapse -->
+			  <% end %>
 			</div>
 		</div>
 	</nav>
 	
 	<div class="container">
 	  <div class="row">
-	  	<p id="notice"><%= notice %></p>
+	  	<% if notice %>
+			  <p class="alert alert-success"><%= notice %></p>
+			<% end %>
+			<% if alert %>
+			  <p class="alert alert-danger"><%= alert %></p>
+			<% end %>
 	  	
 		  <%= yield %>
 	  </div>

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  url: MyString
+  header_id: MyString
+  sub_header_id: 1
+  visible: false
+
+two:
+  name: MyString
+  url: MyString
+  header_id: MyString
+  sub_header_id: 1
+  visible: false

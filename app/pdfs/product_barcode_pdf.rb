@@ -58,11 +58,11 @@ class ProductBarcodePdf < Prawn::Document
     x=0
     y=665
     @model.details.each do |detail|
-      barcode = Barby::Code39.new("#{detail.product.try(:barcode_id)}-097010114")
+      barcode = Barby::Code39.new("#{detail.product.try(:barcode_id)}-#{detail.product.try(:purchases).last.try(:barcode_id)}")
       # Barby::PrawnOutputter.new(barcode).to_pdf
       barcode.annotate_pdf(self, :x => x, :y => y)
       # text "#{detail.product.try(:barcode_id)}"
-      number_pages "#{detail.product.try(:barcode_id)}-097010114", :at => [x, y-5]
+      number_pages "#{detail.product.try(:barcode_id)}-#{detail.product.try(:purchases).last.try(:barcode_id)}", :at => [x, y-5]
       y-=100
     end
   end
@@ -111,9 +111,9 @@ class ProductBarcodePdf < Prawn::Document
     move_down 10
 
     grid([5,0], [5,8]).bounding_box do
-    table authorization, :cell_style => { :font => "Times-Roman", :size => 10 }, :width => 500 do
-      row(0).align=:center
-    end
+      table authorization, :cell_style => { :font => "Times-Roman", :size => 10 }, :width => 500 do
+        row(0).align=:center
+      end
     end
   end
 end

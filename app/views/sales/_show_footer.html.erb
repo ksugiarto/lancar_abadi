@@ -1,4 +1,4 @@
-<div class="row">
+<div id="show" class="row">
   <div class="col-sm-8"></div>
 
   <div class="col-sm-4">
@@ -10,7 +10,7 @@
         <th class="text-right" width="150"><%= precision(@sale.sub_amount) %></th>
         <th width="50">
           <% if @sale.status==0 %>
-            <%= link_to edit_footer_sale_path(@sale), :class => "btn btn-warning btn-xs", :remote => true do %>
+            <%= link_to edit_footer_sale_path(@sale), :id => "btn", :class => "btn btn-warning btn-xs", :remote => true do %>
               <span class="glyphicon glyphicon-pencil"></span>
             <% end %>
           <% end -%>
@@ -31,3 +31,32 @@
     </table>
   </div>
 </div>
+
+<!-- SHOWN ON PRINTING ONLY -->
+<div id="hidden">
+  <table>
+    <tr>
+      <td></td>
+      <td colspan="3"><hr></td>
+    </tr>
+    <tr>
+      <td width="400">&nbsp;</td>
+      <td class="text-right"><%= t 'sale.sub_amount' %>:</td>
+      <td>Rp</td>
+      <td class="text-right" width="170"><%= precision(@sale.sub_amount) %></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td class="text-right"><%= "#{t 'sale.discount'} (#{precision(@sale.discount)}%)" %>:</td>
+      <td>Rp</td>
+      <td class="text-right"><%= precision(@sale.discount_amount) %></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td class="text-right"><%= t 'sale.total_amount' %>:</td>
+      <td>Rp</td>
+      <td class="text-right"><%= precision(@sale.total_amount) %></td>
+    </tr>
+  </table>
+</div>
+<!-- SHOWN ON PRINTING ONLY -->

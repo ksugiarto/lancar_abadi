@@ -66,4 +66,16 @@ $(document).ready(function() {
   // jQuery(".best_in_place").best_in_place();
 
   $(".apple_pagination a").ajaxPagination();
+
+  window.setTimeout(function() {
+    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+      $(this).remove(); 
+    });
+  }, 10000);
+
+  $(function () {
+    $('.checkall').on('click', function () {
+        $(this).closest('fieldset').find(':checkbox').prop('checked', this.checked);
+    });
+});
 });

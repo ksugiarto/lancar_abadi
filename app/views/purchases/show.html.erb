@@ -21,14 +21,12 @@
           <%= t 'edit' %>&nbsp;<span class="glyphicon glyphicon-pencil"></span>
         <% end %>
       <% end -%>
-    <% else %>
+    <% elsif @purchase.status=1 %>
       <%= form_for(@purchase) do |f| %>
         <%= f.hidden_field :status, :value => 5 %>
-        <!-- 
         <%= link_to print_barcode_purchase_path(@purchase, :format => "pdf"), :target => "_blank", :class => "btn btn-warning btn-sm" do %>
           <%= "#{t 'print'} #{t 'product.barcode_id'}" %>&nbsp;<span class="glyphicon glyphicon-barcode"></span>
         <% end %>
-         -->
 
         <%= button_tag :type => "submit", :class => "btn btn-danger btn-sm", :disable_with => "#{t 'disable_with'}", data: { confirm: "#{t 'confirm'}" } do %>
           <%= t 'void' %>&nbsp;<span class="glyphicon glyphicon-lock"></span>

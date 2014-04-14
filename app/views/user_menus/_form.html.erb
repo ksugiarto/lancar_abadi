@@ -1,0 +1,41 @@
+<%= form_for(@user_menu, :html => {:class => "form-horizontal"}, :remote => true) do |f| %>
+  <% if @user_menu.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user_menu.errors.count, "error") %> prohibited this user_menu from being saved:</h2>
+
+      <ul>
+      <% @user_menu.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :header_id, "#{t 'menu.header_id'}", :class => "col-sm-4 control-label" %>
+    <div class="col-sm-6"><%= f.text_field :header_id, :readonly => true, :class => "form-control" %></div>
+  </div>
+  <div class="form-group">
+    <%= f.label :sub_header_id, "#{t 'menu.sub_header_id'}", :class => "col-sm-4 control-label" %>
+    <div class="col-sm-6"><%= f.number_field :sub_header_id, :required => true, :class => "form-control" %></div>
+  </div>
+  <div class="form-group">
+    <%= f.label :name, "#{t 'menu.name'}", :class => "col-sm-4 control-label" %>
+    <div class="col-sm-6"><%= f.text_field :name, :autofocus => true, :required => true, :class => "form-control" %></div>
+  </div>
+  <div class="form-group">
+    <%= f.label :url, "#{t 'menu.url'}", :class => "col-sm-4 control-label" %>
+    <div class="col-sm-6"><%= f.text_field :url, :class => "form-control" %></div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-4 col-sm-6">
+      <div class="checkbox">
+        <%= f.check_box :visible %><%= f.label :visible, "#{t 'menu.visible'}" %>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-6"><%= f.submit "#{t 'submit'}", :class => "btn btn-success", :disable_with => "#{t 'disable_with'}" %></div>
+  </div>
+<% end %>

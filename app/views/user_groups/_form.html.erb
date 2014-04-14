@@ -1,0 +1,50 @@
+<%= form_for(@user_group, :html => { :class => "form-horizontal" }) do |f| %>
+  <% if @user_group.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user_group.errors.count, "error") %> prohibited this user_group from being saved:</h2>
+
+      <ul>
+      <% @user_group.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <div class="row">
+      <div class="col-md-10">
+        <%= f.label :name, "#{t 'user_group.name'}", :class => "col-sm-1 control-label" %>
+        <div class="col-sm-6"><%= f.text_field :name, :required => true, :class => "form-control" %></div>
+        <div class="col-sm-5" style="color: red;"><%= label_tag :info, "*must be filled", :class => "control-label" %></div>
+      </div>
+
+      <div class="col-md-2">
+        <div class="form-group">
+          <div class="col-sm-1"></div>
+          <div class="col-sm-11 text-right"><%= f.submit "#{t 'submit'}", :class => "btn btn-success", :disable_with => "#{t 'disable_with'}" %></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <fieldset>
+      <label class="checkbox">
+        <%= check_box_tag "all", "", "", :class => "checkall" %>
+        <%= label_tag "#{t 'select_all'}" %>
+      </label>
+
+      <div class="row">
+        <div class="col-md-4">
+          <%= render 'table_main' %>
+        </div>
+        <div class="col-md-4">
+          <%= render 'table_setting' %>
+        </div>
+        <div class="col-md-4">
+        </div>
+      </div>
+    </fieldset>
+  </div>
+<% end %>

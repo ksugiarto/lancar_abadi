@@ -1,0 +1,30 @@
+<table class="table table-condensed table-striped table-bordered">
+  <tr>
+    <th colspan="5" style="text-align:center">
+      <span><%= (t 'layout.transaction.transaction').upcase %></span>
+    </th>
+  </tr>
+  <tr style="background-color:#708DC6;">
+    <th width="1%"><div class="label label-default"><%= @header_id="A" %></div></th>
+    <th><%= t 'menu.name' %></th>
+    <th><%= t 'menu.url' %></th>
+    <th width="1%"></th>
+    <th width="1%" style="text-align:center;"><%= link_to "#{t 'new'}", new_user_menu_path(:header_id => @header_id), :class => "btn btn-xs btn-warning", :remote => true %></th>
+  </tr>
+
+<% @main_menus.each do |menu| %>
+  <tr>
+    <td><%= menu.sub_header_id %></td>
+    <td><%= menu.name %></td>
+    <td><%= menu.url %></td>
+    <td>
+        <% if menu.visible==true %>
+            <div class="label label-info"><span class="glyphicon glyphicon-eye-open"></span>&nbsp;</div>
+        <% else %>
+            <div class="label label-danger"><span class="glyphicon glyphicon-eye-close"></span>&nbsp;</div>
+        <% end %>
+    </td>
+    <td style="text-align:center;"><%= link_to "#{t 'edit'}", edit_user_menu_path(menu), :class => "btn btn-default btn-xs", :remote => true %></td>
+  </tr>
+<% end %>
+</table>

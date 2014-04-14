@@ -1,6 +1,6 @@
-<div class="row">
+<div id="show" class="row">
   <div class="col-md-2">
-    <%= link_to sales_path, :class => "btn btn-default btn-sm" do %>
+    <%= link_to sales_path, :id => "btn", :class => "btn btn-default btn-sm" do %>
       <span class="glyphicon glyphicon-chevron-left"></span>&nbsp;<%= t 'back' %>
     <% end %>
   </div>
@@ -13,22 +13,22 @@
     <% if @sale.status==0 %>
       <%= form_for(@sale) do |f| %>
         <%= f.hidden_field :status, :value => 1 %>
-        <%= button_tag :type => "submit", :class => "btn btn-success btn-sm", :disable_with => "#{t 'disable_with'}" do %>
+        <%= button_tag :type => "submit", :id => "btn", :class => "btn btn-success btn-sm", :disable_with => "#{t 'disable_with'}" do %>
           <%= t 'close' %>&nbsp;<span class="glyphicon glyphicon-lock"></span>
         <% end -%>
 
-        <%= link_to edit_sale_path(@sale), :class => "btn btn-warning btn-sm", :remote => true do %>
+        <%= link_to edit_sale_path(@sale), {:id => "btn", :class => "btn btn-warning btn-sm"}, :remote => true do %>
           <%= t 'edit' %>&nbsp;<span class="glyphicon glyphicon-pencil"></span>
         <% end %>
       <% end -%>
     <% elsif @sale.status==1 %>
       <%= form_for(@sale) do |f| %>
-        <%= link_to sale_path(@sale, :format => "pdf"), :target => "_blank", :class => "btn btn-warning btn-sm" do %>
+        <%= link_to sale_path(@sale, :format => "pdf"), :target => "_blank", :id => "btn", :class => "btn btn-warning btn-sm" do %>
           <%= t 'print' %>&nbsp;<span class="glyphicon glyphicon-print"></span>
         <% end %>
 
         <%= f.hidden_field :status, :value => 5 %>
-        <%= button_tag :type => "submit", :class => "btn btn-danger btn-sm", :disable_with => "#{t 'disable_with'}", data: { confirm: "#{t 'confirm'}" } do %>
+        <%= button_tag :type => "submit", :id => "btn", :class => "btn btn-danger btn-sm", :disable_with => "#{t 'disable_with'}", data: { confirm: "#{t 'confirm'}" } do %>
           <%= t 'void' %>&nbsp;<span class="glyphicon glyphicon-lock"></span>
         <% end -%>
       <% end -%>
@@ -36,7 +36,34 @@
   </div>
 </div>
 
-<div class="status_<%= @sale.status.to_i %>" align="center">
+<!-- SHOWN ON PRINTING ONLY -->
+<div id="hidden">
+  <table>
+    <tr>
+      <td width="40%">UD. LANCAR ABADI</td>
+      <td width="30%"><%= (t 'sale.sales_invoice').upcase %></td>
+      <td width="50%">Kepada Yth.:&nbsp;<%= (@sale.customer.try(:name)).upcase %></td>
+    </tr>
+    <tr >
+      <td>Ponorogo, <%= @sale.transaction_date.to_time.localtime.strftime('%d %B %Y') %><br></td>
+      <td></td>
+      <td><%= @sale.customer.try(:address) %></td>
+    </tr>
+    <tr>
+      <td>No: <%= @sale.si_id %></td>
+      <td></td>
+      <td><%= "#{@sale.customer.try(:city).try(:name)}-#{@sale.customer.try(:province).try(:name)}" %></td>
+    </tr>
+    <tr>
+      <td>PEMBAYARAN 7 HARI</td>
+      <td></td>
+      <td></td>
+    </tr>
+  </table>
+</div>
+<!-- SHOWN ON PRINTING ONLY -->
+
+<div id="transaction_status" class="status_<%= @sale.status.to_i %>" align="center">
   <% case @sale.status.to_i %>
   <% when 0 %>
     <%= "#{t 'sale.status'}#{t 'new'} #{t 'sale.editable'}" %>, <%= "#{t 'sale.created_at'}#{date(@sale.created_at)}" %>
@@ -47,7 +74,8 @@
     <% end -%>
 </div>
 
-<div id="show_header_section"><%= render 'show_header' %></div>
+<div id="hidden"><p></div>
+<div id="show"><div id="show_header_section"><%= render 'show_header' %></div></div>
 <div id="detail_section"><%= render 'sale_details/table' %></div>
 <div id="show_footer_section"><%= render 'show_footer' %></div>
 

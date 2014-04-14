@@ -70,47 +70,22 @@ en:
   # LAYOUT
   layout:
     transaction:
-      transaction: "Order"
-      order_request: "Order Request"
-      import_distribution: "Import Distribution"
-      order_pickup: "Order Pickup List"
-      order_pod: "Successful Proof of Delivery List"
-      order_dex: "Delivery Exception (DEX) List"
-      data_manifest: "Data Manifest"
-    settlement:
-      settlement: "Settlement"
-      notif_invoice: "Notification Invoice"
-      invoice: "Invoice"
-      payment: "Payment"
-      data_manifest: "Data Manifest"
-    report:
-      report: "Report"
-      daily_job_list: "Daily Job List Report"
-      daily_courier: "Daily Courier Report"
-      order_request: "Order & Manifest Report"
-      data_manifest: "Data Manifest Report"
-      order_pickup: "Order Pickup Report"
-      order_proof_delivery: "Successful Proof of Delivery Report"
-      order_dex: "Delivery Exception (DEX) Report"
-      delivery_history: "Delivery History Report"
-      invoice: "Invoice Report"
-      payment: "Payment Report"
-      manifest_realization: "Manifest Realization Report"
-      same_day: "Same Day Delivery Report"
-      over_time_delivery: "Over Time Delivery Report"
-      revenue: "Revenue Report"
-    master:
-      master: "Master"
-      country: "Country"
-      province: "Province"
-      city: "City"
-      unit_of_measure: "Unit of Measure"
-      employee: "Employee"
+      transaction: "Transaction"
+      purchase: "Purchases"
+      sale: "Sales"
+      product: "Product"
       customer: "Customer"
+      supplier: "Supplier"
     setting:
       setting: "Setting"
-      user_menu: "Menu"
+      customer_group: "Customer Groups"
+      category: "Category"
+      unit_of_measure: "Unit of Measure"
       user_group: "User Group"
+      user_menu: "Menu"
+      city: "City"
+      province: "Province"
+      country: "Country"
       user: "User List"
       company_profile: "Company Profile"
 
@@ -339,6 +314,37 @@ en:
       added_discount: "Added Discount"
       added_discount_rp: "Added Disc. (Rp)"
       amount_rp: "Amount (Rp)"
+
+  # SETTING
+  menu:
+    menus: "Menus"
+    menu: "Menu"
+    name: "Name"
+    url: "URL"
+    header_id: "Header ID"
+    sub_header_id: "Sub Header ID"
+    visible: "Visible"
+    user_group: "Go to User Group page"
+
+  user_group:
+    user_groups: "User Groups"
+    user_group: "User Group"
+    name: "Name"
+    edit_manage_role: "Edit & Manage Role"
+    menu: "Go to User Menu Page"
+
+  user:
+    users: "Users"
+    user: "User"
+    username: "Username"
+    email: "Email"
+    password: "Password"
+    password_confirmation: "Password Confirmation"
+    password_warning: "(*) password minimal 8 characters"
+    user_group: "User Group"
+    last_sign_in: "Last Sign In"
+    delete_success: "User deleted."
+    delete_failed: "There is an employee that using this user."
 
   will_paginate:
     previous_label: "← Previous"

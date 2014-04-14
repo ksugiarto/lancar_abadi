@@ -10,15 +10,16 @@ gem 'jquery-rails', '3.0.4'
 # gem 'date_time_picker', '~> 0.5.4'	# for date picker with time
 gem "paperclip", '~> 3.4.2'					# required for upload and save photo
 gem 'remotipart', '~> 1.0.5'				# required for form upload image remote form
-# gem "prawn", "~> 1.0.0.rc2"
-gem "prawn", :git => 'git://github.com/ksugiarto/prawn.git'
-# gem 'cancan', '~> 1.6.10'
+gem "prawn", "~> 1.0.0"
+# gem "prawn", :git => 'git://github.com/ksugiarto/prawn.git'
+gem 'cancan', '~> 1.6.10'
 gem 'rubyzip', '~> 0.9.9'           # required for roo
 gem 'spreadsheet'                   # required for roo
 gem 'nokogiri'                      # required for roo
 gem 'roo', '~> 1.11.2'
 gem "will_paginate", "~> 3.0.4"     # required for pagination
 gem 'barby'													# required for barcode
+gem 'devise'
 
 # Gems used only for assets and not required
 # in production environments by default.

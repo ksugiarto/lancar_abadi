@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col-md-2">
+  </div>
+  
+  <div class="col-md-8">
+    <h4 align="center"><%= t 'menu.menus' %></h4>
+  </div>
+
+  <div class="col-md-2" align="right">
+    <%= link_to user_groups_path, :class => "btn btn-default btn-sm" do %>
+      <%= t 'menu.user_group' %>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div id="table_main"><%= render 'table_main' %></div>
+  <hr>
+  <div id="table_setting"><%= render 'table_setting' %></div>
+</div>
+
+<div id="modal"></div>
+
+<!-- Modal -->
+<div id="general_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="BranchModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 class="modal-title"></h3>
+      </div>
+      <div class="modal-body">
+      </div>
+    </div>
+  </div>
+</div>

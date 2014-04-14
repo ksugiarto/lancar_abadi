@@ -2,6 +2,25 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@media screen
+{
+  #hidden {display:none;}
+}
+
+@media print
+{
+  p#notice {display:none;}
+  #btn {display:none;}
+  #show {display:none;}
+  #hidden {display:inline;}
+  #transaction_status {display:none;}
+}
+
+@media screen,print
+{
+  p.test {font-weight:bold;}
+}
+
 .status_0 /*STATUS NEW => LIGHT YELLOW*/
 {
   background-color: #FFE57F;
@@ -30,9 +49,13 @@
     display:block;
 }
 
+.font_color_white{
+  color:white;
+}
+
 div.login
 {
-  width:220px;
+  width:400px;
   padding:10px;
   border:5px solid #cfcfcf;
   margin:0px;

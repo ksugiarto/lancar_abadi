@@ -1,0 +1,35 @@
+<%= will_paginate @user_groups, :class => "apple_pagination" %>
+
+<table class="table table-condensed">
+  <tr style="background-color:#708DC6;">
+    <th><%= t 'user_group.name' %></th>
+    <th class="span4"></th>
+  </tr>
+
+<% @user_groups.each do |user_group| %>
+  <% if user_group.name!="Developer" %>
+  <tr>
+    <td><%= user_group.name %></td>
+    <td style="text-align:right;">
+      <%= link_to "#{t 'show'}", user_group, :class => "btn btn-xs btn-info" %>
+      <%= link_to "#{t 'user_group.edit_manage_role'}", edit_user_group_path(user_group), :class => "btn btn-xs btn-warning" %>
+      <%= #link_to "#{t 'destroy'}", user_group, method: :delete, data: { confirm: "#{t 'confirm'}" }, :class => "btn btn-mini btn-danger"
+       %>
+    </td>
+  </tr>
+  <% elsif current_user.user_group.try(:name)=="Developer" %>
+  <tr>
+    <td><%= user_group.name %></td>
+    <td style="text-align:right;">
+      <%= link_to "#{t 'show'}", user_group, :class => "btn btn-xs btn-info" %>
+      <%= link_to "#{t 'user_group.edit_manage_role'}", edit_user_group_path(user_group), :class => "btn btn-xs btn-warning" %>
+      <%= #link_to "#{t 'destroy'}", user_group, method: :delete, data: { confirm: "#{t 'confirm'}" }, :class => "btn btn-mini btn-danger"
+       %>
+    </td>
+  </tr>
+  <% else %>
+  <% end %>
+<% end %>
+</table>
+
+<%= will_paginate @user_groups, :class => "apple_pagination" %>

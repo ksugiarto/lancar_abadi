@@ -1,4 +1,8 @@
 LancarAbadi::Application.routes.draw do
+  resources :user_menus
+  resources :user_groups
+  devise_for :users
+
   resources :filter do
     collection do
       get :country
