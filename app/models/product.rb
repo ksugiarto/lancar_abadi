@@ -3,6 +3,7 @@ class Product < ActiveRecord::Base
   belongs_to :supplier
   belongs_to :unit_of_measure
   has_many :purchases, :class_name => "ProductPurchase"
+  has_one :stock, :class_name => "Stock"
 
   before_create :generate_barcode_id
 

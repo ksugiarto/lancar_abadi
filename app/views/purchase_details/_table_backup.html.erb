@@ -5,6 +5,7 @@
     <th class="text-right"><%= t 'purchase.detail.quantity_print' %></th>
     <th class="text-right"><%= t 'purchase.detail.price_rp' %></th>
     <th class="text-right"><%= t 'purchase.detail.discount_%' %></th>
+    <th class="text-right"><%= t 'purchase.detail.added_discount_rp' %></th>
     <th class="text-right"><%= t 'purchase.detail.amount_rp' %></th>
     <th class="text-right"><%= link_to "#{t 'new'}", new_purchase_purchase_detail_path(@purchase), :class => "btn btn-default btn-xs", :remote => true if @purchase.status==0 %></th>
   </tr>
@@ -16,6 +17,7 @@
     <td class="text-right"><%= round_precision(purchase_detail.quantity_print) %></td>
     <td class="text-right"><%= precision(purchase_detail.price) %></td>
     <td class="text-right"><%= precision(purchase_detail.discount) %></td>
+    <td class="text-right"><%= precision(purchase_detail.added_discount) %></td>
     <td class="text-right"><%= precision(purchase_detail.amount) %></td>
     <td class="text-right">
       <%= link_to "#{t 'edit'}", edit_purchase_purchase_detail_path(@purchase, purchase_detail), :class => "btn btn-warning btn-xs", :remote => true if @purchase.status==0 %>

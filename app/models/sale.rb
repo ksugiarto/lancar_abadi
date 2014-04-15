@@ -8,6 +8,7 @@ class Sale < ActiveRecord::Base
   before_create :id_generator
   before_update :sum_total_amount
   before_save :get_customer_group
+  after_update :populate_stock
 
   def self.pagination(page)
     paginate(:per_page => 20, :page => page)
@@ -60,6 +61,45 @@ class Sale < ActiveRecord::Base
       self.tax_amount = 0
     end
     self.total_amount = self.amount_after_discount - self.added_discount.to_f + self.tax_amount
+  end
+
+  def populate_stock
+    sale = Sale.find(self.id)
+    sale.details.each do |detail| # looping all details
+      stock = Stock.find_by_product_id(detail.product_id.to_i)
+      if self.status.to_i==1 # checking sale status
+        if stock.blank?
+          Stock.create(:product_id => detail.product_id, 
+                       :stock_real => 0, 
+                       :stock_ready => 0, 
+                       :unit_of_measure_id => detail.product.try(:unit_of_measure_id), 
+                       :last_purchase => "", 
+                       :last_sale => Time.now.localtime.strftime("%Y-%m-%d"),
+                       :notes => "")
+        else
+          stock.update_attributes(:stock_real => stock.stock_real.to_f - detail.quantity.to_f, 
+                                  :stock_ready => stock.stock_ready.to_f - detail.quantity.to_f, # need to be moved on sale detail
+                                  :last_sale => Time.now.localtime.strftime("%Y-%m-%d"))
+        end
+      elsif self.status.to_i==5 # checking sale status
+        if stock.blank?
+            Stock.create(:product_id => detail.product_id, 
+                         :stock_real => detail.quantity.to_f, 
+                         :stock_ready => detail.quantity.to_f, 
+                         :unit_of_measure_id => detail.product.try(:unit_of_measure_id), 
+                         :last_purchase => "", 
+                         :last_sale => "",
+                         :notes => "")
+          else
+            last_closed_sale = Sale.order(:id).where(:status => 1).last
+
+            stock.update_attributes(:stock_real => stock.stock_real.to_f + detail.quantity.to_f, 
+                                    :stock_ready => stock.stock_ready.to_f + detail.quantity.to_f, 
+                                    :last_sale => last_closed_sale.try(:transaction_date).to_time.localtime.strftime("%Y-%m-%d"))
+          end
+      else
+      end # checking sale status
+    end # looping all details
   end
 
   def self.filter_month(id)

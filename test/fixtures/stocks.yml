@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  product: 
+  stock_real: 9.99
+  stock_ready: 9.99
+  unit_of_measure: 
+  last_purchase: 2014-04-15
+  last_sale: 2014-04-15
+  notes: MyText
+
+two:
+  product: 
+  stock_real: 9.99
+  stock_ready: 9.99
+  unit_of_measure: 
+  last_purchase: 2014-04-15
+  last_sale: 2014-04-15
+  notes: MyText

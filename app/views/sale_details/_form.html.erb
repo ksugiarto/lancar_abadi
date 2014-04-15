@@ -17,7 +17,7 @@
         <%= f.label :product, "#{t 'sale.detail.product'}", :class => "col-sm-4 control-label" %>
         <div class="col-sm-6">
           <%= f.hidden_field :product_id %>
-              <%= text_field_tag :product_name, nil, :placeholder => "#{t 'sale.detail.product_placeholder'}", :readonly => true, :class => "form-control" %>
+          <%= text_field_tag :product_name, nil, :placeholder => "#{t 'sale.detail.product_placeholder'}", :readonly => true, :required => true, :class => "form-control" %>
         </div>
         <div class="col-sm-1">
           <%= link_to show_product_sale_sale_details_path(@sale), :class => "btn btn-default", :remote => true do %>
@@ -38,11 +38,6 @@
         <%= f.label :discount, "#{t 'sale.detail.discount'}", :class => "col-sm-4 control-label" %>
         <div class="col-sm-6"><%= f.text_field :discount, :class => "form-control" %></div>
         <div class="col-sm-1"><%= label_tag :percent, "%", :class => "control-label" %></div>
-      </div>
-      <div class="form-group">
-        <%= f.label :added_discount, "#{t 'sale.detail.added_discount'}", :class => "col-sm-4 control-label" %>
-        <div class="col-sm-1"><%= label_tag :rp, "Rp", :class => "control-label" %></div>
-        <div class="col-sm-7"><%= f.text_field :added_discount, :class => "form-control" %></div>
       </div>
       <div class="form-group">
         <div class="col-sm-4"></div>

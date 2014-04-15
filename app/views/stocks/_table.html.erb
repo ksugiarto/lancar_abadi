@@ -1,0 +1,16 @@
+<h4 class="text-center"><%= t 'product.stock.stock' %></h4>
+
+<table class="table table-condensed">
+  <tr>
+    <th width="20%"><%= t 'product.stock.stock_real' %></th>
+    <td width="30%"><b>:</b>&nbsp;<%= precision(@product.try(:stock).try(:stock_real)) %></td>
+    <th width="20%"><%= t 'product.stock.last_purchase' %></th>
+    <td><b>:</b>&nbsp;<%= date(@product.try(:stock).try(:last_purchase)) %></td>
+  </tr>
+  <tr>
+    <th><%= t 'product.stock.stock_ready' %></th>
+    <td><b>:</b>&nbsp;<%= precision(@product.try(:stock).try(:stock_ready)) %></td>
+    <th><%= t 'product.stock.last_sale' %></th>
+    <td><b>:</b>&nbsp;<%= date(@product.try(:stock).try(:last_sale)) %></td>
+  </tr>
+</table>

@@ -83,11 +83,11 @@ en:
       unit_of_measure: "Unit of Measure"
       user_group: "User Group"
       user_menu: "Menu"
+      company_profile: "Company Profile"
       city: "City"
       province: "Province"
       country: "Country"
       user: "User List"
-      company_profile: "Company Profile"
 
   # MASTER
   country:
@@ -225,11 +225,20 @@ en:
     price: "Price"
     purchase:
       purchase: "History of Product Purchasing"
+      barcode_id: "Barcode ID"
       ref_id: "Reference ID"
       supplier: "Supplier"
       product: "Product"
       purchase_date: "Purchase Date"
       purchase_price: "Purchase Price"
+    stock:
+      stock: "Stock on Hand"
+      stock_real: "Stock Real"
+      stock_ready: "Stock Ready"
+      unit_of_measure: "Unit of Measure"
+      last_purchase: "Last Purchase"
+      last_sale: "Last Sale"
+      notes: "Notes"
 
   # TRANSACTION
   purchase:
@@ -271,6 +280,7 @@ en:
       discount_%: "Discount (%)"
       added_discount: "Added Discount"
       added_discount_rp: "Added Discount (Rp)"
+      amount: "Amount"
       amount_rp: "Amount (Rp)"
 
   sale:
@@ -313,6 +323,7 @@ en:
       discount_%: "Disc. (%)"
       added_discount: "Added Discount"
       added_discount_rp: "Added Disc. (Rp)"
+      amount: "Amount"
       amount_rp: "Amount (Rp)"
 
   # SETTING
@@ -345,6 +356,26 @@ en:
     last_sign_in: "Last Sign In"
     delete_success: "User deleted."
     delete_failed: "There is an employee that using this user."
+
+  company:
+    company: "Company Profile"
+    name: "Name"
+    is_pkp: "Is PKP"
+    npwp: "NPWP"
+    address: "Address"
+    city: "City"
+    province: "Province"
+    country: "Country"
+    employee_name: "Employee Name"
+    logo: "Logo"
+    telephone: "Telephone"
+    fax: "Fax"
+    primary_bank_name: "Bank Name"
+    primary_bank_account: "Account Number"
+    primary_bank_account_name: "Account Name"
+    secondary_bank_name: "Bank Name"
+    secondary_bank_account: "Account Number"
+    secondary_bank_account_name: "Account Name"
 
   will_paginate:
     previous_label: "← Previous"

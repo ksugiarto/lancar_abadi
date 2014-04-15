@@ -7,6 +7,7 @@ class Purchase < ActiveRecord::Base
   before_create :id_generator
   before_update :sum_total_amount
   after_update :populate_product_purchase
+  after_update :populate_stock
 
   def self.pagination(page)
     paginate(:per_page => 20, :page => page)
@@ -72,6 +73,45 @@ class Purchase < ActiveRecord::Base
       end
     else
     end
+  end
+
+  def populate_stock
+    purchase = Purchase.find(self.id)
+    purchase.details.each do |detail| # looping all details
+      stock = Stock.find_by_product_id(detail.product_id.to_i)
+      if self.status.to_i==1 # checking purchase status
+        if stock.blank?
+          Stock.create(:product_id => detail.product_id, 
+                       :stock_real => detail.quantity.to_f, 
+                       :stock_ready => detail.quantity.to_f, 
+                       :unit_of_measure_id => detail.product.try(:unit_of_measure_id), 
+                       :last_purchase => Time.now.localtime.strftime("%Y-%m-%d"), 
+                       :last_sale => "",
+                       :notes => "")
+        else
+          stock.update_attributes(:stock_real => stock.stock_real.to_f + detail.quantity.to_f, 
+                                  :stock_ready => stock.stock_ready.to_f + detail.quantity.to_f, 
+                                  :last_purchase => Time.now.localtime.strftime("%Y-%m-%d"))
+        end
+      elsif self.status.to_i==5 # checking purchase status
+        if stock.blank?
+            Stock.create(:product_id => detail.product_id, 
+                         :stock_real => 0, 
+                         :stock_ready => 0, 
+                         :unit_of_measure_id => detail.product.try(:unit_of_measure_id), 
+                         :last_purchase => "", 
+                         :last_sale => "",
+                         :notes => "")
+          else
+            last_closed_purchase = Purchase.order(:id).where(:status => 1).last
+
+            stock.update_attributes(:stock_real => stock.stock_real.to_f - detail.quantity.to_f, 
+                                    :stock_ready => stock.stock_ready.to_f - detail.quantity.to_f, 
+                                    :last_purchase => last_closed_purchase.try(:transaction_date).to_time.localtime.strftime("%Y-%m-%d"))
+          end
+      else
+      end # checking purchase status
+    end # looping all details
   end
 
   def self.filter_month(id)

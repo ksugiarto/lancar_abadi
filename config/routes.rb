@@ -1,8 +1,4 @@
 LancarAbadi::Application.routes.draw do
-  resources :user_menus
-  resources :user_groups
-  devise_for :users
-
   resources :filter do
     collection do
       get :country
@@ -96,6 +92,11 @@ LancarAbadi::Application.routes.draw do
     resources :product_purchases
   end
 
+  resources :company_profiles
+  resources :stocks
+  resources :user_menus
+  resources :user_groups
+  devise_for :users
   resources :customer_groups
   resources :unit_of_measures
   resources :categories

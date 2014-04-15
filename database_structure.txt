@@ -130,7 +130,33 @@ supplier:references
 purchase_date:date 
 purchase_price:decimal 
 
-==================== BELOW ARE THOSE NOT YET IMPLEMENT
+STOCK
+product:references 
+stock_real:decimal 
+stock_ready:decimal 
+unit_of_measure:references 
+last_purchase:date 
+last_sale:date 
+notes:text 
+
+COMPANY_PROFILE
+name:string 
+address:string 
+city:references 
+province:references 
+country:references 
+is_pkp:boolean 
+npwp:string 
+telephone:string 
+fax:string 
+primary_bank_name:string 
+primary_bank_account:string 
+primary_bank_account_name:string 
+secondary_bank_name:string 
+secondary_bank_account:string 
+secondary_bank_account_name:string 
+
+==================== BELOWS ARE THOSE NOT YET IMPLEMENT
 
 CUSTOMER_DISCOUNT
 customer:references 

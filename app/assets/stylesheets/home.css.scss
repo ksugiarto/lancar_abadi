@@ -12,7 +12,10 @@
   p#notice {display:none;}
   #btn {display:none;}
   #show {display:none;}
+  #button_column {display:none;}
   #hidden {display:inline;}
+  #table_hidden, #table_hidden td, #table_hidden th {font-size:8pt}
+  #sale_detail_table, #sale_detail_table td {font-size:8pt}
   #transaction_status {display:none;}
 }
 

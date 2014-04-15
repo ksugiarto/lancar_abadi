@@ -1,0 +1,110 @@
+<div class="row">
+  <div class="col-md-2">
+  </div>
+  
+  <div class="col-md-8">
+    <h4 align="center"><%= t 'company.company' %></h4>
+  </div>
+
+  <div class="col-md-2" align="right">
+    <%= link_to edit_company_profile_path(@company_profile), :class => "btn btn-sm btn-warning" do %>
+      <%= t 'edit' %>&nbsp;<span class="glyphicon glyphicon-pencil"></span>
+    <% end %>
+  </div>
+</div>
+<hr>
+
+<div class="row">
+  <!-- <div class="col-md-2">
+    <%=# image_tag @company_profile.logo.url(:small) 
+    %>
+  </div> -->
+
+  <div class="col-md-6">
+    <table class="table table-condensed table-striped">
+      <tr>
+        <td class="col-md-3"><%= t 'company.name' %></td>
+        <td>: <%= @company_profile.name %></td>
+      </tr>
+      <tr>
+        <td><%= t 'company.is_pkp' %></td>
+        <td>: <%= "&#10004;".html_safe if @company_profile.is_pkp==true %></td>
+      </tr>
+      <tr>
+        <td><%= t 'company.npwp' %></td>
+        <td>: <%= @company_profile.npwp %></td>
+      </tr>
+      <tr>
+        <td><%= t 'company.telephone' %></td>
+        <td>: <%= @company_profile.telephone %></td>
+      </tr>
+      <tr>
+        <td><%= t 'company.fax' %></td>
+        <td>: <%= @company_profile.fax %></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="col-md-6">
+    <table class="table table-condensed table-striped">
+      <tr>
+        <td class="col-md-3"><%= t 'company.address' %></td>
+        <td>: <%= @company_profile.address %></td>
+      </tr>
+      <tr>
+        <td><%= t 'company.city' %></td>
+        <td>: <%= City.city_name(@company_profile.city_id) %></td>
+      </tr>
+      <tr>
+        <td><%= t 'company.province' %></td>
+        <td>: <%= Province.province_name(@company_profile.province_id) %></td>
+      </tr>
+      <tr>
+        <td><%= t 'company.country' %></td>
+        <td>: <%= Country.country_name(@company_profile.country_id) %></td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div class="row">
+  <!-- <div class="col-md-2">&nbsp;</div> -->
+
+  <div class="col-md-6">
+    <h5>PRIMARY BANK</h5>
+
+    <table class="table table-condensed table-striped">
+      <tr>
+        <td class="col-md-3"><%= t 'company.primary_bank_name' %></td>
+        <td>: <%= @company_profile.primary_bank_name %></td>
+      </tr>
+      <tr>
+        <td><%= t 'company.primary_bank_account' %></td>
+        <td>: <%= @company_profile.primary_bank_account %></td>
+      </tr>
+      <tr>
+        <td><%= t 'company.primary_bank_account_name' %></td>
+        <td>: <%= @company_profile.primary_bank_account_name %></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="col-md-6">
+    <h5>SECONDARY BANK</h5>
+
+    <table class="table table-condensed table-striped">
+      <tr>
+        <td class="col-md-3"><%= t 'company.secondary_bank_name' %></td>
+        <td>: <%= @company_profile.secondary_bank_name %></td>
+      </tr>
+      <tr>
+        <td><%= t 'company.secondary_bank_account' %></td>
+        <td>: <%= @company_profile.secondary_bank_account %></td>
+      </tr>
+      <tr>
+        <td><%= t 'company.secondary_bank_account_name' %></td>
+        <td>: <%= @company_profile.secondary_bank_account_name %></td>
+      </tr>
+    </table>
+  </div>
+</div>

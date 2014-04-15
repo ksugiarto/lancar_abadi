@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140414061132) do
+ActiveRecord::Schema.define(:version => 20140415102219) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -31,6 +31,30 @@ ActiveRecord::Schema.define(:version => 20140414061132) do
 
   add_index "cities", ["country_id"], :name => "index_cities_on_country_id"
   add_index "cities", ["province_id"], :name => "index_cities_on_province_id"
+
+  create_table "company_profiles", :force => true do |t|
+    t.string   "name"
+    t.string   "address"
+    t.integer  "city_id"
+    t.integer  "province_id"
+    t.integer  "country_id"
+    t.boolean  "is_pkp"
+    t.string   "npwp"
+    t.string   "telephone"
+    t.string   "fax"
+    t.string   "primary_bank_name"
+    t.string   "primary_bank_account"
+    t.string   "primary_bank_account_name"
+    t.string   "secondary_bank_name"
+    t.string   "secondary_bank_account"
+    t.string   "secondary_bank_account_name"
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+  end
+
+  add_index "company_profiles", ["city_id"], :name => "index_company_profiles_on_city_id"
+  add_index "company_profiles", ["country_id"], :name => "index_company_profiles_on_country_id"
+  add_index "company_profiles", ["province_id"], :name => "index_company_profiles_on_province_id"
 
   create_table "countries", :force => true do |t|
     t.string   "name"
@@ -194,6 +218,21 @@ ActiveRecord::Schema.define(:version => 20140414061132) do
   end
 
   add_index "sales", ["customer_id"], :name => "index_sales_on_customer_id"
+
+  create_table "stocks", :force => true do |t|
+    t.integer  "product_id"
+    t.decimal  "stock_real",         :precision => 18, :scale => 2, :default => 0.0
+    t.decimal  "stock_ready",        :precision => 18, :scale => 2, :default => 0.0
+    t.integer  "unit_of_measure_id"
+    t.date     "last_purchase"
+    t.date     "last_sale"
+    t.text     "notes"
+    t.datetime "created_at",                                                         :null => false
+    t.datetime "updated_at",                                                         :null => false
+  end
+
+  add_index "stocks", ["product_id"], :name => "index_stocks_on_product_id"
+  add_index "stocks", ["unit_of_measure_id"], :name => "index_stocks_on_unit_of_measure_id"
 
   create_table "supplier_categories", :force => true do |t|
     t.integer  "supplier_id"

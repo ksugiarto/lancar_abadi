@@ -38,26 +38,21 @@
 
 <!-- SHOWN ON PRINTING ONLY -->
 <div id="hidden">
-  <table>
+  <table id="table_hidden">
     <tr>
-      <td width="40%">UD. LANCAR ABADI</td>
-      <td width="30%"><%= (t 'sale.sales_invoice').upcase %></td>
-      <td width="50%">Kepada Yth.:&nbsp;<%= (@sale.customer.try(:name)).upcase %></td>
+      <td width="400">UD. LANCAR ABADI</td>
+      <th class="text-center" width="500"><%= (t 'sale.sales_invoice').upcase %></th>
+      <td class="text-right" width="400">Kepada Yth.:&nbsp;<%= (@sale.customer.try(:name)).upcase %></td>
     </tr>
     <tr >
-      <td>Ponorogo, <%= @sale.transaction_date.to_time.localtime.strftime('%d %B %Y') %><br></td>
-      <td></td>
-      <td><%= @sale.customer.try(:address) %></td>
+      <td>Jl. A. Yani No. 100 Ponorogo</td>
+      <th class="text-center">Nota No: <%= @sale.si_id %></th>
+      <td class="text-right"><%= @sale.customer.try(:address) %></td>
     </tr>
     <tr>
-      <td>No: <%= @sale.si_id %></td>
-      <td></td>
-      <td><%= "#{@sale.customer.try(:city).try(:name)}-#{@sale.customer.try(:province).try(:name)}" %></td>
-    </tr>
-    <tr>
-      <td>PEMBAYARAN 7 HARI</td>
-      <td></td>
-      <td></td>
+      <td>Telp. 0352-481239</td>
+      <th class="text-center">Ponorogo, <%= @sale.transaction_date.to_time.localtime.strftime('%d %B %Y') %></th>
+      <td class="text-right"><%= "#{@sale.customer.try(:city).try(:name)}-#{@sale.customer.try(:province).try(:name)}" %></td>
     </tr>
   </table>
 </div>
