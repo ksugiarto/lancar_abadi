@@ -31,6 +31,7 @@ GEM
     arel (3.0.3)
     barby (0.5.1)
     bcrypt (3.1.7)
+    bcrypt (3.1.7-x86-mingw32)
     builder (3.0.4)
     cancan (1.6.10)
     climate_control (0.0.3)
@@ -68,6 +69,8 @@ GEM
     multi_json (1.8.2)
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
+    nokogiri (1.6.1-x86-mingw32)
+      mini_portile (~> 0.5.0)
     orm_adapter (0.5.0)
     paperclip (3.4.2)
       activemodel (>= 3.0.0)
@@ -77,6 +80,7 @@ GEM
       mime-types
     pdf-core (0.2.5)
     pg (0.17.0)
+    pg (0.17.0-x86-mingw32)
     polyglot (0.3.3)
     prawn (1.0.0)
       pdf-core (~> 0.2.2)
@@ -142,6 +146,7 @@ GEM
 
 PLATFORMS
   ruby
+  x86-mingw32
 
 DEPENDENCIES
   barby
