@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @system_language.name %>
+</p>
+
+<p>
+  <b>Initial:</b>
+  <%= @system_language.initial %>
+</p>
+
+<p>
+  <b>Active:</b>
+  <%= @system_language.active %>
+</p>
+
+
+<%= link_to 'Edit', edit_system_language_path(@system_language) %> |
+<%= link_to 'Back', system_languages_path %>

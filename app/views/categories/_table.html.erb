@@ -4,17 +4,17 @@
   <tr style="background-color:#708DC6;">
     <th><%= t 'category.name' %></th>
     <th><%= t 'category.code' %></th>
-    <th></th>
+    <!-- <th></th> -->
   </tr>
 
 <% @categories.each do |category| %>
   <tr>
     <td><%= category.name %></td>
     <td><%= category.code %></td>
-    <td class="text-right">
+    <!-- <td class="text-right">
       <%= link_to "#{t 'edit'}", edit_category_path(category), :class => "btn btn-warning btn-xs", :remote => true %>
       <%= link_to "#{t 'delete'}", category, method: :delete, data: { confirm: "#{t 'confirm'}" }, :class => "btn btn-danger btn-xs", :remote => true %>
-    </td>
+    </td> -->
   </tr>
 <% end %>
 </table>

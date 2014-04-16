@@ -124,7 +124,7 @@ class PurchasesController < ApplicationController
 
     respond_to do |format|
       format.pdf do
-        pdf = ProductBarcodePdf.new(@purchase)
+        pdf = ProductBarcodePdf.new(@purchase, view_context)
         send_data pdf.render, filename: "#{I18n.t 'print'} #{I18n.t 'product.barcode_id'} #{Time.now.strftime("%Y-%m-%d %H:%M:%S")}.pdf",
         type: "application/pdf", :disposition => "inline"
       end 

@@ -5,16 +5,12 @@ en:
   hello: "Hello world"
 
   # GENERAL
-  home_mobile: "HOME"
   login: "Sign in"
   logout: "Sign out"
   add: "Add New"
-  add_bill: "Add Bill"
   new: "New"
   edit: "Edit"
   destroy: "Destroy"
-  destroying: "Destroying"
-  destroy_all: "Destroy All"
   delete: "Delete"
   submit: "Save"
   show: "Show"
@@ -73,7 +69,8 @@ en:
       transaction: "Transaction"
       purchase: "Purchases"
       sale: "Sales"
-      product: "Product"
+      product_sparepart: "Sparepart"
+      product_unit: "Unit"
       customer: "Customer"
       supplier: "Supplier"
     setting:
@@ -184,23 +181,6 @@ en:
       description: "Description"
       country_ext: "Country Ext."
       phone_number: "Phone Number"
-    price:
-      prices: "Prices"
-      price: "Price"
-      location_route: "Location Route"
-      service_type: "Service Type"
-      type_of_price: "Type of Price"
-      reguler: "Reguler"
-      project: "Project"
-      payment_type: "Payment Type"
-      cash: "Cash"
-      weekly: "Weekly"
-      monthly: "Monthly"
-      customize: "Customize"
-      rate: "Rate (Rp)"
-      next_rate: "Next Rate (Rp)"
-      volume_rate: "Volume Rate (Rp)"
-      quantity_each: "Quantity Each (KG)"
 
   category:
     categories: "Categories"
@@ -210,6 +190,8 @@ en:
 
   product:
     products: "Products"
+    spareparts: "Spareparts"
+    units: "Units"
     product: "Product"
     category: "Category"
     barcode_id: "Barcode ID"
@@ -219,7 +201,6 @@ en:
     product_type: "Type"
     merk: "Merk"
     size: "Size"
-    supplier: "Supplier"
     unit_of_measure: "Unit of Measure"
     sales_price: "Sales Price"
     price: "Price"
@@ -376,6 +357,12 @@ en:
     secondary_bank_name: "Bank Name"
     secondary_bank_account: "Account Number"
     secondary_bank_account_name: "Account Name"
+
+  language:
+    language: "Language"
+    change_language: "Choose Language"
+    in_use: "Language in use:"
+    click_here: "Click here to change"
 
   will_paginate:
     previous_label: "← Previous"

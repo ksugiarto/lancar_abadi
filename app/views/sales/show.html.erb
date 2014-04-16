@@ -40,17 +40,17 @@
 <div id="hidden">
   <table id="table_hidden">
     <tr>
-      <td width="400">UD. LANCAR ABADI</td>
+      <td width="400"><%= company_name %></td>
       <th class="text-center" width="500"><%= (t 'sale.sales_invoice').upcase %></th>
       <td class="text-right" width="400">Kepada Yth.:&nbsp;<%= (@sale.customer.try(:name)).upcase %></td>
     </tr>
     <tr >
-      <td>Jl. A. Yani No. 100 Ponorogo</td>
+      <td><%= company_address %></td>
       <th class="text-center">Nota No: <%= @sale.si_id %></th>
       <td class="text-right"><%= @sale.customer.try(:address) %></td>
     </tr>
     <tr>
-      <td>Telp. 0352-481239</td>
+      <td><%= company_telephone %></td>
       <th class="text-center">Ponorogo, <%= @sale.transaction_date.to_time.localtime.strftime('%d %B %Y') %></th>
       <td class="text-right"><%= "#{@sale.customer.try(:city).try(:name)}-#{@sale.customer.try(:province).try(:name)}" %></td>
     </tr>

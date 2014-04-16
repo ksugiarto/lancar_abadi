@@ -13,8 +13,8 @@ jawa_tengah = indonesia.provinces.create(:name => "Jawa Tengah")
 jawa_barat = indonesia.provinces.create(:name => "Jawa Barat")
 surabaya = City.create(:country_id => indonesia.id, :province_id => jawa_timur.id, :name => "Surabaya", :city_ext => "31")
 City.create(:country_id => indonesia.id, :province_id => jawa_timur.id, :name => "Pandaan", :city_ext => "343")
-City.create(:country_id => indonesia.id, :province_id => jawa_timur.id, :name => "Ponorogo", :city_ext => "352")
 City.create(:country_id => indonesia.id, :province_id => jawa_tengah.id, :name => "Purwodadi", :city_ext => "292")
+ponorogo = City.create(:country_id => indonesia.id, :province_id => jawa_timur.id, :name => "Ponorogo", :city_ext => "352")
 semarang = City.create(:country_id => indonesia.id, :province_id => jawa_tengah.id, :name => "Semarang", :city_ext => "24")
 bandung = City.create(:country_id => indonesia.id, :province_id => jawa_barat.id, :name => "Bandung", :city_ext => "22")
 # END LOCATION SETTING
@@ -41,6 +41,8 @@ bakul = CustomerGroup.create(:initial => "BT", :name => "Bakul/Toko", :descripti
 
 # bearing = Category.create(:name => "Bearing", :code => "B01")
 # filter = Category.create(:name => "Filter", :code => "F01")
+sparepart = Category.create(:name => "Sparepart")
+unit = Category.create(:name => "Unit")
 
 # UnitOfMeasure.create(:name => "Gram")
 # UnitOfMeasure.create(:name => "Kg")
@@ -49,19 +51,22 @@ bakul = CustomerGroup.create(:initial => "BT", :name => "Bakul/Toko", :descripti
 # UnitOfMeasure.create(:name => "Cm")
 
 # # PRODUCT
-# Product.create(:category_id => filter.id, :barcode_id => "00001",:name => "Air Filter", :product_type => "R175", :merk => "FUBORU", :size => "", :unit_of_measure_id => pcs.id, :sales_price => 7200, :supplier_id => supplier_kubota.id)
-# Product.create(:category_id => filter.id, :barcode_id => "00002",:name => "Air Filter", :product_type => "R180", :merk => "FUBORU", :size => "", :unit_of_measure_id => pcs.id, :sales_price => 6000, :supplier_id => supplier_kubota.id)
-# Product.create(:category_id => filter.id, :barcode_id => "00003",:name => "Air Filter", :product_type => "SENSO 5200-O11", :merk => "V-TECH", :size => "", :unit_of_measure_id => pcs.id, :sales_price => 7500, :supplier_id => supplier_kubota.id)
-# Product.create(:category_id => bearing.id, :barcode_id => "00004",:name => "Bearing Pin Crank", :product_type => "SENSO A64", :merk => "NEW WEST", :size => "", :unit_of_measure_id => pcs.id, :sales_price => 12000, :supplier_id => supplier_kubota.id)
-# Product.create(:category_id => bearing.id, :barcode_id => "00005",:name => "Bearing Pin Crank", :product_type => "SENSO A64", :merk => "TASTO TL", :size => "", :unit_of_measure_id => pcs.id, :sales_price => 5600, :supplier_id => supplier_kubota.id)
+# Product.create(:category_id => sparepart.id, :barcode_id => "00001",:name => "Air Filter", :product_type => "R175", :merk => "FUBORU", :size => "", :unit_of_measure_id => pcs.id, :sales_price => 7200, :supplier_id => supplier_kubota.id)
+# Product.create(:category_id => sparepart.id, :barcode_id => "00002",:name => "Air Filter", :product_type => "R180", :merk => "FUBORU", :size => "", :unit_of_measure_id => pcs.id, :sales_price => 6000, :supplier_id => supplier_kubota.id)
+# Product.create(:category_id => sparepart.id, :barcode_id => "00003",:name => "Air Filter", :product_type => "SENSO 5200-O11", :merk => "V-TECH", :size => "", :unit_of_measure_id => pcs.id, :sales_price => 7500, :supplier_id => supplier_kubota.id)
+# Product.create(:category_id => sparepart.id, :barcode_id => "00004",:name => "Bearing Pin Crank", :product_type => "SENSO A64", :merk => "NEW WEST", :size => "", :unit_of_measure_id => pcs.id, :sales_price => 12000, :supplier_id => supplier_kubota.id)
+# Product.create(:category_id => sparepart.id, :barcode_id => "00005",:name => "Bearing Pin Crank", :product_type => "SENSO A64", :merk => "TASTO TL", :size => "", :unit_of_measure_id => pcs.id, :sales_price => 5600, :supplier_id => supplier_kubota.id)
+# Product.create(:category_id => unit.id, :barcode_id => "00005",:name => "DIESEL", :product_type => "RD65L", :merk => "Kubota", :size => "", :unit_of_measure_id => pcs.id, :sales_price => 8000000, :supplier_id => supplier_kubota.id)
+# Product.create(:category_id => unit.id, :barcode_id => "00006",:name => "GENERATOR", :product_type => "1,2KVA 220V MTN", :merk => "KUBOTA", :size => "", :unit_of_measure_id => pcs.id, :sales_price => 4000000, :supplier_id => supplier_kubota.id)
 # # END PRODUCT
 
 # USER MENU
 UserMenu.create(:name => "Purchase", :url => "/purchases/", :header_id => "A", :sub_header_id => 1, :visible => true)
 UserMenu.create(:name => "Sale", :url => "/sales/", :header_id => "A", :sub_header_id => 2, :visible => true)
-UserMenu.create(:name => "Product", :url => "/products/", :header_id => "A", :sub_header_id => 3, :visible => true)
-UserMenu.create(:name => "Customer", :url => "/customers/", :header_id => "A", :sub_header_id => 4, :visible => true)
-UserMenu.create(:name => "Supplier", :url => "/suppliers/", :header_id => "A", :sub_header_id => 5, :visible => true)
+UserMenu.create(:name => "ProductSparepart", :url => "/products/", :header_id => "A", :sub_header_id => 3, :visible => true)
+UserMenu.create(:name => "ProductUnit", :url => "/products/unit_index/", :header_id => "A", :sub_header_id => 4, :visible => true)
+UserMenu.create(:name => "Customer", :url => "/customers/", :header_id => "A", :sub_header_id => 5, :visible => true)
+UserMenu.create(:name => "Supplier", :url => "/suppliers/", :header_id => "A", :sub_header_id => 6, :visible => true)
 
 UserMenu.create(:name => "CustomerGroup", :url => "/customer_groups/", :header_id => "B", :sub_header_id => 1, :visible => true)
 UserMenu.create(:name => "Category", :url => "/categories/", :header_id => "B", :sub_header_id => 2, :visible => true)
@@ -87,3 +92,12 @@ connection = ActiveRecord::Base.connection();
 	end
 end
 # USER GROUP
+
+# COMPANY PROFILE
+CompanyProfile.create(:name => "U.D. Lancar Abadi", :address => "Jl. A. Yani No. 100", :city_id => ponorogo.id, :province_id => jawa_timur.id, :country_id => indonesia.id, :telephone => "0352-481239")
+# COMPANY PROFILE
+
+# SYSTEM LANGUAGE
+SystemLanguage.create(:name => "English", :initial => ":en", :active => true)
+SystemLanguage.create(:name => "Bahasa Indonesia", :initial => ":id", :active => false)
+# SYSTEM LANGUAGE

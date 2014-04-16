@@ -1,0 +1,27 @@
+<h1>Listing system_languages</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Initial</th>
+    <th>Active</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @system_languages.each do |system_language| %>
+  <tr>
+    <td><%= system_language.name %></td>
+    <td><%= system_language.initial %></td>
+    <td><%= system_language.active %></td>
+    <td><%= link_to 'Show', system_language %></td>
+    <td><%= link_to 'Edit', edit_system_language_path(system_language) %></td>
+    <td><%= link_to 'Destroy', system_language, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New System language', new_system_language_path %>

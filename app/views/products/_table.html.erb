@@ -42,7 +42,11 @@
         <% end %>
     </td>
     <td class="text-right">
-        <%= link_to "#{t 'show'}", product, :class => "btn btn-primary btn-xs" %>
+        <% if product.try(:category).try(:name)=="Unit" %>
+            <%= link_to "#{t 'show'}", unit_show_product_path(product), :class => "btn btn-primary btn-xs" %>
+        <% else %>
+            <%= link_to "#{t 'show'}", product, :class => "btn btn-primary btn-xs" %>
+        <% end %>
         <%= link_to "#{t 'edit'}", edit_product_path(product), :class => "btn btn-warning btn-xs", :remote => true %>
     </td>
   </tr>

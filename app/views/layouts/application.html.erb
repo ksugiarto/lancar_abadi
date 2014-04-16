@@ -14,8 +14,7 @@
 			  <!-- Brand and toggle get grouped for better mobile display -->
 			  <div class="navbar-header">
 			    <a class="navbar-brand" href="/">
-			    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			    	Lancar Abadi
+			    	<%= company_name %>
 			    </a>
 			  </div>
 				  <!-- Collect the nav links, forms, and other content for toggling -->
@@ -88,7 +87,7 @@
 
 				    </ul>
 
-				  <p class="navbar-text navbar-right">Login as <%= current_user.try(:username) %> (<%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>)</p>
+				  <p class="navbar-text navbar-right">Login as <%= current_user.try(:username) %> (<u><%= link_to "#{t 'logout'}", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></u>)</p>
 				  </div><!-- /.navbar-collapse -->
 			  <% end %>
 			</div>

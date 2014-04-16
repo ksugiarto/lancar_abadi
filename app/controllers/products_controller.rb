@@ -1,6 +1,13 @@
 class ProductsController < ApplicationController
+  def get_sparepart
+    @products = Product.sparepart.pagination(params[:page])
+  end
+
+  def get_unit
+    @products = Product.unit.pagination(params[:page])
+  end
+
   def get_data
-    @products = Product.order(:name).pagination(params[:page])
     @suppliers = Supplier.order(:name)
 
     @store_cust_group = CustomerGroup.find_by_name("Bakul/Toko")
@@ -16,6 +23,18 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
+    get_sparepart
+    get_data
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @products }
+      format.js
+    end
+  end
+
+  def unit_index
+    get_unit
     get_data
 
     respond_to do |format|
@@ -39,10 +58,28 @@ class ProductsController < ApplicationController
     end
   end
 
+  # GET /products/1
+  # GET /products/1.json
+  def unit_show
+    @product = Product.find(params[:id])
+
+    @store_cust_group = CustomerGroup.find_by_name("Bakul/Toko")
+    @workshop_cust_group = CustomerGroup.find_by_name("Bengkel/Montir")
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @product }
+    end
+  end
+
   # GET /products/new
   # GET /products/new.json
   def new
     @product = Product.new
+    category = Category.find_by_name(params[:category])
+    if category.present?
+      @product.category_id = category.id      
+    end
     get_data_form
   end
 
@@ -58,8 +95,11 @@ class ProductsController < ApplicationController
     @product = Product.new(params[:product])
 
     respond_to do |format|
-      if @product.save
+      if @product.save && @product.try(:category).try(:name)=="Sparepart"
         format.html { redirect_to @product, notice: 'Product was successfully created.' }
+        format.json { render json: @product, status: :created, location: @product }
+      elsif @product.save && @product.try(:category).try(:name)=="Unit"
+        format.html { redirect_to unit_show_product_path(@product), notice: 'Product was successfully created.' }
         format.json { render json: @product, status: :created, location: @product }
       else
         format.html { render action: "new" }
@@ -74,8 +114,11 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
 
     respond_to do |format|
-      if @product.update_attributes(params[:product])
+      if @product.update_attributes(params[:product]) && @product.try(:category).try(:name)=="Sparepart"
         format.html { redirect_to @product, notice: 'Product was successfully updated.' }
+        format.json { head :no_content }
+      elsif @product.update_attributes(params[:product]) && @product.try(:category).try(:name)=="Unit"
+        format.html { redirect_to unit_show_product_path(@product), notice: 'Product was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

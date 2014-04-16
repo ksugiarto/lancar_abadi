@@ -1,21 +1,27 @@
 <div class="row">
-  <div class="col-md-2">
+  <div class="col-md-4">
+    <%= link_to import_products_path, :class => "btn btn-success btn-sm", :remote => true do %>
+      <span class="glyphicon glyphicon-open"></span>&nbsp;<%= t 'import_excel' %>
+    <% end %>
+    <!-- 
+    <%= link_to generate_barcode_products_path, :class => "btn btn-info btn-sm", :remote => true do %>
+      <span class="glyphicon glyphicon-barcode"></span>&nbsp;<%= t 'print' %>&nbsp;<%= t 'product.barcode_id' %>
+    <% end %>
+     -->
   </div>
   
-  <div class="col-md-8">
-    <h4 align="center"><%= t 'category.categories' %></h4>
+  <div class="col-md-4">
+    <h4 align="center"><%= t 'product.units' %></h4>
   </div>
 
-  <div class="col-md-2" align="right">
-  <!-- 
-    <%= link_to new_category_path, :class => "btn btn-default", :remote => true do %>
+  <div class="col-md-4" align="right">
+    <%= link_to new_product_path(:category => "Unit"), :class => "btn btn-default btn-sm", :remote => true do %>
       <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;<%= t 'new' %>
     <% end %>
-   -->
   </div>
 </div>
 
-<!-- <div class="panel-group" id="accordion">
+<div class="panel-group" id="accordion">
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
@@ -26,11 +32,11 @@
     </div>
     <div id="collapseOne" class="panel-collapse collapse">
       <div class="panel-body">
-        <%= render 'filter/category' %>
+        <%= render 'filter/product_unit' %>
       </div>
     </div>
   </div>
-</div> -->
+</div>
 
 <div id="table"><%= render 'table' %></div>
 
@@ -38,7 +44,7 @@
 
 <!-- Modal -->
 <div id="general_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="BranchModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog" style="width:900px;">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>

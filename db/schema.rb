@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140415102219) do
+ActiveRecord::Schema.define(:version => 20140416063051) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -274,6 +274,14 @@ ActiveRecord::Schema.define(:version => 20140415102219) do
   add_index "suppliers", ["city_id"], :name => "index_suppliers_on_city_id"
   add_index "suppliers", ["country_id"], :name => "index_suppliers_on_country_id"
   add_index "suppliers", ["province_id"], :name => "index_suppliers_on_province_id"
+
+  create_table "system_languages", :force => true do |t|
+    t.string   "name"
+    t.string   "initial"
+    t.boolean  "active"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "unit_of_measures", :force => true do |t|
     t.string   "name"

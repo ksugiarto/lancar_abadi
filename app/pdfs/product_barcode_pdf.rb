@@ -1,14 +1,15 @@
 class ProductBarcodePdf < Prawn::Document
-  def initialize(model)
-  super()
+  def initialize(model, view)
+  super(:page_size => [498.5, 769.5], :page_laytout => :landscape)
     @model = model
+    @view =view
     header
     content
     # footer
   end
 
   def precision(num)
-    @view.number_with_precision(num, :delimiter => ",", :separator => ".", :precision => 2)
+    @view.number_with_precision(num, :delimiter => ",", :separator => ".", :precision => 0)
   end
 
   def delimiter(num)
@@ -56,15 +57,32 @@ class ProductBarcodePdf < Prawn::Document
 
   def barcode
     x=0
-    y=665
-    @model.details.each do |detail|
-      barcode = Barby::Code39.new("#{detail.product.try(:barcode_id)}-#{detail.product.try(:purchases).last.try(:barcode_id)}")
-      # Barby::PrawnOutputter.new(barcode).to_pdf
-      barcode.annotate_pdf(self, :x => x, :y => y)
-      # text "#{detail.product.try(:barcode_id)}"
-      number_pages "#{detail.product.try(:barcode_id)}-#{detail.product.try(:purchases).last.try(:barcode_id)}", :at => [x, y-5]
-      y-=100
-    end
+    # y=665
+    y=680
+    @model.details.each do |detail| # looping all details
+      (1..detail.quantity_print).each do |i| # looping as much the quantity print
+        barcode = Barby::Code128B.new("#{detail.product.try(:barcode_id)}-#{detail.product.try(:purchases).last.try(:barcode_id)}")
+
+        # Barby::PrawnOutputter.new(barcode).to_pdf
+        barcode.annotate_pdf(self, :x => x, :y => y, :height => 30)
+        # text "#{detail.product.try(:barcode_id)}"
+        number_pages "#{detail.product.try(:barcode_id)}-#{detail.product.try(:purchases).last.try(:barcode_id)} | #{detail.product.try(:name)} #{detail.product.try(:product_type)} #{detail.product.try(:merk)} | #{precision(detail.product.try(:sales_price).to_f)}", :at => [x, y-2], :size => 6
+        if x>=100
+          x=0
+          y-=50
+        elsif y<=50
+          start_new_page
+          x=0
+          # y=680
+          # x+=190
+        else
+          x+=190
+        end
+      end # looping as much the quantity print
+      # start_new_page
+      # x=0
+      # y=680
+    end # looping all details
   end
 
   def content

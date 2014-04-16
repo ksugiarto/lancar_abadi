@@ -17,7 +17,11 @@
         <%= f.label :product, "#{t 'purchase.detail.product'}", :class => "col-sm-4 control-label" %>
         <div class="col-sm-6">
           <%= f.hidden_field :product_id %>
-          <%= text_field_tag :product_name, nil, :placeholder => "#{t 'purchase.detail.product_placeholder'}", :readonly => true, :required => true, :class => "form-control" %>
+          <% if @purchase_detail.product_id.blank? %>
+            <%= text_field_tag :product_name, nil, :placeholder => "#{t 'purchase.detail.product_placeholder'}", :readonly => true, :required => true, :class => "form-control" %>
+          <% else %>
+            <%= text_field_tag :product_name, @purchase_detail.try(:product_detail), :placeholder => "#{t 'purchase.detail.product_placeholder'}", :readonly => true, :required => true, :class => "form-control" %>
+          <% end %>
         </div>
         <div class="col-sm-1">
           <%= link_to show_product_purchase_purchase_details_path(@purchase), :class => "btn btn-default", :remote => true do %>

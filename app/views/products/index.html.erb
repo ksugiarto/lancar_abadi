@@ -11,11 +11,11 @@
   </div>
   
   <div class="col-md-4">
-    <h4 align="center"><%= t 'product.products' %></h4>
+    <h4 align="center"><%= t 'product.spareparts' %></h4>
   </div>
 
   <div class="col-md-4" align="right">
-    <%= link_to new_product_path, :class => "btn btn-default btn-sm", :remote => true do %>
+    <%= link_to new_product_path(:category => "Sparepart"), :class => "btn btn-default btn-sm", :remote => true do %>
       <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;<%= t 'new' %>
     <% end %>
   </div>

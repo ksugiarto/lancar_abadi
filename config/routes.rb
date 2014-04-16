@@ -1,4 +1,11 @@
 LancarAbadi::Application.routes.draw do
+  resources :system_languages do
+    collection do
+      get :change_language
+      post :change_language_submit
+    end
+  end
+
   resources :filter do
     collection do
       get :country
@@ -10,6 +17,7 @@ LancarAbadi::Application.routes.draw do
       get :supplier
       get :customer
       get :product
+      get :product_unit
       get :product_home
       get :purchase
       get :sale
@@ -87,6 +95,11 @@ LancarAbadi::Application.routes.draw do
       post :import_submit
       get :generate_barcode
       post :generate_barcode_submit
+      get :unit_index
+    end
+
+    member do
+      get :unit_show
     end
     
     resources :product_purchases

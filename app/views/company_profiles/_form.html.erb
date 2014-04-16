@@ -95,3 +95,10 @@
   <div class="col-sm-6 col-md-offset-3"><%= f.submit "#{t 'submit'}", :class => "btn btn-success btn-block", :disable_with => "#{t 'disable_with'}" %></div>
 
 <% end %>
+
+<script>
+  $(document).ready(function() {
+    $('#company_profile_country_id').ajaxSelect('home/provinces_by_country');
+    $('#company_profile_province_id').ajaxSelect('home/cities_by_province');
+  });
+</script>

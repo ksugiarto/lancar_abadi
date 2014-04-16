@@ -13,6 +13,20 @@ class Product < ActiveRecord::Base
     paginate(:per_page => 20, :page => page)
   end
 
+  def self.sparepart
+    sparepart = Category.find_by_name("Sparepart")
+    if sparepart.present?
+      where(:category_id => sparepart.id).order(:name, :product_type, :merk)
+    end
+  end
+
+  def self.unit
+    unit = Category.find_by_name("Unit")
+    if unit.present?
+      where(:category_id => unit.id).order(:name, :product_type, :merk)
+    end
+  end
+
   def category_name
   	category.try(:name)
   end

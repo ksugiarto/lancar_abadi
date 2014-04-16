@@ -32,7 +32,7 @@ class SalesController < ApplicationController
       format.html # show.html.erb
       format.json { render json: @sale }
       format.pdf do
-        pdf = SaleIndividualPdf.new(@sale.id, view_context)
+        pdf = SaleIndividualPdf.new(@sale.id, view_context, ApplicationController.helpers.get_company_identity)
         send_data pdf.render, filename: "#{I18n.t 'sale.sales_invoice'} #{Time.now.strftime("%Y-%m-%d %H:%M:%S")}.pdf",
         type: "application/pdf", :disposition => "inline"
       end

@@ -1,9 +1,10 @@
 class SaleIndividualPdf < Prawn::Document
-  def initialize(sale_id, view)
+  def initialize(sale_id, view, company)
   # super(:page_layout => :landscape)
   super()
     @sale = Sale.find(sale_id)
     @view = view
+    @company = company
     header
     content
     footer
@@ -37,7 +38,7 @@ class SaleIndividualPdf < Prawn::Document
 
     grid([0,0], [0,4]).bounding_box do
       font("Times-Roman") do
-        text "UD. LANCAR ABADI"
+        text "#{@company.name}"
         text "Ponorogo, #{@sale.transaction_date.to_time.localtime.strftime('%d %B %Y')}"
         move_down 10
         text "No: #{@sale.si_id}"
