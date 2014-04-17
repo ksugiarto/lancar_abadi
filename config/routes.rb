@@ -1,4 +1,16 @@
 LancarAbadi::Application.routes.draw do
+  resources :emp_date_details
+
+
+  resources :emp_dates
+
+
+  resources :emp_months
+
+
+  resources :employees
+
+
   resources :system_languages do
     collection do
       get :change_language

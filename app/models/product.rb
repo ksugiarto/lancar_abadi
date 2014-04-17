@@ -108,6 +108,12 @@ class Product < ActiveRecord::Base
       (2..spreadsheet.last_row).each do |i| # looping all excel data
         row = Hash[[header, spreadsheet.row(i)].transpose]
 
+        if row["CATEGORY"].present?
+          category_id = Category.find_by_name(row["CATEGORY"]).try(:id)
+        else
+          category_id = 0
+        end
+
         if row["TYPE"].to_i==0
           product_type = row["TYPE"]
         else
@@ -137,14 +143,18 @@ class Product < ActiveRecord::Base
           supplier = Supplier.create(:name => row["SUPPLIER"])
         end
 
-        if row["HARGA"].to_f < 10000
-          sales_price = row["HARGA"].to_f*2
+        if row["CATEGORY"]="Sparepart"
+          if row["HARGA"].to_f < 10000
+            sales_price = row["HARGA"].to_f*2
+          else
+            sales_price = row["HARGA"].to_f*1.5
+          end
         else
-          sales_price = row["HARGA"].to_f*1.5
+          sales_price = 0
         end
 
         if status=="new"
-          Product.create(:category_id => 0,
+          Product.create(:category_id => category_id,
                          :barcode_id => barcode, 
                          :name => row["NAMA BARANG"], 
                          :product_type => product_type, 
@@ -156,7 +166,7 @@ class Product < ActiveRecord::Base
                          :can_be_purchase => true, 
                          :can_be_sale => true)
         elsif status=="edit"
-          existing_product.update_attributes(:category_id => 0,
+          existing_product.update_attributes(:category_id => category_id,
                                              :supplier_id => supplier.id,
                                              :unit_of_measure_id => 0, 
                                              :sales_price => sales_price, 

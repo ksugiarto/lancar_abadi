@@ -1,0 +1,25 @@
+<h1>Listing emp_date_details</h1>
+
+<table>
+  <tr>
+    <th>Emp date</th>
+    <th>Employee</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @emp_date_details.each do |emp_date_detail| %>
+  <tr>
+    <td><%= emp_date_detail.emp_date %></td>
+    <td><%= emp_date_detail.employee %></td>
+    <td><%= link_to 'Show', emp_date_detail %></td>
+    <td><%= link_to 'Edit', edit_emp_date_detail_path(emp_date_detail) %></td>
+    <td><%= link_to 'Destroy', emp_date_detail, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Emp date detail', new_emp_date_detail_path %>

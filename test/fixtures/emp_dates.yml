@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  emp_month: 
+  date_order: 
+  total_top_grade: 
+  total_emp: 1
+
+two:
+  emp_month: 
+  date_order: 
+  total_top_grade: 
+  total_emp: 1

@@ -68,17 +68,20 @@ UserMenu.create(:name => "ProductUnit", :url => "/products/unit_index/", :header
 UserMenu.create(:name => "Customer", :url => "/customers/", :header_id => "A", :sub_header_id => 5, :visible => true)
 UserMenu.create(:name => "Supplier", :url => "/suppliers/", :header_id => "A", :sub_header_id => 6, :visible => true)
 
-UserMenu.create(:name => "CustomerGroup", :url => "/customer_groups/", :header_id => "B", :sub_header_id => 1, :visible => true)
-UserMenu.create(:name => "Category", :url => "/categories/", :header_id => "B", :sub_header_id => 2, :visible => true)
-UserMenu.create(:name => "UnitOfMeasure", :url => "/unit_of_measures/", :header_id => "B", :sub_header_id => 3, :visible => true)
-UserMenu.create(:name => "separator", :url => "", :header_id => "B", :sub_header_id => 4, :visible => true)
-UserMenu.create(:name => "UserGroup", :url => "/user_groups/", :header_id => "B", :sub_header_id => 5, :visible => true)
-UserMenu.create(:name => "UserMenu", :url => "/user_menus/", :header_id => "B", :sub_header_id => 6, :visible => true)
-UserMenu.create(:name => "CompanyProfile", :url => "/company_profiles/", :header_id => "B", :sub_header_id => 7, :visible => true)
-UserMenu.create(:name => "separator", :url => "", :header_id => "B", :sub_header_id => 8, :visible => true)
-UserMenu.create(:name => "City", :url => "/cities/", :header_id => "B", :sub_header_id => 9, :visible => true)
-UserMenu.create(:name => "Province", :url => "/provinces/", :header_id => "B", :sub_header_id => 10, :visible => true)
-UserMenu.create(:name => "Country", :url => "/countries/", :header_id => "B", :sub_header_id => 11, :visible => true)
+UserMenu.create(:name => "Employee", :url => "/employees/", :header_id => "B", :sub_header_id => 1, :visible => true)
+UserMenu.create(:name => "ManageLeaveDay", :url => "/emp_months/", :header_id => "B", :sub_header_id => 2, :visible => true)
+UserMenu.create(:name => "separator", :url => "", :header_id => "B", :sub_header_id => 3, :visible => true)
+UserMenu.create(:name => "CustomerGroup", :url => "/customer_groups/", :header_id => "B", :sub_header_id => 4, :visible => true)
+UserMenu.create(:name => "Category", :url => "/categories/", :header_id => "B", :sub_header_id => 5, :visible => true)
+UserMenu.create(:name => "UnitOfMeasure", :url => "/unit_of_measures/", :header_id => "B", :sub_header_id => 6, :visible => true)
+UserMenu.create(:name => "separator", :url => "", :header_id => "B", :sub_header_id => 7, :visible => true)
+UserMenu.create(:name => "UserGroup", :url => "/user_groups/", :header_id => "B", :sub_header_id => 8, :visible => true)
+UserMenu.create(:name => "UserMenu", :url => "/user_menus/", :header_id => "B", :sub_header_id => 9, :visible => true)
+UserMenu.create(:name => "CompanyProfile", :url => "/company_profiles/", :header_id => "B", :sub_header_id => 10, :visible => true)
+UserMenu.create(:name => "separator", :url => "", :header_id => "B", :sub_header_id => 11, :visible => true)
+UserMenu.create(:name => "City", :url => "/cities/", :header_id => "B", :sub_header_id => 12, :visible => true)
+UserMenu.create(:name => "Province", :url => "/provinces/", :header_id => "B", :sub_header_id => 13, :visible => true)
+UserMenu.create(:name => "Country", :url => "/countries/", :header_id => "B", :sub_header_id => 14, :visible => true)
 # USER MENU
 
 # USER GROUP
@@ -93,11 +96,38 @@ connection = ActiveRecord::Base.connection();
 end
 # USER GROUP
 
+# EMPLOYEE
+Employee.create(:name => "Wendry", :grade => 1)
+Employee.create(:name => "Radix", :grade => 1)
+Employee.create(:name => "Sonny", :grade => 1)
+Employee.create(:name => "Erix", :grade => 1)
+Employee.create(:name => "Imron", :grade => 0)
+Employee.create(:name => "Akrom", :grade => 1)
+Employee.create(:name => "Yatno", :grade => 0)
+Employee.create(:name => "Sujito", :grade => 2)
+Employee.create(:name => "Agus", :grade => 0)
+Employee.create(:name => "Kabul", :grade => 0)
+Employee.create(:name => "Adi", :grade => 2)
+Employee.create(:name => "Nonik", :grade => 2)
+Employee.create(:name => "Acmad", :grade => 0)
+Employee.create(:name => "Nurul", :grade => 2)
+Employee.create(:name => "Eka", :grade => 2)
+Employee.create(:name => "Rizal", :grade => 2)
+Employee.create(:name => "Tisna", :grade => 2)
+Employee.create(:name => "Pa'ul", :grade => 0)
+Employee.create(:name => "Cris", :grade => 1)
+Employee.create(:name => "Eko", :grade => 0)
+Employee.create(:name => "Margono", :grade => 2)
+Employee.create(:name => "Sefi", :grade => 2)
+Employee.create(:name => "Sulis", :grade => 0)
+Employee.create(:name => "Sum", :grade => 0)
+# EMPLOYEE
+
 # COMPANY PROFILE
 CompanyProfile.create(:name => "U.D. Lancar Abadi", :address => "Jl. A. Yani No. 100", :city_id => ponorogo.id, :province_id => jawa_timur.id, :country_id => indonesia.id, :telephone => "0352-481239")
 # COMPANY PROFILE
 
 # SYSTEM LANGUAGE
-SystemLanguage.create(:name => "English", :initial => ":en", :active => true)
-SystemLanguage.create(:name => "Bahasa Indonesia", :initial => ":id", :active => false)
+SystemLanguage.create(:name => "English", :initial => "en", :active => true)
+SystemLanguage.create(:name => "Bahasa Indonesia", :initial => "id", :active => false)
 # SYSTEM LANGUAGE

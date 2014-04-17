@@ -75,6 +75,8 @@ en:
       supplier: "Supplier"
     setting:
       setting: "Setting"
+      employee: "Employee"
+      manage_leave_day: "Manage Leave Day"
       customer_group: "Customer Groups"
       category: "Category"
       unit_of_measure: "Unit of Measure"
@@ -220,6 +222,20 @@ en:
       last_purchase: "Last Purchase"
       last_sale: "Last Sale"
       notes: "Notes"
+
+  employee:
+    employees: "Employees"
+    employee: "Employee"
+    name: "Name"
+    grade: "Grade"
+
+  leave_day:
+    leave_days: "Manage Leave Day"
+    new: "Generate Next Month Schedule"
+    year: "Year"
+    month: "Month"
+    date: "Date"
+    name: "Name"
 
   # TRANSACTION
   purchase:

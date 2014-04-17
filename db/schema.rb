@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140416063051) do
+ActiveRecord::Schema.define(:version => 20140417045905) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -102,6 +102,42 @@ ActiveRecord::Schema.define(:version => 20140416063051) do
   add_index "customers", ["city_id"], :name => "index_customers_on_city_id"
   add_index "customers", ["country_id"], :name => "index_customers_on_country_id"
   add_index "customers", ["province_id"], :name => "index_customers_on_province_id"
+
+  create_table "emp_date_details", :force => true do |t|
+    t.integer  "emp_date_id"
+    t.integer  "employee_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "emp_date_details", ["emp_date_id"], :name => "index_emp_date_details_on_emp_date_id"
+  add_index "emp_date_details", ["employee_id"], :name => "index_emp_date_details_on_employee_id"
+
+  create_table "emp_dates", :force => true do |t|
+    t.integer  "emp_month_id"
+    t.integer  "date_order"
+    t.integer  "total_top_grade", :default => 0
+    t.integer  "total_emp",       :default => 0
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+  end
+
+  add_index "emp_dates", ["emp_month_id"], :name => "index_emp_dates_on_emp_month_id"
+
+  create_table "emp_months", :force => true do |t|
+    t.integer  "year"
+    t.integer  "month_order"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "employees", :force => true do |t|
+    t.string   "name"
+    t.integer  "grade",           :default => 0
+    t.integer  "total_leave_day", :default => 0
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+  end
 
   create_table "product_purchases", :force => true do |t|
     t.string   "barcode_id"

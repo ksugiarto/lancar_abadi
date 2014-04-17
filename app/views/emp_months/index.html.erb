@@ -3,15 +3,13 @@
   </div>
   
   <div class="col-md-8">
-    <h4 align="center"><%= t 'category.categories' %></h4>
+    <h4 align="center"><%= t 'leave_day.leave_days' %></h4>
   </div>
 
   <div class="col-md-2" align="right">
-  <!-- 
-    <%= link_to new_category_path, :class => "btn btn-default btn-sm", :remote => true do %>
-      <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;<%= t 'new' %>
+    <%= link_to new_emp_month_path, :class => "btn btn-default btn-sm" do %>
+      <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;<%= t 'leave_day.new' %>
     <% end %>
-   -->
   </div>
 </div>
 
@@ -26,7 +24,8 @@
     </div>
     <div id="collapseOne" class="panel-collapse collapse">
       <div class="panel-body">
-        <%= render 'filter/category' %>
+        <%=# render 'filter/employee' 
+        %>
       </div>
     </div>
   </div>

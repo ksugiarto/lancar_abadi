@@ -1,0 +1,26 @@
+<%=# will_paginate @emp_months, :class => "apple_pagination" 
+%>
+
+<table class="table table-condensed">
+  <tr style="background-color:#708DC6;">
+    <th class="text-right" width="30"><%= t 'row_number' %></th>
+    <th><%= t 'leave_day.year' %></th>
+    <th><%= t 'leave_day.month' %></th>
+    <th></th>
+  </tr>
+
+<% row_number=0; @emp_months.each do |emp_month| %>
+  <tr>
+    <td class="text-right"><%= row_number+=1 %>.</td>
+    <td><%= emp_month.year %></td>
+    <td><%= "#{emp_month.month_order} (#{emp_month.month_name})" %></td>
+    <td class="text-right">
+      <%= link_to "#{t 'show'}", emp_month_path(emp_month), :class => "btn btn-info btn-xs" %>
+      <%= link_to "#{t 'delete'}", emp_month, method: :delete, data: { confirm: "#{t 'confirm'}" }, :class => "btn btn-danger btn-xs" %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<%=# will_paginate @emp_months, :class => "apple_pagination" 
+%>

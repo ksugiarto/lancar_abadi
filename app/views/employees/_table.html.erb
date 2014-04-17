@@ -1,0 +1,26 @@
+<%=# will_paginate @employees, :class => "apple_pagination" 
+%>
+
+<table class="table table-condensed">
+  <tr style="background-color:#708DC6;">
+    <th class="text-right" width="30"><%= t 'row_number' %></th>
+    <th><%= t 'employee.name' %></th>
+    <th><%= t 'employee.grade' %></th>
+    <th></th>
+  </tr>
+
+<% row_number=0; @employees.each do |employee| %>
+  <tr>
+    <td class="text-right"><%= row_number+=1 %>.</td>
+    <td><%= employee.name %></td>
+    <td><%= employee.grade %></td>
+    <td class="text-right">
+      <%= link_to "#{t 'edit'}", edit_employee_path(employee), :class => "btn btn-warning btn-xs", :remote => true %>
+      <%= link_to "#{t 'delete'}", employee, method: :delete, data: { confirm: "#{t 'confirm'}" }, :class => "btn btn-danger btn-xs", :remote => true %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<%=# will_paginate @employees, :class => "apple_pagination" 
+%>

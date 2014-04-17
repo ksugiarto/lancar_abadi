@@ -75,6 +75,8 @@ id:
       supplier: "Supplier"
     setting:
       setting: "Pengaturan"
+      employee: "Pegawai"
+      manage_leave_day: "Atur Jadwal Libur"
       customer_group: "Jenis Pembeli"
       category: "Kategori"
       unit_of_measure: "Satuan Ukuran"
@@ -221,6 +223,20 @@ id:
       last_purchase: "Terakhir Pembelian"
       last_sale: "Terakhir Penjualan"
       notes: "Notes"
+
+  employee:
+    employees: "Pegawai"
+    employee: "Daftar Pegawai"
+    name: "Nama"
+    grade: "Grade"
+
+  leave_day:
+    leave_days: "Atur Jadwal Libur Pegawai"
+    new: "Proses Jadwal Bulan Depan"
+    year: "Tahun"
+    month: "Bulan"
+    date: "Tanggal"
+    name: "Nama"
 
   # TRANSACTION
   purchase:

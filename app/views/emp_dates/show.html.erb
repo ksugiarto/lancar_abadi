@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Emp month:</b>
+  <%= @emp_date.emp_month %>
+</p>
+
+<p>
+  <b>Date order:</b>
+  <%= @emp_date.date_order %>
+</p>
+
+<p>
+  <b>Total top grade:</b>
+  <%= @emp_date.total_top_grade %>
+</p>
+
+<p>
+  <b>Total emp:</b>
+  <%= @emp_date.total_emp %>
+</p>
+
+
+<%= link_to 'Edit', edit_emp_date_path(@emp_date) %> |
+<%= link_to 'Back', emp_dates_path %>

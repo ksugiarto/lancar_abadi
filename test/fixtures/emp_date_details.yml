@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  emp_date: 
+  employee: 
+
+two:
+  emp_date: 
+  employee: 

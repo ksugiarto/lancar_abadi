@@ -1,0 +1,29 @@
+<h1>Listing emp_dates</h1>
+
+<table>
+  <tr>
+    <th>Emp month</th>
+    <th>Date order</th>
+    <th>Total top grade</th>
+    <th>Total emp</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @emp_dates.each do |emp_date| %>
+  <tr>
+    <td><%= emp_date.emp_month %></td>
+    <td><%= emp_date.date_order %></td>
+    <td><%= emp_date.total_top_grade %></td>
+    <td><%= emp_date.total_emp %></td>
+    <td><%= link_to 'Show', emp_date %></td>
+    <td><%= link_to 'Edit', edit_emp_date_path(emp_date) %></td>
+    <td><%= link_to 'Destroy', emp_date, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Emp date', new_emp_date_path %>

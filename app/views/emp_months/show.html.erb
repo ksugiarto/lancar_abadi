@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-md-2">
+    <%= link_to emp_months_path, :class => "btn btn-default btn-sm" do %>
+      <span class="glyphicon glyphicon-chevron-left"></span>&nbsp;<%= t 'back' %>
+    <% end %>
+  </div>
+  
+  <div class="col-md-8">
+    <h4 align="center"><%= @emp_month.month_name %> <%= @emp_month.year %></h4>
+  </div>
+
+  <div class="col-md-2" align="right">
+  </div>
+</div>
+
+<table class="table table-condensed table-bordered">
+	<tr>
+		<th class="text-right" width="50"><%= t 'leave_day.date' %></th>
+		<th><%= t 'leave_day.name' %></th>
+		<th><%= t 'leave_day.name' %></th>
+	</tr>
+	<% @emp_month.dates.order(:date_order).each do |date| %>
+		<tr>
+			<th class="text-right"><%= date.date_order %></th>
+			
+				<% date.details.each do |detail| %>
+					<td><%= detail.try(:employee).try(:name) %></td>
+				<% end %>
+			
+		</tr>
+	<% end %>
+</table>
