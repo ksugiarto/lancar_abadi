@@ -11,7 +11,29 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140417072250) do
+ActiveRecord::Schema.define(:version => 20140417105058) do
+
+  create_table "adjustment_details", :force => true do |t|
+    t.integer  "adjustment_id"
+    t.integer  "product_id"
+    t.decimal  "quantity",       :default => 1.0
+    t.integer  "quantity_print", :default => 1
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+  end
+
+  add_index "adjustment_details", ["adjustment_id"], :name => "index_adjustment_details_on_adjustment_id"
+  add_index "adjustment_details", ["product_id"], :name => "index_adjustment_details_on_product_id"
+
+  create_table "adjustments", :force => true do |t|
+    t.string   "pa_id"
+    t.date     "transaction_date"
+    t.integer  "transaction_status"
+    t.integer  "status",             :default => 0
+    t.text     "notes"
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+  end
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -117,10 +139,10 @@ ActiveRecord::Schema.define(:version => 20140417072250) do
     t.integer  "emp_month_id"
     t.integer  "date_order"
     t.integer  "total_top_grade", :default => 0
+    t.integer  "female_emp",      :default => 0
     t.integer  "total_emp",       :default => 0
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
-    t.integer  "female_emp"
   end
 
   add_index "emp_dates", ["emp_month_id"], :name => "index_emp_dates_on_emp_month_id"
@@ -134,12 +156,12 @@ ActiveRecord::Schema.define(:version => 20140417072250) do
 
   create_table "employees", :force => true do |t|
     t.string   "name"
+    t.integer  "gender",          :default => 0
     t.integer  "grade",           :default => 0
+    t.integer  "last_leave_day",  :default => 0
     t.integer  "total_leave_day", :default => 0
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
-    t.integer  "gender"
-    t.integer  "last_leave_day"
   end
 
   create_table "product_purchases", :force => true do |t|
@@ -190,7 +212,7 @@ ActiveRecord::Schema.define(:version => 20140417072250) do
     t.integer  "purchase_id"
     t.integer  "product_id"
     t.decimal  "quantity",       :precision => 12, :scale => 5, :default => 1.0
-    t.integer  "quantity_print"
+    t.integer  "quantity_print",                                :default => 1
     t.decimal  "price",          :precision => 18, :scale => 2, :default => 0.0
     t.decimal  "discount",       :precision => 12, :scale => 5, :default => 0.0
     t.decimal  "added_discount", :precision => 18, :scale => 2, :default => 0.0

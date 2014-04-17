@@ -1,16 +1,4 @@
 LancarAbadi::Application.routes.draw do
-  resources :emp_date_details
-
-
-  resources :emp_dates
-
-
-  resources :emp_months
-
-
-  resources :employees
-
-
   resources :system_languages do
     collection do
       get :change_language
@@ -33,6 +21,17 @@ LancarAbadi::Application.routes.draw do
       get :product_home
       get :purchase
       get :sale
+      get :adjustment
+    end
+  end
+
+  resources :adjustments do
+    resources :adjustment_details do
+      collection do
+        get :show_product
+        post :search_product
+        get :pick_product
+      end
     end
   end
 
@@ -117,6 +116,10 @@ LancarAbadi::Application.routes.draw do
     resources :product_purchases
   end
 
+  resources :emp_date_details
+  resources :emp_dates
+  resources :emp_months
+  resources :employees
   resources :company_profiles
   resources :stocks
   resources :user_menus

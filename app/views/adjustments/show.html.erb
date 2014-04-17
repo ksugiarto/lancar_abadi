@@ -1,32 +1,29 @@
 <div class="row">
   <div class="col-md-4">
-    <%= link_to purchases_path, :class => "btn btn-default btn-sm" do %>
+    <%= link_to adjustments_path, :class => "btn btn-default btn-sm" do %>
       <span class="glyphicon glyphicon-chevron-left"></span>&nbsp;<%= t 'back' %>
     <% end %>
   </div>
   
   <div class="col-md-4">
-    <h4 align="center"><%= t 'purchase.purchase' %> - <%= t 'detail' %></h4>
+    <h4 align="center"><%= t 'adjustment.adjustment' %> - <%= t 'detail' %></h4>
   </div>
 
   <div class="col-md-4" align="right">
-    <% if @purchase.status==0 %>
-      <%= form_for(@purchase) do |f| %>
+    <% if @adjustment.status==0 %>
+      <%= form_for(@adjustment) do |f| %>
         <%= f.hidden_field :status, :value => 1 %>
         <%= button_tag :type => "submit", :class => "btn btn-success btn-sm", :disable_with => "#{t 'disable_with'}" do %>
           <%= t 'close' %>&nbsp;<span class="glyphicon glyphicon-lock"></span>
         <% end -%>
 
-        <%= link_to edit_purchase_path(@purchase), :class => "btn btn-warning btn-sm" do %>
+        <%= link_to edit_adjustment_path(@adjustment), :class => "btn btn-warning btn-sm" do %>
           <%= t 'edit' %>&nbsp;<span class="glyphicon glyphicon-pencil"></span>
         <% end %>
       <% end -%>
-    <% elsif @purchase.status==1 %>
-      <%= form_for(@purchase) do |f| %>
+    <% elsif @adjustment.status==1 %>
+      <%= form_for(@adjustment) do |f| %>
         <%= f.hidden_field :status, :value => 5 %>
-        <%= link_to print_barcode_purchase_path(@purchase, :format => "pdf"), :target => "_blank", :class => "btn btn-warning btn-sm" do %>
-          <%= "#{t 'print'} #{t 'product.barcode_id'}" %>&nbsp;<span class="glyphicon glyphicon-barcode"></span>
-        <% end %>
 
         <%= button_tag :type => "submit", :class => "btn btn-danger btn-sm", :disable_with => "#{t 'disable_with'}", data: { confirm: "#{t 'confirm'}" } do %>
           <%= t 'void' %>&nbsp;<span class="glyphicon glyphicon-lock"></span>
@@ -36,20 +33,19 @@
   </div>
 </div>
 
-<div class="status_<%= @purchase.status.to_i %>" align="center">
-  <% case @purchase.status.to_i %>
+<div class="status_<%= @adjustment.status.to_i %>" align="center">
+  <% case @adjustment.status.to_i %>
   <% when 0 %>
-    <%= "#{t 'purchase.status'}#{t 'new'} #{t 'purchase.editable'}" %>, <%= "#{t 'purchase.created_at'}#{date(@purchase.created_at)}" %>
+    <%= "#{t 'adjustment.status'}#{t 'new'} #{t 'adjustment.editable'}" %>, <%= "#{t 'adjustment.created_at'}#{date(@adjustment.created_at)}" %>
   <% when 1 %>
-    <%= "#{t 'purchase.status'}#{t 'close'} #{t 'purchase.uneditable'}" %>, <%= "#{t 'purchase.updated_at'}#{date(@purchase.updated_at)}" %>
+    <%= "#{t 'adjustment.status'}#{t 'close'} #{t 'adjustment.uneditable'}" %>, <%= "#{t 'adjustment.updated_at'}#{date(@adjustment.updated_at)}" %>
   <% when 5 %>
-    <%= "#{t 'purchase.status'}#{t 'void'} #{t 'purchase.uneditable'}" %>, <%= "#{t 'purchase.updated_at'}#{date(@purchase.updated_at)}" %>
+    <%= "#{t 'adjustment.status'}#{t 'void'} #{t 'adjustment.uneditable'}" %>, <%= "#{t 'adjustment.updated_at'}#{date(@adjustment.updated_at)}" %>
     <% end -%>
 </div>
 
 <div id="show_header_section"><%= render 'show_header' %></div>
-<div id="detail_section"><%= render 'purchase_details/table' %></div>
-<div id="show_footer_section"><%= render 'show_footer' %></div>
+<div id="detail_section"><%= render 'adjustment_details/table' %></div>
 
 <div id="modal"></div>
 

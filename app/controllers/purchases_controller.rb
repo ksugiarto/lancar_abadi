@@ -20,6 +20,7 @@ class PurchasesController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @purchases }
+      format.js
     end
   end
 

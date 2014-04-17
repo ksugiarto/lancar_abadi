@@ -69,6 +69,7 @@ id:
       transaction: "Transaksi"
       purchase: "Pembelian"
       sale: "Penjualan"
+      adjustment: "Penyesuaian"
       product_sparepart: "Sparepart"
       product_unit: "Unit"
       customer: "Pembeli"
@@ -327,6 +328,31 @@ id:
       added_discount_rp: "Diskon Tambahan (Rp)"
       amount: "Jumlah"
       amount_rp: "Jumlah (Rp)"
+
+  adjustment:
+    adjustments: "Daftar Penyesuaian Barang"
+    adjustment: "Penyesuaian Barang"
+    pa_id: "PA ID"
+    pa_id_placeholder: "Kosongkan untuk otomatis"
+    transaction_date: "Tanggal Penyesuaian"
+    transaction_status: "Status Penyesuaian"
+    in: "Masuk"
+    out: "Keluar"
+    notes: "Notes"
+    status: "Status Transaksi: "
+    status_short: "Status"
+    editable: "(Dapat diubah)"
+    uneditable: "(Tidak dapat diubah)"
+    created_at: "Dibuat pada: "
+    updated_at: "Diubah pada: "
+    detail:
+      detail: "Detil"
+      product: "Barang"
+      product_placeholder: "Pilih barang dari list"
+      search_product_placeholder: "Cari Barang"
+      quantity: "Kuantitas"
+      quantity_print: "Kuantitas Cetak"
+      quantity_print_placeholder: "Kosongkan u/ ikuti kuantitas"
 
   # SETTING
   menu:

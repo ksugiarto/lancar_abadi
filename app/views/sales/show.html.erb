@@ -1,15 +1,15 @@
 <div id="show" class="row">
-  <div class="col-md-2">
+  <div class="col-md-4">
     <%= link_to sales_path, :id => "btn", :class => "btn btn-default btn-sm" do %>
       <span class="glyphicon glyphicon-chevron-left"></span>&nbsp;<%= t 'back' %>
     <% end %>
   </div>
   
-  <div class="col-md-8">
+  <div class="col-md-4">
     <h4 align="center"><%= t 'sale.sale' %> - <%= t 'detail' %></h4>
   </div>
 
-  <div class="col-md-2" align="right">
+  <div class="col-md-4" align="right">
     <% if @sale.status==0 %>
       <%= form_for(@sale) do |f| %>
         <%= f.hidden_field :status, :value => 1 %>
@@ -17,13 +17,23 @@
           <%= t 'close' %>&nbsp;<span class="glyphicon glyphicon-lock"></span>
         <% end -%>
 
+        <%= link_to "#", :onClick => "window.print()", :id => "btn", :class => "btn btn-warning btn-sm" do %>
+          <%= t 'print' %>&nbsp;<span class="glyphicon glyphicon-print"></span>
+        <% end %>
+
         <%= link_to edit_sale_path(@sale), {:id => "btn", :class => "btn btn-warning btn-sm"}, :remote => true do %>
           <%= t 'edit' %>&nbsp;<span class="glyphicon glyphicon-pencil"></span>
         <% end %>
       <% end -%>
     <% elsif @sale.status==1 %>
       <%= form_for(@sale) do |f| %>
+        <!-- 
         <%= link_to sale_path(@sale, :format => "pdf"), :target => "_blank", :id => "btn", :class => "btn btn-warning btn-sm" do %>
+          <%= t 'print' %>&nbsp;<span class="glyphicon glyphicon-print"></span>
+        <% end %>
+         -->
+
+        <%= link_to "#", :onClick => "window.print()", :id => "btn", :class => "btn btn-warning btn-sm" do %>
           <%= t 'print' %>&nbsp;<span class="glyphicon glyphicon-print"></span>
         <% end %>
 

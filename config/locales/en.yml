@@ -326,6 +326,31 @@ en:
       amount: "Amount"
       amount_rp: "Amount (Rp)"
 
+  adjustment:
+    adjustments: "Product Adjustment List"
+    adjustment: "Adjustment"
+    pa_id: "PA ID"
+    pa_id_placeholder: "Leave blank for auto generate"
+    transaction_date: "Adjustment Date"
+    transaction_status: "Transaction Status"
+    in: "In"
+    out: "Out"
+    notes: "Notes"
+    status: "Transaction status: "
+    status_short: "Status"
+    editable: "(Editable)"
+    uneditable: "(Uneditable)"
+    created_at: "Created at: "
+    updated_at: "Updated at: "
+    detail:
+      detail: "Detail"
+      product: "Product"
+      product_placeholder: "Pick product from the list"
+      search_product_placeholder: "Search Product"
+      quantity: "Quantity"
+      quantity_print: "Quantity Print"
+      quantity_print_placeholder: "Leave blank will use quantity"
+
   # SETTING
   menu:
     menus: "Menus"

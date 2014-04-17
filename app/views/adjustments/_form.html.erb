@@ -1,0 +1,38 @@
+<%= form_for(@adjustment, :html => { :class => "form-horizontal" }) do |f| %>
+  <% if @adjustment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@adjustment.errors.count, "error") %> prohibited this adjustment from being saved:</h2>
+
+      <ul>
+      <% @adjustment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :pa_id, "#{t 'adjustment.pa_id'}", :class => "col-sm-4 control-label" %>
+    <div class="col-sm-7"><%= f.text_field :pa_id, :placeholder => "#{t 'adjustment.pa_id_placeholder'}", :class => "form-control" %></div>
+  </div>
+  <div class="form-group">
+    <%= f.label :transaction_date, "#{t 'adjustment.transaction_date'}", :class => "col-sm-4 control-label" %>
+    <div class="col-sm-7"><%= f.text_field :transaction_date, :class => "form-control", :value => "#{Time.now.strftime('%Y-%m-%d')}" %></div>
+  </div>
+  <div class="form-group">
+    <%= f.label :transaction_status, "#{t 'adjustment.transaction_status'}", :class => "col-sm-4 control-label" %>
+    <div class="col-sm-7">
+      <%= f.select(:transaction_status, options_for_select([
+          ["#{t 'adjustment.in'}", "0"],
+          ["#{t 'adjustment.out'}", "1"]]), {}, :class => "form-control") %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :notes, "#{t 'adjustment.notes'}", :class => "col-sm-4 control-label" %>
+    <div class="col-sm-7"><%= f.text_area :notes, :rows => 3, :class => "form-control" %></div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-7"><%= f.submit "#{t 'submit'}", :class => "btn btn-success btn-block", :disable_with => "#{t 'disable_with'}" %></div>
+  </div>
+<% end %>

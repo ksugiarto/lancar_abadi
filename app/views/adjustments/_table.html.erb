@@ -1,0 +1,26 @@
+<%= will_paginate @adjustments, :class => "apple_pagination" %>
+
+<table class="table table-condensed">
+  <tr>
+    <th><%= t 'adjustment.pa_id' %></th>
+    <th><%= t 'adjustment.transaction_date' %></th>
+    <th><%= t 'adjustment.transaction_status' %></th>
+    <th><%= t 'adjustment.notes' %></th>
+    <th></th>
+  </tr>
+
+<% @adjustments.each do |adjustment| %>
+  <tr class="status_<%= adjustment.status.to_i %>">
+    <td><%= adjustment.pa_id %></td>
+    <td><%= date(adjustment.transaction_date) %></td>
+    <td><%= adjustment.transaction_status_name %></td>
+    <td><%= adjustment.notes %></td>
+    <td class="text-right">
+        <%= link_to "#{t 'edit'}", edit_adjustment_path(adjustment), :class => "btn btn-warning btn-xs", :remote => true if adjustment.status.to_i==0 %>
+        <%= link_to "#{t 'show'}", adjustment, :class => "btn btn-primary btn-xs" %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<%= will_paginate @adjustments, :class => "apple_pagination" %>

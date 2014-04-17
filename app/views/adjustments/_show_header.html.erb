@@ -1,0 +1,14 @@
+<table class="table table-condensed">
+  <tr>
+    <th><%= t 'adjustment.pa_id' %></th>
+    <td><b>:</b>&nbsp;<%= @adjustment.pa_id %></td>
+    <th><%= t 'adjustment.transaction_date' %></th>
+    <td><b>:</b>&nbsp;<%= date(@adjustment.transaction_date) %></td>
+  </tr>
+  <tr>
+    <th><%= t 'adjustment.transaction_status' %></th>
+    <td><b>:</b>&nbsp;<%= @adjustment.transaction_status_name %></td>
+    <th><%= t 'adjustment.notes' %></th>
+    <td><b>:</b>&nbsp;<%= @adjustment.notes %></td>
+  </tr>
+</table>

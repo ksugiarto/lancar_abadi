@@ -97,6 +97,8 @@ class FilterController < ApplicationController
     @workshop_cust_group = CustomerGroup.find_by_name("Bengkel/Montir")
   end
 
+  # TRANSACTIONS
+
   def purchase
   	@purchases = Purchase
   	.filter_month(params[:month])
@@ -112,6 +114,16 @@ class FilterController < ApplicationController
   	.filter_month(params[:month])
     .filter_year(params[:year])
     .filter_customer(params[:customer_id].to_i)
+    .filter_status(params[:status])
+    .order(:created_at).reverse_order
+    .pagination(params[:page])
+  end
+
+  def adjustment
+    @adjustments = Adjustment
+    .filter_month(params[:month])
+    .filter_year(params[:year])
+    .filter_transaction_status(params[:transaction_status])
     .filter_status(params[:status])
     .order(:created_at).reverse_order
     .pagination(params[:page])

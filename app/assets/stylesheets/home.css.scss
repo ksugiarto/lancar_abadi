@@ -24,6 +24,11 @@
   p.test {font-weight:bold;}
 }
 
+.leave_day_table, #leave_day_table td, #leave_day_table th
+{
+  font-size:8pt
+}
+
 .status_0 /*STATUS NEW => LIGHT YELLOW*/
 {
   background-color: #FFE57F;

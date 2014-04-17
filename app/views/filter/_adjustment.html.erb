@@ -1,7 +1,7 @@
-<%= form_tag purchase_filter_index_path, :method => "get", :class => "form-horizontal", :remote => true do %>
+<%= form_tag adjustment_filter_index_path, :method => "get", :class => "form-horizontal", :remote => true do %>
 <div class="form-group">
 	<div class="col-sm-3">
-		<%= select_tag(:month, options_for_select([
+            <%= select_tag(:month, options_for_select([
             ["#{t 'date.month.january'}", "01"],
             ["#{t 'date.month.february'}", "02"], 
             ["#{t 'date.month.march'}", "03"],
@@ -22,18 +22,21 @@
       [Date.today.strftime("%Y").to_i-2, Date.today.strftime("%Y").to_i-2]], :selected => Date.today.strftime("%Y")), :class => "form-control") %>
 	</div>
 	<div class="col-sm-3">
-		<%= select_tag(:supplier_id, options_from_collection_for_select(@suppliers, 'id', 'name'), :prompt => "#{t 'search'} #{t 'supplier.supplier'}", :class => "form-control") %>
+		<%= select_tag(:transaction_status, options_for_select([
+            ["#{t 'search'} #{t 'adjustment.transaction_status'}", ""],
+            ["#{t 'adjustment.in'}", "0"],
+            ["#{t 'adjustment.out'}", "1"]]), :class => "form-control") %>
 	</div>
 	<div class="col-sm-2">
 		<%= select_tag(:status, options_for_select([
-      ["#{t 'search'} #{t 'purchase.status_short'}", ""],
-      ["#{t 'new'}", "0"],
-      ["#{t 'close'}", "1"], 
-      ["#{t 'void'}", "5"]]), :class => "form-control") %>
+            ["#{t 'search'} #{t 'adjustment.status_short'}", ""],
+            ["#{t 'new'}", "0"],
+            ["#{t 'close'}", "1"], 
+            ["#{t 'void'}", "5"]]), :class => "form-control") %>
 	</div>
 	<div class="col-sm-2">
 	  <%= submit_tag "#{t 'process'}", :disable_with => "#{t 'disable_with'}", :class => "btn btn-success" %>
-	  <%= link_to "#{t 'reset'}", purchases_path, :class => "btn btn-default" %>
+	  <%= link_to "#{t 'reset'}", adjustments_path, :class => "btn btn-default" %>
 	</div>
 </div>
 <% end %>

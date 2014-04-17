@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  pa_id: MyString
+  transaction_date: 2014-04-17
+  transaction_status: 1
+  status: 1
+  notes: MyText
+
+two:
+  pa_id: MyString
+  transaction_date: 2014-04-17
+  transaction_status: 1
+  status: 1
+  notes: MyText

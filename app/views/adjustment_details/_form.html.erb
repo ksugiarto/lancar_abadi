@@ -1,0 +1,60 @@
+<div class="row">
+  <div class="col-md-5">
+    <%= form_for([@adjustment, @adjustment_detail], :html => { :class => "form-horizontal" }, :remote => true) do |f| %>
+      <% if @adjustment_detail.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@adjustment_detail.errors.count, "error") %> prohibited this adjustment_detail from being saved:</h2>
+
+          <ul>
+          <% @adjustment_detail.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="form-group">
+        <%= f.label :product, "#{t 'adjustment.detail.product'}", :class => "col-sm-4 control-label" %>
+        <div class="col-sm-6">
+          <%= f.hidden_field :product_id %>
+          <% if @adjustment_detail.product_id.blank? %>
+            <%= text_field_tag :product_name, nil, :placeholder => "#{t 'adjustment.detail.product_placeholder'}", :readonly => true, :required => true, :class => "form-control" %>
+          <% else %>
+            <%= text_field_tag :product_name, @adjustment_detail.try(:product_detail), :placeholder => "#{t 'adjustment.detail.product_placeholder'}", :readonly => true, :required => true, :class => "form-control" %>
+          <% end %>
+        </div>
+        <div class="col-sm-1">
+          <%= link_to show_product_adjustment_adjustment_details_path(@adjustment), :class => "btn btn-default", :remote => true do %>
+            <span class="glyphicon glyphicon-search"></span>
+          <% end %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :quantity, "#{t 'adjustment.detail.quantity'}", :class => "col-sm-4 control-label" %>
+        <div class="col-sm-8"><%= f.text_field :quantity, :class => "form-control" %></div>
+      </div>
+      <div class="form-group">
+        <%= f.label :quantity_print, "#{t 'adjustment.detail.quantity_print'}", :class => "col-sm-4 control-label" %>
+        <div class="col-sm-8"><%= f.text_field :quantity_print, :placeholder => "#{t 'adjustment.detail.quantity_print_placeholder'}", :class => "form-control" %></div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-8"><%= f.submit "#{t 'submit'}", :class => "btn btn-success btn-block", :disable_with => "#{t 'disable_with'}" %></div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="col-md-7">
+    <div id="product_filter" style="display:none;">
+      <%= form_tag(search_product_adjustment_adjustment_details_path, :class => "form-horizontal", :remote => true) do |f| %>
+        <div class="form-group">
+          <div class="col-sm-9"><%= text_field_tag :keyword, nil, :placeholder => "#{t 'adjustment.detail.search_product_placeholder'}", :class => "form-control" %></div>
+          <div class="col-sm-2"><%= submit_tag "#{t 'search'}", :class => "btn btn-success btn-default", :disable_with => "#{t 'disable_with'}" %></div>
+        </div>
+      <% end -%>
+    </div>
+
+    <div id="product_list" style="width:550px; height:350px; overflow:auto;">
+    </div>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<table id="adjustment_detail_table" class="table table-condensed table-striped">
+  <tr>
+    <th><%= t 'adjustment.detail.product' %></th>
+    <th class="text-right"><%= t 'adjustment.detail.quantity' %></th>
+    <th class="text-right"><%= t 'adjustment.detail.quantity_print' %></th>
+    <th class="text-right"><%= link_to "#{t 'new'}", new_adjustment_adjustment_detail_path(@adjustment), :class => "btn btn-default btn-xs", :remote => true if @adjustment.status==0 %></th>
+  </tr>
+
+<% @adjustment.details.each do |adjustment_detail| %>
+  <tr>
+    <td><%= adjustment_detail.product_detail %></td>
+    <td class="text-right"><%= round_precision(adjustment_detail.quantity) %></td>
+    <td class="text-right"><%= round_precision(adjustment_detail.quantity_print) %></td>
+    <td class="text-right">
+      <%= link_to "#{t 'edit'}", edit_adjustment_adjustment_detail_path(@adjustment, adjustment_detail), :class => "btn btn-warning btn-xs", :remote => true if @adjustment.status==0 %>
+      <%= link_to "#{t 'delete'}", adjustment_adjustment_detail_path(@adjustment, adjustment_detail), method: :delete, data: { confirm: "#{t 'confirm'}" }, :class => "btn btn-danger btn-xs", :remote => true if @adjustment.status==0 %>
+    </td>
+  </tr>
+<% end %>
+</table>

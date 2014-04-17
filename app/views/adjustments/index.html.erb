@@ -1,19 +1,19 @@
 <div class="row">
-  <div class="col-md-4">
+  <div class="col-md-2">
   </div>
   
-  <div class="col-md-4">
-    <h4 align="center"><%= t 'leave_day.leave_days' %></h4>
+  <div class="col-md-8">
+    <h4 align="center"><%= t 'adjustment.adjustments' %></h4>
   </div>
 
-  <div class="col-md-4" align="right">
-    <%= link_to new_emp_month_path, :class => "btn btn-default btn-sm" do %>
-      <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;<%= t 'leave_day.new' %>
+  <div class="col-md-2" align="right">
+    <%= link_to new_adjustment_path, :class => "btn btn-default btn-sm", :remote => true do %>
+      <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;<%= t 'new' %>
     <% end %>
   </div>
 </div>
 
-<!-- <div class="panel-group" id="accordion">
+<div class="panel-group" id="accordion">
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
@@ -24,12 +24,11 @@
     </div>
     <div id="collapseOne" class="panel-collapse collapse">
       <div class="panel-body">
-        <%=# render 'filter/employee' 
-        %>
+        <%= render 'filter/adjustment' %>
       </div>
     </div>
   </div>
-</div> -->
+</div>
 
 <div id="table"><%= render 'table' %></div>
 
@@ -37,7 +36,7 @@
 
 <!-- Modal -->
 <div id="general_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="BranchModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog" style="width:900px;">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>

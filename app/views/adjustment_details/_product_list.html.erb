@@ -1,0 +1,25 @@
+<%= will_paginate @products, :params => {:controller => "adjustment_details", :action => "show_product", :adjustment_id => @adjustment.id, :keyword => @keyword}, :class => "apple_pagination" %>
+
+<table class="table table-condensed table-striped">
+  <tr>
+    <th width="1%"></th>
+    <th><%= t 'product.name' %></th>
+    <th><%= t 'product.product_type' %></th>
+    <th><%= t 'product.merk' %></th>
+    <th><%= t 'product.size' %></th>
+  </tr>
+
+<% @products.each do |product| %>
+  <tr>
+    <td> 
+        <%= link_to pick_product_adjustment_adjustment_details_path(@adjustment.id, :product_id => product.id), :remote => true, :class => "btn btn-default btn-xs" do %>
+          <span class="glyphicon glyphicon-ok"></span>
+        <% end -%>
+    </td>
+    <td><%= product.name %></td>
+    <td><%= product.product_type %></td>
+    <td><%= product.merk %></td>
+    <td><%= product.size %></td>
+  </tr>
+<% end %>
+</table>

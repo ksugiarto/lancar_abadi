@@ -4,6 +4,7 @@ class CreateEmpDates < ActiveRecord::Migration
       t.references :emp_month
       t.integer :date_order
       t.integer :total_top_grade, :default => 0
+      t.integer :female_emp, :default => 0
       t.integer :total_emp, :default => 0
 
       t.timestamps

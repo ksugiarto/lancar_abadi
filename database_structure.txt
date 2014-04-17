@@ -178,6 +178,18 @@ EMP_DATE_DETAIL
 emp_date:references 
 employee:references
 
+ADJUSTMENT
+pa_id:string 
+transaction_date:date 
+transaction_status:integer 
+status:integer 
+notes:text 
+
+ADJUSTMENT_DETAIL
+adjustment:references 
+product:references 
+quantity:decimal 
+
 ==================== BELOWS ARE THOSE NOT YET IMPLEMENT
 
 CUSTOMER_DISCOUNT

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  adjustment: 
+  product: 
+  quatity: 9.99
+
+two:
+  adjustment: 
+  product: 
+  quatity: 9.99
