@@ -228,6 +228,9 @@ id:
     employees: "Pegawai"
     employee: "Daftar Pegawai"
     name: "Nama"
+    gender: "Jenis Kelamin"
+    male: "Laki-laki"
+    female: "Perempuan"
     grade: "Grade"
 
   leave_day:

@@ -16,6 +16,12 @@
     <div class="col-sm-6"><%= f.text_field :name, :required => true, :class => "form-control" %></div>
   </div>
   <div class="form-group">
+    <%= f.label :name, :class => "col-sm-4 control-label" %>
+    <div class="col-sm-6"><%= f.select(:gender, options_for_select([
+          ["#{t 'employee.male'}", 1], 
+          ["#{t 'employee.female'}", 2]], :selected => @employee.gender.to_i), {}, {:class => "form-control"}) %></div>
+  </div>
+  <div class="form-group">
     <%= f.label :grade, :class => "col-sm-4 control-label" %>
     <div class="col-sm-6"><%= f.number_field :grade, :class => "form-control" %></div>
   </div>

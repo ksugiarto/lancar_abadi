@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140417045905) do
+ActiveRecord::Schema.define(:version => 20140417072250) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -120,6 +120,7 @@ ActiveRecord::Schema.define(:version => 20140417045905) do
     t.integer  "total_emp",       :default => 0
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
+    t.integer  "female_emp"
   end
 
   add_index "emp_dates", ["emp_month_id"], :name => "index_emp_dates_on_emp_month_id"
@@ -137,6 +138,8 @@ ActiveRecord::Schema.define(:version => 20140417045905) do
     t.integer  "total_leave_day", :default => 0
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
+    t.integer  "gender"
+    t.integer  "last_leave_day"
   end
 
   create_table "product_purchases", :force => true do |t|

@@ -158,7 +158,9 @@ secondary_bank_account_name:string
 
 EMPLOYEE
 name:string 
+gender:string 
 grade:integer 
+last_leave_day:integer 
 total_leave_day:integer 
 
 EMP_MONTH
@@ -170,6 +172,7 @@ emp_month:references
 date_order:integer 
 total_top_grade:integer 
 total_emp:integer 
+female_emp:integer 
 
 EMP_DATE_DETAIL
 emp_date:references 

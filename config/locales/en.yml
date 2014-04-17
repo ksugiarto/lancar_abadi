@@ -227,6 +227,9 @@ en:
     employees: "Employees"
     employee: "Employee"
     name: "Name"
+    gender: "Gender"
+    male: "Male"
+    female: "Female"
     grade: "Grade"
 
   leave_day:
