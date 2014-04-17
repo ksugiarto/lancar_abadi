@@ -18,15 +18,18 @@
 		<th class="text-right" width="50"><%= t 'leave_day.date' %></th>
 		<th><%= t 'leave_day.name' %></th>
 		<th><%= t 'leave_day.name' %></th>
+		<th><%= t 'leave_day.name' %></th>
 	</tr>
 	<% @emp_month.dates.order(:date_order).each do |date| %>
 		<tr>
 			<th class="text-right"><%= date.date_order %></th>
-			
 				<% date.details.each do |detail| %>
 					<td><%= detail.try(:employee).try(:name) %></td>
 				<% end %>
-			
+
+				<% (1..3-date.details.length).each do |i| %>
+					<td></td>
+				<% end %>
 		</tr>
 	<% end %>
 </table>
