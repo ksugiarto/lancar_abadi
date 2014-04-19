@@ -138,9 +138,9 @@ class Product < ActiveRecord::Base
           barcode = row["BARCODE"].to_i
         end
 
-        supplier = Supplier.where("name ~* '#{row['SUPPLIER']}'").last
+        supplier = Supplier.find_by_name(row["SUPPLIER"])
         if supplier.blank?
-          supplier = Supplier.create(:name => row["SUPPLIER"])
+          supplier = Supplier.create(:supplier_code => row["SUPPLIER CODE"], :name => row["SUPPLIER"])
         end
 
         if row["CATEGORY"]="Sparepart"
@@ -150,7 +150,7 @@ class Product < ActiveRecord::Base
             sales_price = row["HARGA"].to_f*1.5
           end
         else
-          sales_price = 0
+          sales_price = row["HARGA JUAL"].to_f
         end
 
         if status=="new"

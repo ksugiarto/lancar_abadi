@@ -33,6 +33,13 @@ LancarAbadi::Application.routes.draw do
         get :pick_product
       end
     end
+
+    member do
+      get :print_barcode
+      get :print_sticker
+      get :import
+      post :import_submit
+    end
   end
 
   resources :sales do
@@ -60,6 +67,7 @@ LancarAbadi::Application.routes.draw do
     member do
       get :edit_footer
       get :print_barcode
+      get :print_sticker
     end
     
     collection do

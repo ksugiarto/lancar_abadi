@@ -3,6 +3,10 @@
     <%= link_to adjustments_path, :class => "btn btn-default btn-sm" do %>
       <span class="glyphicon glyphicon-chevron-left"></span>&nbsp;<%= t 'back' %>
     <% end %>
+
+    <%= link_to import_adjustment_path(@adjustment), :class => "btn btn-success btn-sm", :remote => true do %>
+      <span class="glyphicon glyphicon-open"></span>&nbsp;<%= t 'import_excel' %>
+    <% end %>
   </div>
   
   <div class="col-md-4">
@@ -12,6 +16,10 @@
   <div class="col-md-4" align="right">
     <% if @adjustment.status==0 %>
       <%= form_for(@adjustment) do |f| %>
+        <%= link_to print_sticker_adjustment_path(@adjustment, :format => "pdf"), :target => "_blank", :class => "btn btn-warning btn-sm" do %>
+          <%= "#{t 'print'} #{t 'product.sticker'}" %>&nbsp;<span class="glyphicon glyphicon-print"></span>
+        <% end %>
+
         <%= f.hidden_field :status, :value => 1 %>
         <%= button_tag :type => "submit", :class => "btn btn-success btn-sm", :disable_with => "#{t 'disable_with'}" do %>
           <%= t 'close' %>&nbsp;<span class="glyphicon glyphicon-lock"></span>
@@ -23,8 +31,15 @@
       <% end -%>
     <% elsif @adjustment.status==1 %>
       <%= form_for(@adjustment) do |f| %>
-        <%= f.hidden_field :status, :value => 5 %>
+        <%= link_to print_sticker_adjustment_path(@adjustment, :format => "pdf"), :target => "_blank", :class => "btn btn-warning btn-sm" do %>
+          <%= "#{t 'print'} #{t 'product.sticker'}" %>&nbsp;<span class="glyphicon glyphicon-print"></span>
+        <% end %>
 
+        <%= link_to print_barcode_adjustment_path(@adjustment, :format => "pdf"), :target => "_blank", :class => "btn btn-warning btn-sm" do %>
+          <%= "#{t 'print'} #{t 'product.barcode_id'}" %>&nbsp;<span class="glyphicon glyphicon-barcode"></span>
+        <% end %>
+
+        <%= f.hidden_field :status, :value => 5 %>
         <%= button_tag :type => "submit", :class => "btn btn-danger btn-sm", :disable_with => "#{t 'disable_with'}", data: { confirm: "#{t 'confirm'}" } do %>
           <%= t 'void' %>&nbsp;<span class="glyphicon glyphicon-lock"></span>
         <% end -%>

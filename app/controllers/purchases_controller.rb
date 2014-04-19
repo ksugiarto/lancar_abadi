@@ -131,4 +131,16 @@ class PurchasesController < ApplicationController
       end 
     end
   end
+
+  def print_sticker
+    @purchase = Purchase.find(params[:id])
+
+    respond_to do |format|
+      format.pdf do
+        pdf = ProductStickerPdf.new(@purchase, view_context)
+        send_data pdf.render, filename: "#{I18n.t 'print'} #{I18n.t 'product.barcode_id'} #{Time.now.strftime("%Y-%m-%d %H:%M:%S")}.pdf",
+        type: "application/pdf", :disposition => "inline"
+      end 
+    end
+  end
 end

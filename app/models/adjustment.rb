@@ -123,4 +123,96 @@ class Adjustment < ActiveRecord::Base
       scoped
     end
   end
+
+  def self.import(file, adjustment_id)
+    spreadsheet = open_spreadsheet(file)
+    spreadsheet.sheets.each do |sheet| # looping all sheet
+      spreadsheet.default_sheet = "#{sheet}" # picking current sheet as default to be processing
+      header = spreadsheet.row(1)
+      (2..spreadsheet.last_row).each do |i| # looping all excel data
+        row = Hash[[header, spreadsheet.row(i)].transpose]
+
+        if row["CATEGORY"].present?
+          category_id = Category.find_by_name(row["CATEGORY"]).try(:id)
+        else
+          category_id = 0
+        end
+
+        if row["TYPE"].to_i==0
+          product_type = row["TYPE"]
+        else
+          product_type = row["TYPE"].to_i
+        end
+
+        # CHECKING IF NECESSARY DATA IS PRESENT
+        existing_product = Product.where(:name => row["NAMA BARANG"], :product_type => product_type, :merk => row["MERK"]).last
+        if existing_product.present?
+          product_id = existing_product.id
+          status="edit"
+        else
+          status="new"
+        end
+        # END CHECKING IF NECESSARY DATA IS PRESENT
+
+        if row["BARCODE"].blank?
+          barcode = "%05i" % (Product.last.try(:barcode_id).to_i+1).to_s
+        elsif row["BARCODE"].to_i==0
+          barcode = row["BARCODE"]
+        else
+          barcode = row["BARCODE"].to_i
+        end
+
+        supplier = Supplier.where("name ~* '#{row['SUPPLIER']}'").last
+        if supplier.blank?
+          supplier = Supplier.create(:name => row["SUPPLIER"])
+        end
+
+        if row["CATEGORY"]="Sparepart"
+          if row["HARGA"].to_f < 10000
+            sales_price = row["HARGA"].to_f*2
+          else
+            sales_price = row["HARGA"].to_f*1.5
+          end
+        else
+          sales_price = row["HARGA JUAL"].to_f
+        end
+
+        if status=="new"
+          existing_product = Product.create(:category_id => category_id,
+                                            :barcode_id => barcode, 
+                                            :name => row["NAMA BARANG"], 
+                                            :product_type => product_type, 
+                                            :merk => row["MERK"], 
+                                            :size => "", 
+                                            :supplier_id => supplier.id,
+                                            :unit_of_measure_id => 0, 
+                                            :sales_price => sales_price, 
+                                            :can_be_purchase => true, 
+                                            :can_be_sale => true)
+        elsif status=="edit"
+          existing_product.update_attributes(:supplier_id => supplier.id,
+                                             :unit_of_measure_id => 0, 
+                                             :sales_price => sales_price, 
+                                             :can_be_purchase => true, 
+                                             :can_be_sale => true)
+        end
+
+        # CREATING ADJUSTMENT
+        adjustment = Adjustment.find(adjustment_id)
+        adjustment.details.create(:product_id => existing_product.id, 
+                                  :quantity => row["QTY"].to_f,
+                                  :quantity_print => row["QTY PRINT"].to_f)
+        # CREATING ADJUSTMENT
+      end # looping all excel data
+    end # looping all sheet
+  end
+
+  def self.open_spreadsheet(file)
+    case File.extname(file.original_filename)
+    when '.csv' then Roo::Csv.new(file.path, nil, :ignore)
+    when '.xls' then Roo::Excel.new(file.path, nil, :ignore)
+    when '.xlsx' then Roo::Excelx.new(file.path, nil, :ignore)
+    else raise "Unknown file type: #{file.original_filename}"
+    end
+  end
 end

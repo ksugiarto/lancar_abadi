@@ -69,6 +69,7 @@ en:
       transaction: "Transaction"
       purchase: "Purchases"
       sale: "Sales"
+      adjustment: "Adjustment"
       product_sparepart: "Sparepart"
       product_unit: "Unit"
       customer: "Customer"
@@ -157,6 +158,7 @@ en:
       category: "Category"
       notes: "Notes"
     phone:
+      phones: "Phones"
       phone: "Phone"
       country_ext: "Country EXT."
       phone_number: "Phone Number"
@@ -196,6 +198,7 @@ en:
     units: "Units"
     product: "Product"
     category: "Category"
+    sticker: "Label"
     barcode_id: "Barcode ID"
     barcode_id_placeholder: "Leave blank for auto generate"
     supplier: "Supplier"

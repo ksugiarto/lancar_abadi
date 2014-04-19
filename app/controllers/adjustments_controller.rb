@@ -88,4 +88,41 @@ class AdjustmentsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def print_barcode
+    @adjustment = Adjustment.find(params[:id])
+
+    respond_to do |format|
+      format.pdf do
+        pdf = ProductBarcodePdf.new(@adjustment, view_context)
+        send_data pdf.render, filename: "#{I18n.t 'print'} #{I18n.t 'product.barcode_id'} #{Time.now.strftime("%Y-%m-%d %H:%M:%S")}.pdf",
+        type: "application/pdf", :disposition => "inline"
+      end 
+    end
+  end
+
+  def print_sticker
+    @adjustment = Adjustment.find(params[:id])
+
+    respond_to do |format|
+      format.pdf do
+        pdf = ProductStickerPdf.new(@adjustment, view_context)
+        send_data pdf.render, filename: "#{I18n.t 'print'} #{I18n.t 'product.barcode_id'} #{Time.now.strftime("%Y-%m-%d %H:%M:%S")}.pdf",
+        type: "application/pdf", :disposition => "inline"
+      end 
+    end
+  end
+
+  def import
+    @adjustment = Adjustment.find(params[:id])
+  end
+
+  def import_submit
+    @adjustment = Adjustment.find(params[:id])
+    Adjustment.import(params[:file], @adjustment.id)
+    
+    respond_to do |format|
+      format.html { redirect_to @adjustment, notice: "File telah berhasil diimport." }
+    end
+  end
 end

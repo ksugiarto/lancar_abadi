@@ -198,6 +198,7 @@ id:
     units: "Daftar Unit"
     product: "Barang"
     category: "Kategori"
+    sticker: "Label"
     barcode_id: "Kode Barcode"
     barcode_id_placeholder: "Kosongkan untuk otomatis"
     supplier: "Supplier"

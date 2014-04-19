@@ -1,4 +1,4 @@
-class ProductBarcodePdf < Prawn::Document
+class ProductStickerPdf < Prawn::Document
   def initialize(model, view)
   super(:page_size => [498.5, 769.5], :page_laytout => :landscape)
     @model = model
@@ -25,27 +25,22 @@ class ProductBarcodePdf < Prawn::Document
   end
 
   def barcode
-    x=0
-    # y=665
-    y=680
+    x=-15
+    y=710
     @model.details.each do |detail| # looping all details
       (1..detail.quantity_print).each do |i| # looping as much the quantity print
-        barcode = Barby::Code128B.new("#{detail.product.try(:barcode_id)}-#{detail.product.try(:purchases).last.try(:barcode_id)}")
+        text_box "#{detail.product.try(:name)} #{detail.product.try(:product_type)} #{detail.product.try(:merk)}", :at => [x, y], :size => 6
+        text_box "#{detail.product.try(:supplier).try(:supplier_code)}#{detail.product.try(:purchases).last.try(:barcode_id)}-#{precision(detail.product.try(:sales_price).to_f)}", :at => [x, y-6], :size => 6
 
-        # Barby::PrawnOutputter.new(barcode).to_pdf
-        barcode.annotate_pdf(self, :x => x, :y => y, :height => 30)
-
-        text_box "#{detail.product.try(:barcode_id)}-#{detail.product.try(:purchases).last.try(:barcode_id)} | #{detail.product.try(:name)} #{detail.product.try(:product_type)} #{detail.product.try(:merk)} | #{precision(detail.product.try(:sales_price).to_f)}", :at => [x, y-2], :size => 6
-
-        if x>=100
-          x=0
-          y-=50
-        elsif y<=50
+        if x>=200
+          x=-15
+          y-=20
+        elsif y<=30
           start_new_page
-          x=0
-          y=680
+          x=-15
+          y=710
         else
-          x+=190
+          x+=130
         end
       end # looping as much the quantity print
     end # looping all details
