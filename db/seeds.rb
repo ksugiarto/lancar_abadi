@@ -41,8 +41,8 @@ bakul = CustomerGroup.create(:initial => "BT", :name => "Bakul/Toko", :descripti
 
 # bearing = Category.create(:name => "Bearing", :code => "B01")
 # filter = Category.create(:name => "Filter", :code => "F01")
-sparepart = Category.create(:name => "Sparepart")
-unit = Category.create(:name => "Unit")
+sparepart = Category.create(:name => "SPAREPART")
+unit = Category.create(:name => "UNIT")
 
 # UnitOfMeasure.create(:name => "Gram")
 # UnitOfMeasure.create(:name => "Kg")

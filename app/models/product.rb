@@ -14,14 +14,14 @@ class Product < ActiveRecord::Base
   end
 
   def self.sparepart
-    sparepart = Category.find_by_name("Sparepart")
+    sparepart = Category.find_by_name("SPAREPART")
     if sparepart.present?
       where(:category_id => sparepart.id).order(:name, :product_type, :merk)
     end
   end
 
   def self.unit
-    unit = Category.find_by_name("Unit")
+    unit = Category.find_by_name("UNIT")
     if unit.present?
       where(:category_id => unit.id).order(:name, :product_type, :merk)
     end
@@ -143,7 +143,7 @@ class Product < ActiveRecord::Base
           supplier = Supplier.create(:supplier_code => row["SUPPLIER CODE"], :name => row["SUPPLIER"])
         end
 
-        if row["CATEGORY"]="Sparepart"
+        if row["CATEGORY"]="SPAREPART"
           if row["HARGA"].to_f < 10000
             sales_price = row["HARGA"].to_f*2
           else
