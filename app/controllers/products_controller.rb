@@ -83,6 +83,22 @@ class ProductsController < ApplicationController
     get_data_form
   end
 
+  def instant_new
+    @product = Product.new
+    category = Category.find_by_name("SPAREPART")
+    if category.present?
+      @product.category_id = category.id      
+    end
+    get_data_form
+
+    # if params[:sale_id].to_i==0
+      # @purchase = Purchase.find(params[:purchase_id])
+    # elsif params[:purchase_id].to_i==0
+      @sale = Sale.find(params[:sale_id])
+    # else
+    # end
+  end
+
   # GET /products/1/edit
   def edit
     @product = Product.find(params[:id])
@@ -105,6 +121,22 @@ class ProductsController < ApplicationController
         format.html { redirect_to @product, notice: 'Product was successfully created.' }
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def instant_create
+    @product = Product.create(params[:product])
+
+    @products = Product.search_product(params[:keyword])
+    .order(:name, :product_type, :merk)
+    .paginate(:page => params[:page], :per_page => 500)
+
+    @keyword = params[:keyword] if params[:keyword].present?
+
+    @sale = Sale.find(params[:sale_id])
+
+    respond_to do |format|
+      format.js
     end
   end
 

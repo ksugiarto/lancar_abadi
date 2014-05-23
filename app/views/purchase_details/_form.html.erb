@@ -28,6 +28,13 @@
             <span class="glyphicon glyphicon-search"></span>
           <% end %>
         </div>
+        <!-- 
+        <div class="col-sm-1">
+          <%= link_to instant_new_products_path(:purchase_id => @purchase.id), :class => "btn btn-default", :remote => true do %>
+            <span class="glyphicon glyphicon-plus"></span>
+          <% end %>
+        </div>
+         -->
       </div>
       <div class="form-group">
         <%= f.label :quantity, "#{t 'purchase.detail.quantity'}", :class => "col-sm-4 control-label" %>

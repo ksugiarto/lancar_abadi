@@ -110,6 +110,8 @@ LancarAbadi::Application.routes.draw do
 
   resources :products do
     collection do
+      get :instant_new
+      post :instant_create
       get :import
       post :import_submit
       get :generate_barcode
