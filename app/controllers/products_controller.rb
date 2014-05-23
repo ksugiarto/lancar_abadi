@@ -95,14 +95,14 @@ class ProductsController < ApplicationController
     @product = Product.new(params[:product])
 
     respond_to do |format|
-      if @product.save && @product.try(:category).try(:name)=="Sparepart"
+      if @product.save && @product.try(:category).try(:name)=="SPAREPART"
         format.html { redirect_to @product, notice: 'Product was successfully created.' }
         format.json { render json: @product, status: :created, location: @product }
-      elsif @product.save && @product.try(:category).try(:name)=="Unit"
+      elsif @product.save && @product.try(:category).try(:name)=="UNIT"
         format.html { redirect_to unit_show_product_path(@product), notice: 'Product was successfully created.' }
         format.json { render json: @product, status: :created, location: @product }
       else
-        format.html { render action: "new" }
+        format.html { redirect_to @product, notice: 'Product was successfully created.' }
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
     end
@@ -114,14 +114,14 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
 
     respond_to do |format|
-      if @product.update_attributes(params[:product]) && @product.try(:category).try(:name)=="Sparepart"
+      if @product.update_attributes(params[:product]) && @product.try(:category).try(:name)=="SPAREPART"
         format.html { redirect_to @product, notice: 'Product was successfully updated.' }
         format.json { head :no_content }
-      elsif @product.update_attributes(params[:product]) && @product.try(:category).try(:name)=="Unit"
+      elsif @product.update_attributes(params[:product]) && @product.try(:category).try(:name)=="UNIT"
         format.html { redirect_to unit_show_product_path(@product), notice: 'Product was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { redirect_to @product }
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
     end
