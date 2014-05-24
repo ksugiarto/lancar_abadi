@@ -93,9 +93,14 @@ class Sale < ActiveRecord::Base
           else
             last_closed_sale = Sale.order(:id).where(:status => 1).last
 
-            stock.update_attributes(:stock_real => stock.stock_real.to_f + detail.quantity.to_f, 
-                                    :stock_ready => stock.stock_ready.to_f + detail.quantity.to_f, 
-                                    :last_sale => last_closed_sale.try(:transaction_date).to_time.localtime.strftime("%Y-%m-%d"))
+            if last_closed_sale.present?
+              stock.update_attributes(:stock_real => stock.stock_real.to_f + detail.quantity.to_f, 
+                                      :stock_ready => stock.stock_ready.to_f + detail.quantity.to_f, 
+                                      :last_sale => last_closed_sale.try(:transaction_date).to_time.localtime.strftime("%Y-%m-%d"))
+            else
+              stock.update_attributes(:stock_real => stock.stock_real.to_f + detail.quantity.to_f, 
+                                      :stock_ready => stock.stock_ready.to_f + detail.quantity.to_f)
+            end
           end
       else
       end # checking sale status
