@@ -1,4 +1,5 @@
 LancarAbadi::Application.routes.draw do
+
   resources :system_languages do
     collection do
       get :change_language
@@ -123,6 +124,7 @@ LancarAbadi::Application.routes.draw do
       get :unit_show
     end
     
+    resources :product_details
     resources :product_purchases
   end
 

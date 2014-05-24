@@ -1,7 +1,8 @@
 class PurchaseDetail < ActiveRecord::Base
   belongs_to :purchase
   belongs_to :product
-  attr_accessible :purchase_id, :product_id, :added_discount, :amount, :discount, :price, :quantity, :quantity_print
+  belongs_to :unit_of_measure
+  attr_accessible :purchase_id, :product_id, :added_discount, :amount, :discount, :price, :quantity, :quantity_print, :unit_of_measure_id
 
   before_save :amount_calculation
   before_save :get_quantity_print

@@ -2,6 +2,8 @@ class Product < ActiveRecord::Base
   belongs_to :category
   belongs_to :supplier
   belongs_to :unit_of_measure
+  
+  has_many :details, :class_name => "ProductDetail"
   has_many :purchases, :class_name => "ProductPurchase"
   has_one :stock, :class_name => "Stock"
 

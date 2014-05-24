@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  product: 
+  unit_of_measure: 
+  sales_price: 9.99
+
+two:
+  product: 
+  unit_of_measure: 
+  sales_price: 9.99

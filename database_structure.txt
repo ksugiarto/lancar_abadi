@@ -75,6 +75,11 @@ size:string
 unit_of_measure:references 
 sales_price:decimal 
 
+PRODUCT_DETAIL
+product:references 
+unit_of_measure:references 
+sales_price:decimal 
+
 PURCHASE
 pi_id:string 
 transaction_date:date 

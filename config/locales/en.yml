@@ -209,6 +209,10 @@ en:
     unit_of_measure: "Unit of Measure"
     sales_price: "Sales Price"
     price: "Price"
+    detail:
+      detail: "Detail"
+      unit_of_measure: "Unit of Measure"
+      sales_price: "Sales Price"
     purchase:
       purchase: "History of Product Purchasing"
       barcode_id: "Barcode ID"
@@ -277,6 +281,8 @@ en:
       quantity: "Quantity"
       quantity_print: "Quantity Print"
       quantity_print_placeholder: "Leave blank will use quantity"
+      unit_of_measure: "Unit of Measure"
+      unit: "Unit"
       price: "Price"
       price_rp: "Price (Rp)"
       discount: "Discount"
@@ -320,6 +326,8 @@ en:
       product_placeholder: "Pick product from the list"
       search_product_placeholder: "Search Product"
       quantity: "Quantity"
+      unit_of_measure: "Unit of Measure"
+      unit: "Unit"
       price: "Price"
       price_rp: "Price (Rp)"
       discount: "Discount"

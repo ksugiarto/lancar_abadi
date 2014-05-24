@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140417105058) do
+ActiveRecord::Schema.define(:version => 20140524162024) do
 
   create_table "adjustment_details", :force => true do |t|
     t.integer  "adjustment_id"
@@ -164,6 +164,17 @@ ActiveRecord::Schema.define(:version => 20140417105058) do
     t.datetime "updated_at",                     :null => false
   end
 
+  create_table "product_details", :force => true do |t|
+    t.integer  "product_id"
+    t.integer  "unit_of_measure_id"
+    t.decimal  "sales_price"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  add_index "product_details", ["product_id"], :name => "index_product_details_on_product_id"
+  add_index "product_details", ["unit_of_measure_id"], :name => "index_product_details_on_unit_of_measure_id"
+
   create_table "product_purchases", :force => true do |t|
     t.string   "barcode_id"
     t.integer  "purchase_id"
@@ -211,14 +222,15 @@ ActiveRecord::Schema.define(:version => 20140417105058) do
   create_table "purchase_details", :force => true do |t|
     t.integer  "purchase_id"
     t.integer  "product_id"
-    t.decimal  "quantity",       :precision => 12, :scale => 5, :default => 1.0
-    t.integer  "quantity_print",                                :default => 1
-    t.decimal  "price",          :precision => 18, :scale => 2, :default => 0.0
-    t.decimal  "discount",       :precision => 12, :scale => 5, :default => 0.0
-    t.decimal  "added_discount", :precision => 18, :scale => 2, :default => 0.0
-    t.decimal  "amount",         :precision => 18, :scale => 2, :default => 0.0
-    t.datetime "created_at",                                                     :null => false
-    t.datetime "updated_at",                                                     :null => false
+    t.decimal  "quantity",           :precision => 12, :scale => 5, :default => 1.0
+    t.integer  "quantity_print",                                    :default => 1
+    t.decimal  "price",              :precision => 18, :scale => 2, :default => 0.0
+    t.decimal  "discount",           :precision => 12, :scale => 5, :default => 0.0
+    t.decimal  "added_discount",     :precision => 18, :scale => 2, :default => 0.0
+    t.decimal  "amount",             :precision => 18, :scale => 2, :default => 0.0
+    t.datetime "created_at",                                                         :null => false
+    t.datetime "updated_at",                                                         :null => false
+    t.integer  "unit_of_measure_id"
   end
 
   add_index "purchase_details", ["product_id"], :name => "index_purchase_details_on_product_id"
@@ -247,13 +259,14 @@ ActiveRecord::Schema.define(:version => 20140417105058) do
   create_table "sale_details", :force => true do |t|
     t.integer  "sale_id"
     t.integer  "product_id"
-    t.decimal  "quantity",       :precision => 12, :scale => 5, :default => 1.0
-    t.decimal  "price",          :precision => 18, :scale => 2, :default => 0.0
-    t.decimal  "discount",       :precision => 12, :scale => 5, :default => 0.0
-    t.decimal  "added_discount", :precision => 18, :scale => 2, :default => 0.0
-    t.decimal  "amount",         :precision => 18, :scale => 2, :default => 0.0
-    t.datetime "created_at",                                                     :null => false
-    t.datetime "updated_at",                                                     :null => false
+    t.decimal  "quantity",           :precision => 12, :scale => 5, :default => 1.0
+    t.decimal  "price",              :precision => 18, :scale => 2, :default => 0.0
+    t.decimal  "discount",           :precision => 12, :scale => 5, :default => 0.0
+    t.decimal  "added_discount",     :precision => 18, :scale => 2, :default => 0.0
+    t.decimal  "amount",             :precision => 18, :scale => 2, :default => 0.0
+    t.datetime "created_at",                                                         :null => false
+    t.datetime "updated_at",                                                         :null => false
+    t.integer  "unit_of_measure_id"
   end
 
   add_index "sale_details", ["product_id"], :name => "index_sale_details_on_product_id"

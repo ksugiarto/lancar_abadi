@@ -39,6 +39,10 @@
         <div class="col-sm-8"><%= f.text_field :quantity, :class => "form-control" %></div>
       </div>
       <div class="form-group">
+        <%= f.label :unit_of_measure_id, "#{t 'sale.detail.unit_of_measure'}", :class => "col-sm-4 control-label" %>
+        <div class="col-sm-8"><%= f.select(:unit_of_measure_id, @product_units.collect {|unit| [unit.try(:unit_of_measure).try(:name), unit.try(:unit_of_measure).try(:id)]}, {:prompt => "#{t 'prompt'} #{t 'sale.detail.unit_of_measure'}"}, :class => "form-control") %></div>
+      </div>
+      <div class="form-group">
         <%= f.label :price, "#{t 'sale.detail.price'}", :class => "col-sm-4 control-label" %>
         <div class="col-sm-1"><%= label_tag :rp, "Rp", :class => "control-label" %></div>
         <div class="col-sm-7"><%= f.text_field :price, :class => "form-control" %></div>

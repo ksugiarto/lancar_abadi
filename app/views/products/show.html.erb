@@ -28,11 +28,13 @@
 <!-- Nav tabs -->
 <ul class="nav nav-tabs">
   <li class="active"><a href="#purchase" data-toggle="tab"><%= t 'product.purchase.purchase' %></a></li>
+  <li><a href="#detail" data-toggle="tab"><%= t 'product.detail.detail' %></a></li>
 </ul>
 
 <!-- Tab panes -->
 <div class="tab-content" style="height:350px; overflow:auto;">
   <div class="tab-pane active" id="purchase"><%= render 'product_purchases/table' %></div>
+  <div class="tab-pane" id="detail"><%= render 'product_details/table' %></div>
 </div>
 
 <div id="modal"></div>

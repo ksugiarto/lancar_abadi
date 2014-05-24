@@ -1,7 +1,8 @@
 class SaleDetail < ActiveRecord::Base
   belongs_to :sale
   belongs_to :product
-  attr_accessible :sale_id, :product_id, :added_discount, :amount, :discount, :price, :quantity
+  belongs_to :unit_of_measure
+  attr_accessible :sale_id, :product_id, :added_discount, :amount, :discount, :price, :quantity, :unit_of_measure_id
 
   before_save :amount_calculation
   after_save :sub_amount_calculation

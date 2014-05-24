@@ -1,6 +1,7 @@
 class SaleDetailsController < ApplicationController
   def get_data
     @sale = Sale.find(params[:sale_id])
+    @product_units = UnitOfMeasure.where(:id => 0)
   end
 
   def get_product
@@ -24,6 +25,8 @@ class SaleDetailsController < ApplicationController
   def pick_product
     get_data
     @product = Product.find(params[:product_id])
+    @product_unit_default = UnitOfMeasure.find_by_id(@product.try(:unit_of_measure_id).to_i)
+    @product_units = @product.details.order(:id)
     @purchase_prices = @product.purchases.order(:id).reverse_order.limit(5)
 
     store_cust_group = CustomerGroup.find_by_name("Bakul/Toko")
@@ -65,6 +68,9 @@ class SaleDetailsController < ApplicationController
   def edit
     get_data
     @sale_detail = @sale.details.find(params[:id])
+    @product = Product.find(@sale_detail.product_id)
+    @product_unit_default = UnitOfMeasure.find_by_id(@product.try(:unit_of_measure_id).to_i)
+    @product_units = @product.details.order(:id)
   end
 
   # POST /sale_details

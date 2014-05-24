@@ -209,6 +209,10 @@ id:
     unit_of_measure: "Satuan Ukuran"
     sales_price: "Harga Ecer"
     price: "Harga"
+    detail:
+      detail: "Detil"
+      unit_of_measure: "Satuan Ukuran"
+      sales_price: "Harga Ecer"
     purchase:
       purchase: "Riwayat Pembelian Barang"
       barcode_id: "Kode Barcode"
@@ -278,6 +282,8 @@ id:
       quantity: "Kuantitas"
       quantity_print: "Kuantitas Cetak"
       quantity_print_placeholder: "Kosongkan u/ ikuti kuantitas"
+      unit_of_measure: "Satuan Ukuran"
+      unit: "Satuan"
       price: "Harga"
       price_rp: "Harga (Rp)"
       discount: "Diskon"
@@ -321,6 +327,8 @@ id:
       product_placeholder: "Pilih barang dari list"
       search_product_placeholder: "Cari Barang"
       quantity: "Kuantitas"
+      unit_of_measure: "Satuan Ukuran"
+      unit: "Satuan"
       price: "Harga"
       price_rp: "Harga (Rp)"
       discount: "Diskon"
