@@ -14,7 +14,7 @@
   <tr>
     <td class="text-right"><%= row_number+=1 %>.</td>
     <td><%= sale_detail.product_detail %></td>
-    <td class="text-right"><%= round_precision(sale_detail.quantity) %></td>
+    <td class="text-right"><%= precision(sale_detail.quantity) %></td>
     <td class="text-center"><%= sale_detail.try(:unit_of_measure).try(:name) %></td>
     <td class="text-right"><%= precision(sale_detail.price) %></td>
     <td class="text-right"><%= precision(sale_detail.discount) %></td>
