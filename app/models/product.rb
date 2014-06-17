@@ -74,9 +74,10 @@ class Product < ActiveRecord::Base
     end
   end
 
-  def self.search_product(name)
-  	if name.present?
-  		parts = name.split(" ")
+  def self.search_product(name, product_type, merk, size)
+  	if name.present? or product_type.present? or merk.present? or size.present?
+      where("name ~* '#{name}' AND product_type ~* '#{product_type}' AND merk ~* '#{merk}' AND size ~* '#{size}'")
+
       # keyword = String.new
       # parts.each do |part|
       #   if part == parts.last
@@ -86,20 +87,35 @@ class Product < ActiveRecord::Base
       #   end
       # end
 
-      if parts.length.to_i==1
-        where("name ~* '#{parts[0]}'")
-      elsif parts.length.to_i==2
-        where("name ~* '#{parts[0]}' AND product_type ~* '#{parts[1]}'")
-      elsif parts.length.to_i==3
-        where("name ~* '#{parts[0]}' AND product_type ~* '#{parts[1]}' AND merk ~* '#{parts[2]}'")
-      else
-        where("name ~* '#{parts[0]}' AND product_type ~* '#{parts[1]}' AND merk ~* '#{parts[2]}' AND size ~* '#{parts[3]}'")
-      end
+  		# parts = name.split(" ")
+    #   if parts.length.to_i==1
+    #     where("name ~* '#{parts[0]}'")
+    #   elsif parts.length.to_i==2
+    #     where("name ~* '#{parts[0]}' AND product_type ~* '#{parts[1]}'")
+    #   elsif parts.length.to_i==3
+    #     where("name ~* '#{parts[0]}' AND product_type ~* '#{parts[1]}' AND merk ~* '#{parts[2]}'")
+    #   else
+    #     where("name ~* '#{parts[0]}' AND product_type ~* '#{parts[1]}' AND merk ~* '#{parts[2]}' AND size ~* '#{parts[3]}'")
+    #   end
 
   		# where("name ~* '#{keyword}' OR product_type ~* '#{keyword}' OR merk ~* '#{keyword}' OR size ~* '#{keyword}'")
   	else
   		scoped
   	end
+  end
+
+  def self.sort_product(column, direction)
+    if column=="name"
+      order("#{column} #{direction}, product_type, merk, size")
+    elsif column=="product_type"
+      order("#{column} #{direction}, name, merk, size")
+    elsif column=="merk"
+      order("#{column} #{direction}, name, product_type, size")
+    elsif column=="size"
+      order("#{column} #{direction}, name, product_type, merk")
+    else
+      order("name ASC, product_type, merk, size")
+    end
   end
 
   def self.import(file)
@@ -116,11 +132,24 @@ class Product < ActiveRecord::Base
           category_id = 0
         end
 
-        if row["TYPE"].to_i==0
-          product_type = row["TYPE"]
+        # OLD TYPE
+        # if row["TYPE"].to_i==0
+        #   product_type = row["TYPE"]
+        # else
+        #   product_type = row["TYPE"].to_i
+        # end
+
+        # NEW TYPE
+        if row["TYPE"].to_s==row["TYPE"].to_f.to_s # if true it float, false then string
+          # type = row["TYPE"]
+          if row["TYPE"][row["TYPE"].length-1]==0
+            product_type = row["TYPE"].to_i
+          else
+            product_type = row["TYPE"]
+          end
         else
-          product_type = row["TYPE"].to_i
-        end
+          product_type = row["TYPE"]
+        end        
 
         # CHECKING IF NECESSARY DATA IS PRESENT
         existing_product = Product.where(:name => row["NAMA BARANG"], :product_type => product_type, :merk => row["MERK"]).last

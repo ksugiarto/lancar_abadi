@@ -80,6 +80,13 @@ class ProductsController < ApplicationController
     if category.present?
       @product.category_id = category.id      
     end
+
+    pcs = UnitOfMeasure.where("name ~* 'pcs'").last
+    if pcs.blank?
+      pcs = UnitOfMeasure.create(:name => "PCS")
+    end
+    @product.unit_of_measure_id = pcs.id
+
     get_data_form
   end
 
@@ -89,6 +96,13 @@ class ProductsController < ApplicationController
     if category.present?
       @product.category_id = category.id      
     end
+    
+    pcs = UnitOfMeasure.where("name ~* 'pcs'").last
+    if pcs.blank?
+      pcs = UnitOfMeasure.create(:name => "PCS")
+    end
+    @product.unit_of_measure_id = pcs.id
+
     get_data_form
 
     # if params[:sale_id].to_i==0

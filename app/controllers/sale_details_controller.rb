@@ -5,11 +5,17 @@ class SaleDetailsController < ApplicationController
   end
 
   def get_product
-    @products = Product.search_product(params[:keyword])
-    .order(:name, :product_type, :merk)
+    @products = Product.search_product(params[:keyword], params[:product_type], params[:merk], params[:size])
+    .sort_product(params[:column], params[:direction])
     .paginate(:page => params[:page], :per_page => 500)
+    # .order(:name, :product_type, :merk, :size)
 
     @keyword = params[:keyword] if params[:keyword].present?
+    @product_type = params[:product_type] if params[:product_type].present?
+    @merk = params[:merk] if params[:merk].present?
+    @size = params[:size] if params[:size].present?
+    @column = params[:column] if params[:column].present?
+    @direction = params[:direction] if params[:direction].present?
   end
 
   def show_product
@@ -22,12 +28,18 @@ class SaleDetailsController < ApplicationController
     get_product
   end
 
+  def sort_product
+    get_data
+    get_product
+  end
+
   def pick_product
     get_data
     @product = Product.find(params[:product_id])
     @product_unit_default = UnitOfMeasure.find_by_id(@product.try(:unit_of_measure_id).to_i)
     @product_units = @product.details.order(:id)
     @purchase_prices = @product.purchases.order(:id).reverse_order.limit(5)
+    @sale_histories = SaleDetail.where(:product_id => @product.id).order(:updated_at).reverse_order.limit(5)
 
     store_cust_group = CustomerGroup.find_by_name("Bakul/Toko")
     case store_cust_group.selected_price.to_i

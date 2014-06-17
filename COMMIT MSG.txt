@@ -1,3 +1,19 @@
+============
+Things Done:
+(1) Change sale search product product input, separate it to 4 inputs.
+(2) Adding 5 latest sale histories from the product after it picked.
+(3) Sale Detail sorting feature.
+(4) Trying to fixing import excel for product_type (need to be testing).
+(5) Make "PCS" as the default of Unit of Measure.
+(6) Remove discount from Sales show.
+
+Next to do:
+(1) Odd data on bearing
+(2) V-belt price on each inch
+(3) Stock & Conversion for multi-stock
+(4) Printing Sale
+
+============
 Things Done:
 (1) Supplier list, Customer list, Product List on Purchase and Sale doesn't need pagination.
 (2) Now purchase pi_id can be filled. And if keep blank, then sytem would generate it.

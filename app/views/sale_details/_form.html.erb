@@ -63,7 +63,10 @@
     <div id="product_filter" style="display:none;">
       <%= form_tag(search_product_sale_sale_details_path, :class => "form-horizontal", :remote => true) do |f| %>
         <div class="form-group">
-          <div class="col-sm-9"><%= text_field_tag :keyword, nil, :placeholder => "#{t 'sale.detail.search_product_placeholder'}", :class => "form-control" %></div>
+          <div class="col-sm-3"><%= text_field_tag :keyword, nil, :placeholder => "#{t 'product.name'}", :class => "form-control" %></div>
+          <div class="col-sm-3"><%= text_field_tag :product_type, nil, :placeholder => "#{t 'product.product_type'}", :class => "form-control" %></div>
+          <div class="col-sm-2"><%= text_field_tag :merk, nil, :placeholder => "#{t 'product.merk'}", :class => "form-control" %></div>
+          <div class="col-sm-2"><%= text_field_tag :size, nil, :placeholder => "#{t 'product.size'}", :class => "form-control" %></div>
           <div class="col-sm-2"><%= submit_tag "#{t 'search'}", :class => "btn btn-success btn-default", :disable_with => "#{t 'disable_with'}" %></div>
         </div>
       <% end -%>

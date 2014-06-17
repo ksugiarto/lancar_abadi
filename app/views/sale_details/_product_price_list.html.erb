@@ -1,22 +1,44 @@
 Harga Ecer: <b>Rp <%= precision(@product.sales_price) %></b><br>
 Harga Bakul: <b>Rp <%= precision(@store_cust_price) %></b><br>
 Harga Bengkel: <b>Rp <%= precision(@workshop_cust_price) %></b><br>
+
+<br>
+5 Penjualan Terakhir:
+
+<table class="table table-condensed">
+  <tr style="background-color:#708DC6;">
+    <th><%= t 'sale.si_id' %></th>
+    <th><%= t 'sale.transaction_date' %></th>
+    <th><%= t 'sale.customer' %></th>
+    <th class="text-right"><%= t 'sale.detail.price' %></th>
+  </tr>
+
+<% @sale_histories.each do |sale_detail| %>
+  <tr>
+    <td><%= sale_detail.sale.try(:si_id) %></td>
+    <td><%= date(sale_detail.sale.transaction_date) %></td>
+    <td><%= sale_detail.sale.customer.try(:name) %></td>
+    <td class="text-right"><%= precision(sale_detail.price) %></td>
+  </tr>
+<% end %>
+</table>
+
 <br>
 5 Harga Beli Terakhir:
 
 <table class="table table-condensed">
   <tr style="background-color:#708DC6;">
     <th><%= t 'product.purchase.ref_id' %></th>
-    <th><%= t 'product.purchase.supplier' %></th>
     <th><%= t 'product.purchase.purchase_date' %></th>
+    <th><%= t 'product.purchase.supplier' %></th>
     <th class="text-right"><%= t 'product.purchase.purchase_price' %></th>
   </tr>
 
 <% @purchase_prices.each do |purchase| %>
   <tr>
     <td><%= purchase.purchase.try(:pi_id) %></td>
-    <td><%= purchase.supplier.try(:name) %></td>
     <td><%= date(purchase.purchase_date) %></td>
+    <td><%= purchase.supplier.try(:name) %></td>
     <td class="text-right"><%= precision(purchase.purchase_price) %></td>
   </tr>
 <% end %>
