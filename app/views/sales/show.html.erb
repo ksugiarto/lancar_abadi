@@ -46,28 +46,6 @@
   </div>
 </div>
 
-<!-- SHOWN ON PRINTING ONLY -->
-<div id="hidden">
-  <table id="table_hidden">
-    <tr>
-      <td width="400"><%= company_name %></td>
-      <th class="text-center" width="500"><%= (t 'sale.sales_invoice').upcase %></th>
-      <td class="text-right" width="400">Kepada Yth.:&nbsp;<%= (@sale.customer.try(:name)).upcase %></td>
-    </tr>
-    <tr >
-      <td><%= company_address %></td>
-      <th class="text-center">Nota No: <%= @sale.si_id %></th>
-      <td class="text-right"><%= @sale.customer.try(:address) %></td>
-    </tr>
-    <tr>
-      <td><%= company_telephone %></td>
-      <th class="text-center">Ponorogo, <%= @sale.transaction_date.to_time.localtime.strftime('%d %B %Y') %></th>
-      <td class="text-right"><%= "#{@sale.customer.try(:city).try(:name)}-#{@sale.customer.try(:province).try(:name)}" %></td>
-    </tr>
-  </table>
-</div>
-<!-- SHOWN ON PRINTING ONLY -->
-
 <div id="transaction_status" class="status_<%= @sale.status.to_i %>" align="center">
   <% case @sale.status.to_i %>
   <% when 0 %>
@@ -79,23 +57,26 @@
     <% end -%>
 </div>
 
-<div id="hidden"><p></div>
-<div id="show"><div id="show_header_section"><%= render 'show_header' %></div></div>
-<div id="detail_section"><%= render 'sale_details/table' %></div>
-<div id="show_footer_section"><%= render 'show_footer' %></div>
+<div id="show">
+  <div id="show_header_section"><%= render 'show_header' %></div>
+  <div id="detail_section"><%= render 'sale_details/table' %></div>
+  <div id="show_footer_section"><%= render 'show_footer' %></div>
 
-<div id="modal"></div>
+  <div id="modal"></div>
 
-<!-- Modal -->
-<div id="general_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="BranchModalLabel" aria-hidden="true">
-  <div class="modal-dialog" style="width:900px;">
-    <div class="modal-content" style="width:1000px;">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 class="modal-title"></h3>
-      </div>
-      <div class="modal-body">
+  <!-- Modal -->
+  <div id="general_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="BranchModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:900px;">
+      <div class="modal-content" style="width:1000px;">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h3 class="modal-title"></h3>
+        </div>
+        <div class="modal-body">
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+<div id="show_print_only"><%= render 'show_print_only' %></div>

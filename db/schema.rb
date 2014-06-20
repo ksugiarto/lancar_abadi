@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140524162024) do
+ActiveRecord::Schema.define(:version => 20140619084843) do
 
   create_table "adjustment_details", :force => true do |t|
     t.integer  "adjustment_id"
@@ -204,6 +204,7 @@ ActiveRecord::Schema.define(:version => 20140524162024) do
     t.boolean  "can_be_sale",                                       :default => false
     t.datetime "created_at",                                                           :null => false
     t.datetime "updated_at",                                                           :null => false
+    t.integer  "special_price_id"
   end
 
   add_index "products", ["category_id"], :name => "index_products_on_category_id"
@@ -292,6 +293,13 @@ ActiveRecord::Schema.define(:version => 20140524162024) do
   end
 
   add_index "sales", ["customer_id"], :name => "index_sales_on_customer_id"
+
+  create_table "special_prices", :force => true do |t|
+    t.string   "description"
+    t.decimal  "price_each_size", :precision => 18, :scale => 2, :default => 0.0
+    t.datetime "created_at",                                                      :null => false
+    t.datetime "updated_at",                                                      :null => false
+  end
 
   create_table "stocks", :force => true do |t|
     t.integer  "product_id"

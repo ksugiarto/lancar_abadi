@@ -16,6 +16,7 @@ class ProductsController < ApplicationController
 
   def get_data_form
     @categories = Category.order(:name)
+    @special_prices = SpecialPrice.order(:description)
     @suppliers = Supplier.order(:name)
     @unit_of_measures = UnitOfMeasure.order(:name)
   end
@@ -123,6 +124,9 @@ class ProductsController < ApplicationController
   # POST /products.json
   def create
     @product = Product.new(params[:product])
+    if @product.special_price_id.to_i!=0
+      @product.sales_price = @product.special_price.try(:price_each_size).to_f * @product.size.to_f
+    end
 
     respond_to do |format|
       if @product.save && @product.try(:category).try(:name)=="SPAREPART"
@@ -139,13 +143,24 @@ class ProductsController < ApplicationController
   end
 
   def instant_create
-    @product = Product.create(params[:product])
+    @product = Product.new(params[:product])
 
-    @products = Product.search_product(params[:keyword])
-    .order(:name, :product_type, :merk)
+    if @product.special_price_id.to_i!=0
+      @product.sales_price = @product.special_price.try(:price_each_size).to_f * @product.size.to_f
+    end
+
+    @product.save
+
+    @products = Product.search_product(params[:keyword], params[:product_type], params[:merk], params[:size])
+    .sort_product(params[:column], params[:direction])
     .paginate(:page => params[:page], :per_page => 500)
+    # .order(:name, :product_type, :merk, :size)
 
     @keyword = params[:keyword] if params[:keyword].present?
+    @product_type = params[:product_type] if params[:product_type].present?
+    @merk = params[:merk] if params[:merk].present?
+    @size = params[:size] if params[:size].present?
+    @column = params[:column] if params[:column].present?
 
     @sale = Sale.find(params[:sale_id])
 
@@ -158,12 +173,18 @@ class ProductsController < ApplicationController
   # PUT /products/1.json
   def update
     @product = Product.find(params[:id])
+    @product.update_attributes(params[:product])
+
+    if @product.special_price_id.to_i!=0
+      @product.sales_price = @product.special_price.try(:price_each_size).to_f * @product.size.to_f
+    end
+    @product.save
 
     respond_to do |format|
-      if @product.update_attributes(params[:product]) && @product.try(:category).try(:name)=="SPAREPART"
+      if @product.try(:category).try(:name)=="SPAREPART"
         format.html { redirect_to @product, notice: 'Product was successfully updated.' }
         format.json { head :no_content }
-      elsif @product.update_attributes(params[:product]) && @product.try(:category).try(:name)=="UNIT"
+      elsif @product.try(:category).try(:name)=="UNIT"
         format.html { redirect_to unit_show_product_path(@product), notice: 'Product was successfully updated.' }
         format.json { head :no_content }
       else

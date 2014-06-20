@@ -1,6 +1,5 @@
-<div id="show" class="row">
+<div class="row">
   <div class="col-sm-8"></div>
-
   <div class="col-sm-4">
     <table>
       <tr>
@@ -12,16 +11,3 @@
     </table>
   </div>
 </div>
-
-<!-- SHOWN ON PRINTING ONLY -->
-<div id="hidden">
-  <table id="table_hidden">
-    <tr>
-      <td width="800">&nbsp;</td>
-      <td class="text-right"><%= t 'sale.total_amount' %>:</td>
-      <td>Rp</td>
-      <td class="text-right" width="200"><%= precision(@sale.total_amount) %></td>
-    </tr>
-  </table>
-</div>
-<!-- SHOWN ON PRINTING ONLY -->

@@ -1,5 +1,8 @@
 LancarAbadi::Application.routes.draw do
 
+  resources :special_prices
+
+
   resources :system_languages do
     collection do
       get :change_language
@@ -13,6 +16,7 @@ LancarAbadi::Application.routes.draw do
       get :province
       get :city
       get :unit_of_measure
+      get :special_price
       get :category
       get :customer_group
       get :supplier

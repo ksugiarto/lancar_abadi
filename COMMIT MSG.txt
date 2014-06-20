@@ -1,5 +1,17 @@
 ============
 Things Done:
+(1) Fixing error Instant Create product on Sale Detail.
+(2) Adding new scaffold Special Price.
+(3) Adding special_price_id to Products.
+(4) Trying to fixing import excel for different suppliers.
+(5) Printing Sale.
+(6) V-belt price on each inch.
+
+Next to do:
+(1) Stock & Conversion for multi-stock
+
+============
+Things Done:
 (1) Change sale search product product input, separate it to 4 inputs.
 (2) Adding 5 latest sale histories from the product after it picked.
 (3) Sale Detail sorting feature.
@@ -8,10 +20,7 @@ Things Done:
 (6) Remove discount from Sales show.
 
 Next to do:
-(1) Odd data on bearing
-(2) V-belt price on each inch
 (3) Stock & Conversion for multi-stock
-(4) Printing Sale
 
 ============
 Things Done:

@@ -1,0 +1,133 @@
+<% counter=0; row_number=0; total=0; @sale.details.each do |sale_detail| %>
+  <% counter+=1; if counter==1 %>
+    <!-- PRINT HEADER -->
+    <table id="table_hidden">
+      <tr>
+        <td width="400"><%= company_name %></td>
+        <th class="text-center" width="500"><%= (t 'sale.sales_invoice').upcase %></th>
+        <td class="text-right" width="400">Kepada Yth.:&nbsp;<%= (@sale.customer.try(:name)).upcase %></td>
+      </tr>
+      <tr >
+        <td><%= company_address %></td>
+        <th class="text-center">Nota No: <%= @sale.si_id %></th>
+        <td class="text-right"><%= @sale.customer.try(:address) %></td>
+      </tr>
+      <tr>
+        <td><%= company_telephone %></td>
+        <th class="text-center">Ponorogo, <%= @sale.transaction_date.to_time.localtime.strftime('%d %B %Y') %></th>
+        <td class="text-right"><%= "#{@sale.customer.try(:city).try(:name)}-#{@sale.customer.try(:province).try(:name)}" %></td>
+      </tr>
+    </table>
+
+    <table id="sale_detail_table" class="" border=2>
+      <tr>
+        <th><%= t 'row_number' %></th>
+        <th width="50%"><%= t 'sale.detail.product' %></th>
+        <th width="7%" class="text-right"><%= t 'sale.detail.quantity' %></th>
+        <th class="text-center"><%= t 'sale.detail.unit' %></th>
+        <th width="12%" class="text-right"><%= t 'sale.detail.price_rp' %></th>
+        <th class="text-right"><%= t 'sale.detail.discount_%' %></th>
+        <th width="12%" class="text-right"><%= t 'sale.detail.amount_rp' %></th>
+        <th class="text-right" id="button_column"><%= link_to "#{t 'new'}", new_sale_sale_detail_path(@sale), :id => "btn", :class => "btn btn-default btn-xs", :remote => true if @sale.status==0 %></th>
+      </tr>
+      <tr>
+        <td class="text-right"><%= row_number+=1 %>.</td>
+        <td><%= sale_detail.product_detail %></td>
+        <td class="text-right"><%= precision(sale_detail.quantity) %></td>
+        <td class="text-center"><%= sale_detail.try(:unit_of_measure).try(:name) %></td>
+        <td class="text-right"><%= precision(sale_detail.price) %></td>
+        <td class="text-right"><%= precision(sale_detail.discount) %></td>
+        <td class="text-right"><%= precision(sale_detail.amount) %><% total+=sale_detail.amount.to_f %></td>
+        <td class="text-right" id="button_column">
+          <%= link_to "#{t 'edit'}", edit_sale_sale_detail_path(@sale, sale_detail), :id => "btn", :class => "btn btn-warning btn-xs", :remote => true if @sale.status==0 %>
+          <%= link_to "#{t 'delete'}", sale_sale_detail_path(@sale, sale_detail), method: :delete, data: { confirm: "#{t 'confirm'}" }, :id => "btn", :class => "btn btn-danger btn-xs", :remote => true if @sale.status==0 %>
+        </td>
+      </tr>
+  <% elsif counter==15 %>
+      <tr>
+        <td class="text-right"><%= row_number+=1 %>.</td>
+        <td><%= sale_detail.product_detail %></td>
+        <td class="text-right"><%= precision(sale_detail.quantity) %></td>
+        <td class="text-center"><%= sale_detail.try(:unit_of_measure).try(:name) %></td>
+        <td class="text-right"><%= precision(sale_detail.price) %></td>
+        <td class="text-right"><%= precision(sale_detail.discount) %></td>
+        <td class="text-right"><%= precision(sale_detail.amount) %><% total+=sale_detail.amount.to_f %></td>
+        <td class="text-right" id="button_column">
+          <%= link_to "#{t 'edit'}", edit_sale_sale_detail_path(@sale, sale_detail), :id => "btn", :class => "btn btn-warning btn-xs", :remote => true if @sale.status==0 %>
+          <%= link_to "#{t 'delete'}", sale_sale_detail_path(@sale, sale_detail), method: :delete, data: { confirm: "#{t 'confirm'}" }, :id => "btn", :class => "btn btn-danger btn-xs", :remote => true if @sale.status==0 %>
+        </td>
+      </tr>
+    </table>
+
+    <div class="row">
+      <div class="col-sm-8"></div>
+      <div class="col-sm-4">
+        <table>
+          <tr>
+            <th class="text-right" width="200"><%= t 'sale.total_amount' %>:</th>
+            <th width="50">&nbsp;Rp</th>
+            <th class="text-right" width="150"><%= precision(total) %></th>
+            <th width="50"></th>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <br><br><br>
+    <% counter=0; total=0 %>
+  <% else %>
+      <tr>
+        <td class="text-right"><%= row_number+=1 %>.</td>
+        <td><%= sale_detail.product_detail %></td>
+        <td class="text-right"><%= precision(sale_detail.quantity) %></td>
+        <td class="text-center"><%= sale_detail.try(:unit_of_measure).try(:name) %></td>
+        <td class="text-right"><%= precision(sale_detail.price) %></td>
+        <td class="text-right"><%= precision(sale_detail.discount) %></td>
+        <td class="text-right"><%= precision(sale_detail.amount) %><% total+=sale_detail.amount.to_f %></td>
+        <td class="text-right" id="button_column">
+          <%= link_to "#{t 'edit'}", edit_sale_sale_detail_path(@sale, sale_detail), :id => "btn", :class => "btn btn-warning btn-xs", :remote => true if @sale.status==0 %>
+          <%= link_to "#{t 'delete'}", sale_sale_detail_path(@sale, sale_detail), method: :delete, data: { confirm: "#{t 'confirm'}" }, :id => "btn", :class => "btn btn-danger btn-xs", :remote => true if @sale.status==0 %>
+        </td>
+      </tr>
+  <% end %>
+<% end %>
+
+<% if counter!=15 %>
+  </table>
+
+  <div class="row">
+    <div class="col-sm-8"></div>
+    <div class="col-sm-4">
+      <table>
+        <tr>
+          <th class="text-right" width="200"><%= t 'sale.total_amount' %>:</th>
+          <th width="50">&nbsp;Rp</th>
+          <th class="text-right" width="150"><%= precision(total) %></th>
+          <th width="50"></th>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <br>
+  <table border=2>
+    <tr>
+      <td class="text-center">
+        Pengirim,<br><br><br>&nbsp;(....................)&nbsp;
+      </td>
+      <td class="text-center">
+        Penerima,<br><br><br>&nbsp;(....................)&nbsp;
+      </td>
+    </tr>
+  </table>
+<% else %>
+  <br>
+  <table border=2>
+    <tr>
+      <td class="text-center">
+        Pengirim,<br><br><br>&nbsp;(....................)&nbsp;
+      </td>
+      <td class="text-center">
+        Penerima,<br><br><br>&nbsp;(....................)&nbsp;
+      </td>
+    </tr>
+  </table>
+<% end %>

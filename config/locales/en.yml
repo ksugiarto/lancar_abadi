@@ -80,6 +80,7 @@ en:
       manage_leave_day: "Manage Leave Day"
       customer_group: "Customer Groups"
       category: "Category"
+      special_price: "Special Price"
       unit_of_measure: "Unit of Measure"
       user_group: "User Group"
       user_menu: "Menu"
@@ -192,12 +193,19 @@ en:
     name: "Name"
     code: "Code"
 
+  special_price:
+    special_prices: "Special Prices"
+    special_price: "Special Price"
+    description: "Description"
+    price_each_size: "Price Each Size"
+
   product:
     products: "Products"
     spareparts: "Spareparts"
     units: "Units"
     product: "Product"
     category: "Category"
+    special_price: "Price Each Size"
     sticker: "Label"
     barcode_id: "Barcode ID"
     barcode_id_placeholder: "Leave blank for auto generate"

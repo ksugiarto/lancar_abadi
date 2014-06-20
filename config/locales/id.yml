@@ -80,6 +80,7 @@ id:
       manage_leave_day: "Atur Jadwal Libur"
       customer_group: "Jenis Pembeli"
       category: "Kategori"
+      special_price: "Harga Khusus"
       unit_of_measure: "Satuan Ukuran"
       user_group: "Grup User"
       user_menu: "Menu"
@@ -192,12 +193,19 @@ id:
     name: "Nama"
     code: "Kode"
 
+  special_price:
+    special_prices: "Daftar Harga Khusus"
+    special_price: "Harga Khusus"
+    description: "Deskripsi"
+    price_each_size: "Harga Tiap Ukuran"
+
   product:
     products: "Daftar Barang"
     spareparts: "Daftar Sparepart"
     units: "Daftar Unit"
     product: "Barang"
     category: "Kategori"
+    special_price: "Harga Tiap Ukuran"
     sticker: "Label"
     barcode_id: "Kode Barcode"
     barcode_id_placeholder: "Kosongkan untuk otomatis"

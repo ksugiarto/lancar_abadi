@@ -34,6 +34,13 @@ class FilterController < ApplicationController
     .pagination(params[:page])
   end
 
+  def special_price
+    @special_prices = SpecialPrice
+    .filter_name(params[:name])
+    .order(:description)
+    .pagination(params[:page])
+  end
+
   def category
   	@categories = Category
   	.filter_name(params[:name])
@@ -88,10 +95,11 @@ class FilterController < ApplicationController
 
   def product_home
     @products = Product
-    .filter_name(params[:name])
+    .search_product(params[:keyword], params[:product_type], params[:merk], params[:size])
     .filter_supplier(params[:supplier_id])
-    .order(:name, :product_type, :merk)
+    .order(:name, :product_type, :merk, :size)
     .pagination(params[:page])
+    # .filter_name(params[:name])
 
     @store_cust_group = CustomerGroup.find_by_name("Bakul/Toko")
     @workshop_cust_group = CustomerGroup.find_by_name("Bengkel/Montir")

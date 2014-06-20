@@ -2,6 +2,7 @@ class Product < ActiveRecord::Base
   belongs_to :category
   belongs_to :supplier
   belongs_to :unit_of_measure
+  belongs_to :special_price
   
   has_many :details, :class_name => "ProductDetail"
   has_many :purchases, :class_name => "ProductPurchase"
@@ -9,7 +10,7 @@ class Product < ActiveRecord::Base
 
   before_create :generate_barcode_id
 
-  attr_accessible :category_id, :barcode_id, :merk, :name, :sales_price, :size, :product_type, :unit_of_measure_id, :can_be_purchase, :can_be_sale, :supplier_id
+  attr_accessible :category_id, :barcode_id, :merk, :name, :sales_price, :size, :product_type, :unit_of_measure_id, :can_be_purchase, :can_be_sale, :supplier_id, :special_price_id
 
   def self.pagination(page)
     paginate(:per_page => 20, :page => page)
@@ -149,10 +150,15 @@ class Product < ActiveRecord::Base
           end
         else
           product_type = row["TYPE"]
-        end        
+        end
+
+        supplier = Supplier.find_by_name(row["SUPPLIER"])
+        if supplier.blank?
+          supplier = Supplier.create(:supplier_code => row["SUPPLIER CODE"], :name => row["SUPPLIER"])
+        end
 
         # CHECKING IF NECESSARY DATA IS PRESENT
-        existing_product = Product.where(:name => row["NAMA BARANG"], :product_type => product_type, :merk => row["MERK"]).last
+        existing_product = Product.where(:name => row["NAMA BARANG"], :product_type => product_type, :merk => row["MERK"], :supplier_id => supplier.id).last
         if existing_product.present?
           product_id = existing_product.id
           status="edit"
@@ -169,11 +175,6 @@ class Product < ActiveRecord::Base
           barcode = row["BARCODE"].to_i
         end
 
-        supplier = Supplier.find_by_name(row["SUPPLIER"])
-        if supplier.blank?
-          supplier = Supplier.create(:supplier_code => row["SUPPLIER CODE"], :name => row["SUPPLIER"])
-        end
-
         if row["CATEGORY"]="SPAREPART"
           if row["HARGA"].to_f < 10000
             sales_price = row["HARGA"].to_f*2
@@ -184,6 +185,11 @@ class Product < ActiveRecord::Base
           sales_price = row["HARGA JUAL"].to_f
         end
 
+        pcs = UnitOfMeasure.where("name ~* 'pcs'").last
+        if pcs.blank?
+          pcs = UnitOfMeasure.create(:name => "PCS")
+        end
+
         if status=="new"
           Product.create(:category_id => category_id,
                          :barcode_id => barcode, 
@@ -192,14 +198,14 @@ class Product < ActiveRecord::Base
                          :merk => row["MERK"], 
                          :size => "", 
                          :supplier_id => supplier.id,
-                         :unit_of_measure_id => 0, 
+                         :unit_of_measure_id => pcs.id, 
                          :sales_price => sales_price, 
                          :can_be_purchase => true, 
                          :can_be_sale => true)
         elsif status=="edit"
           existing_product.update_attributes(:category_id => category_id,
                                              :supplier_id => supplier.id,
-                                             :unit_of_measure_id => 0, 
+                                             :unit_of_measure_id => pcs.id, 
                                              :sales_price => sales_price, 
                                              :can_be_purchase => true, 
                                              :can_be_sale => true)

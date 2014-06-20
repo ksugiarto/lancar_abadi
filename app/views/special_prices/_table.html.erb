@@ -1,0 +1,22 @@
+<%= will_paginate @special_prices, :class => "apple_pagination" %>
+
+<table class="table table-condensed">
+  <tr style="background-color:#708DC6;">
+    <th><%= t 'special_price.description' %></th>
+    <th><%= t 'special_price.price_each_size' %></th>
+    <th></th>
+  </tr>
+
+<% @special_prices.each do |special_price| %>
+  <tr>
+    <td><%= special_price.description %></td>
+    <td><%= special_price.price_each_size %></td>
+    <td class="text-right">
+    	<%= link_to "#{t 'edit'}", edit_special_price_path(special_price), :class => "btn btn-warning btn-xs", :remote => true %>
+    	<%= link_to "#{t 'delete'}", special_price, method: :delete, data: { confirm: "#{t 'confirm'}" }, :class => "btn btn-danger btn-xs", :remote => true %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<%= will_paginate @special_prices, :class => "apple_pagination" %>
