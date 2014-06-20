@@ -19,7 +19,7 @@
       </tr>
     </table>
 
-    <table id="sale_detail_table" class="" border=2>
+    <table id="sale_detail_table" class="" border=1>
       <tr>
         <th><%= t 'row_number' %></th>
         <th width="50%"><%= t 'sale.detail.product' %></th>
@@ -62,7 +62,7 @@
     <div class="row">
       <div class="col-sm-8"></div>
       <div class="col-sm-4">
-        <table>
+        <table id="table_hidden">
           <tr>
             <th class="text-right" width="200"><%= t 'sale.total_amount' %>:</th>
             <th width="50">&nbsp;Rp</th>
@@ -97,7 +97,7 @@
   <div class="row">
     <div class="col-sm-8"></div>
     <div class="col-sm-4">
-      <table>
+      <table id="table_hidden">
         <tr>
           <th class="text-right" width="200"><%= t 'sale.total_amount' %>:</th>
           <th width="50">&nbsp;Rp</th>
@@ -107,8 +107,8 @@
       </table>
     </div>
   </div>
-  <br>
-  <table border=2>
+  
+  <table border=1 id="table_hidden">
     <tr>
       <td class="text-center">
         Pengirim,<br><br><br>&nbsp;(....................)&nbsp;
@@ -119,8 +119,8 @@
     </tr>
   </table>
 <% else %>
-  <br>
-  <table border=2>
+  
+  <table border=1 id="table_hidden">
     <tr>
       <td class="text-center">
         Pengirim,<br><br><br>&nbsp;(....................)&nbsp;
