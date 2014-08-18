@@ -198,6 +198,11 @@ class ProductsController < ApplicationController
   # DELETE /products/1.json
   def destroy
     @product = Product.find(params[:id])
+    if @product.try(:category).try(:name)=="UNIT"
+      get_unit
+    else
+      get_sparepart
+    end
     @product.destroy
     get_data
   end

@@ -143,7 +143,8 @@ class Product < ActiveRecord::Base
         # NEW TYPE
         if row["TYPE"].to_s==row["TYPE"].to_f.to_s # if true it float, false then string
           # type = row["TYPE"]
-          if row["TYPE"][row["TYPE"].length-1]==0
+          # if row["TYPE"][row["TYPE"].length-1]==0
+          if row["TYPE"][row["TYPE"].to_s.length-1]==0
             product_type = row["TYPE"].to_i
           else
             product_type = row["TYPE"]

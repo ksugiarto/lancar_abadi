@@ -48,6 +48,7 @@
             <%= link_to "#{t 'show'}", product, :class => "btn btn-primary btn-xs" %>
         <% end %>
         <%= link_to "#{t 'edit'}", edit_product_path(product), :class => "btn btn-warning btn-xs", :remote => true %>
+        <%= link_to "#{t 'delete'}", product, method: :delete, data: { confirm: "#{t 'confirm'}" }, :class => "btn btn-danger btn-xs", :remote => true %>
     </td>
   </tr>
 <% end %>
