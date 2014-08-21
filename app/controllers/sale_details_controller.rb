@@ -66,6 +66,10 @@ class SaleDetailsController < ApplicationController
     else
       @default_price = @product.sales_price.to_f
     end
+
+    if @default_price.to_f == 0
+      @default_price = ""
+    end
   end
 
   # GET /sale_details/new
@@ -74,12 +78,21 @@ class SaleDetailsController < ApplicationController
     get_data
     @sale_detail = @sale.details.new
     @sale_detail.quantity = 1
+    @sale_detail.price = ""
+    @sale_detail.discount = ""
   end
 
   # GET /sale_details/1/edit
   def edit
     get_data
     @sale_detail = @sale.details.find(params[:id])
+    if @sale_detail.price.to_f == 0
+      @sale_detail.price = ""
+    end
+    if @sale_detail.discount.to_f == 0
+      @sale_detail.discount = ""
+    end
+
     @product = Product.find(@sale_detail.product_id)
     @product_unit_default = UnitOfMeasure.find_by_id(@product.try(:unit_of_measure_id).to_i)
     @product_units = @product.details.order(:id)

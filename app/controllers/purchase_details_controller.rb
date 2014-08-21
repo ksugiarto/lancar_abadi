@@ -33,6 +33,9 @@ class PurchaseDetailsController < ApplicationController
   def new
     get_data
     @purchase_detail = @purchase.details.new
+    @purchase_detail.quantity = 1
+    @purchase_detail.price = ""
+    @purchase_detail.discount = ""
     @purchase_detail.quantity_print = ""
   end
 
@@ -40,6 +43,13 @@ class PurchaseDetailsController < ApplicationController
   def edit
     get_data
     @purchase_detail = @purchase.details.find(params[:id])
+    
+    if @purchase_detail.price.to_f == 0
+      @purchase_detail.price = ""
+    end
+    if @purchase_detail.discount.to_f == 0
+      @purchase_detail.discount = ""
+    end
   end
 
   # POST /purchase_details
