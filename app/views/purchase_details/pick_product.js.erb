@@ -1,6 +1,20 @@
 $("#purchase_detail_product_id").val("<%= @product.id %>");
 $("#product_name").val("<%= @product.product_detail %>");
-$("#purchase_detail_price").val("<%= @last_purchase_price %>");
+$("#purchase_detail_price").val("<%= @last_purchase_price if @last_purchase_price.to_i!=0 %>");
 
 $("#product_filter").hide();
 $("#product_list").html("");
+
+$("#sale_detail_unit_of_measure_id").empty();
+$("#sale_detail_unit_of_measure_id").append($("<option></option>").attr("value","").text("<%= t 'prompt' %> <%= t 'sale.detail.unit_of_measure' %>"))
+
+// adding unit of measure default from unit of measure product
+if (<%= @product_unit_default.present? %> == true)
+{
+	$("#sale_detail_unit_of_measure_id").append($("<option></option>").attr("value",<%= @product_unit_default.try(:id).to_i %>).text("<%= @product_unit_default.try(:name) %> (default)"))
+};
+
+// adding unit of measure from product detail
+<% @product_units.each do |unit| %>
+$("#sale_detail_unit_of_measure_id").append($("<option></option>").attr("value",<%= unit.try(:unit_of_measure).try(:id) %>).text("<%= unit.try(:unit_of_measure).try(:name) %>"))
+<% end %>

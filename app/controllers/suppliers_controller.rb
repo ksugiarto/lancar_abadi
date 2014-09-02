@@ -85,7 +85,7 @@ class SuppliersController < ApplicationController
   def destroy
     @supplier = Supplier.find(params[:id])
     @supplier.destroy
-    @suppliers = Supplier.order(:name)
+    @suppliers = Supplier.order(:name).pagination(params[:page])
   end
 
   def import

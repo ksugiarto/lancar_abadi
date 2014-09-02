@@ -128,17 +128,26 @@ class ProductsController < ApplicationController
       @product.sales_price = @product.special_price.try(:price_each_size).to_f * @product.size.to_f
     end
 
+    if @product.try(:category).try(:name)=="SPAREPART"
+      get_sparepart
+    else
+      get_unit
+    end
+
+    @product.save
+
     respond_to do |format|
-      if @product.save && @product.try(:category).try(:name)=="SPAREPART"
-        format.html { redirect_to @product, notice: 'Product was successfully created.' }
-        format.json { render json: @product, status: :created, location: @product }
-      elsif @product.save && @product.try(:category).try(:name)=="UNIT"
-        format.html { redirect_to unit_show_product_path(@product), notice: 'Product was successfully created.' }
-        format.json { render json: @product, status: :created, location: @product }
-      else
-        format.html { redirect_to @product, notice: 'Product was successfully created.' }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
-      end
+      format.js
+      # if @product.save && @product.try(:category).try(:name)=="SPAREPART"
+      #   format.html { redirect_to @product, notice: 'Product was successfully created.' }
+      #   format.json { render json: @product, status: :created, location: @product }
+      # elsif @product.save && @product.try(:category).try(:name)=="UNIT"
+      #   format.html { redirect_to unit_show_product_path(@product), notice: 'Product was successfully created.' }
+      #   format.json { render json: @product, status: :created, location: @product }
+      # else
+      #   format.html { redirect_to @product, notice: 'Product was successfully created.' }
+      #   format.json { render json: @product.errors, status: :unprocessable_entity }
+      # end
     end
   end
 
@@ -180,17 +189,24 @@ class ProductsController < ApplicationController
     end
     @product.save
 
+    if @product.try(:category).try(:name)=="SPAREPART"
+      get_sparepart
+    else
+      get_unit
+    end
+
     respond_to do |format|
-      if @product.try(:category).try(:name)=="SPAREPART"
-        format.html { redirect_to @product, notice: 'Product was successfully updated.' }
-        format.json { head :no_content }
-      elsif @product.try(:category).try(:name)=="UNIT"
-        format.html { redirect_to unit_show_product_path(@product), notice: 'Product was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { redirect_to @product }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
-      end
+      format.js
+      # if @product.try(:category).try(:name)=="SPAREPART"
+      #   format.html { redirect_to @product, notice: 'Product was successfully updated.' }
+      #   format.json { head :no_content }
+      # elsif @product.try(:category).try(:name)=="UNIT"
+      #   format.html { redirect_to unit_show_product_path(@product), notice: 'Product was successfully updated.' }
+      #   format.json { head :no_content }
+      # else
+      #   format.html { redirect_to @product }
+      #   format.json { render json: @product.errors, status: :unprocessable_entity }
+      # end
     end
   end
 

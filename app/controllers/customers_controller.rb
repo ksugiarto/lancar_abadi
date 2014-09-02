@@ -80,7 +80,7 @@ class CustomersController < ApplicationController
   def destroy
     @customer = Customer.find(params[:id])
     @customer.destroy
-    @customers = Customer.order(:name)
+    @customers = Customer.order(:name).pagination(params[:page])
   end
 
   def import

@@ -1,3 +1,29 @@
 $('#general_modal').modal('show');
 $('#general_modal .modal-title').html("<%= escape_javascript(t 'purchase.purchase') %> - <%= escape_javascript(t 'purchase.detail.detail') %> - <%= escape_javascript(t 'edit') %>");
 $('#general_modal .modal-body').html("<%= escape_javascript(render 'form') %>");
+
+$("#sale_detail_unit_of_measure_id").empty();
+// adding unit of measure default from unit of measure product
+if (<%= @product_unit_default.present? %> == true)
+{
+	if (<%= @sale_detail.try(:unit_of_measure_id).to_i %> == <%= @product_unit_default.try(:id).to_i %>)
+	{
+		$("#sale_detail_unit_of_measure_id").append($("<option selected='selected'></option>").attr("value",<%= @product_unit_default.try(:id).to_i %>).text("<%= @product_unit_default.try(:name) %> (default)"))
+	}
+	else
+	{
+		$("#sale_detail_unit_of_measure_id").append($("<option></option>").attr("value",<%= @product_unit_default.try(:id).to_i %>).text("<%= @product_unit_default.try(:name) %> (default)"))
+	}
+};
+
+// adding unit of measure from product detail
+<% @product_units.each do |unit| %>
+if (<%= @sale_detail.try(:unit_of_measure_id).to_i %> == <%= unit.try(:unit_of_measure).try(:id) %>)
+{
+	$("#sale_detail_unit_of_measure_id").append($("<option selected='selected'></option>").attr("value",<%= unit.try(:unit_of_measure).try(:id) %>).text("<%= unit.try(:unit_of_measure).try(:name) %>"))
+}
+else
+{
+	$("#sale_detail_unit_of_measure_id").append($("<option></option>").attr("value",<%= unit.try(:unit_of_measure).try(:id) %>).text("<%= unit.try(:unit_of_measure).try(:name) %>"))
+}
+<% end %>

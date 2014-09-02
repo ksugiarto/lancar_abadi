@@ -1,4 +1,4 @@
-<%= will_paginate @products, :class => "apple_pagination" %>
+<%= will_paginate @products, :class => "apple_pagination", :controller => 'products', :action => 'index' %>
 
 <table class="table table-condensed">
   <tr style="background-color:#708DC6;">
@@ -54,4 +54,4 @@
 <% end %>
 </table>
 
-<%= will_paginate @products, :class => "apple_pagination" %>
+<%= will_paginate @products, :class => "apple_pagination", :controller => 'products', :action => 'index' %>

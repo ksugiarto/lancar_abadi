@@ -86,6 +86,7 @@ LancarAbadi::Application.routes.draw do
       collection do
         get :show_product
         post :search_product
+        get :sort_product
         get :pick_product
       end
     end

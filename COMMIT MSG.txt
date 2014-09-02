@@ -1,5 +1,12 @@
 ============
 Things Done:
+(1) Changing Filter on Sparepart and Unit.
+(2) Fixing Purchase Detail Pick Product.
+(3) Changing Product Update after 
+(4) Fixing other small bugs.
+
+============
+Things Done:
 (1) Fixing error Instant Create product on Sale Detail.
 (2) Adding new scaffold Special Price.
 (3) Adding special_price_id to Products.

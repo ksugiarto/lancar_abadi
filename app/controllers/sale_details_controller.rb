@@ -77,7 +77,7 @@ class SaleDetailsController < ApplicationController
   def new
     get_data
     @sale_detail = @sale.details.new
-    @sale_detail.quantity = 1
+    @sale_detail.quantity = ""
     @sale_detail.price = ""
     @sale_detail.discount = ""
   end
@@ -103,6 +103,7 @@ class SaleDetailsController < ApplicationController
   def create
     get_data
     @sale_detail = @sale.details.create(params[:sale_detail])
+    @sale_detail.quantity = 1 if @sale_detail.quantity.to_i==0
     get_data
   end
 

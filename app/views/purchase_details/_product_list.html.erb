@@ -3,10 +3,86 @@
 <table class="table table-condensed table-striped">
   <tr>
     <th width="1%"></th>
-    <th><%= t 'product.name' %></th>
-    <th><%= t 'product.product_type' %></th>
-    <th><%= t 'product.merk' %></th>
-    <th><%= t 'product.size' %></th>
+    <th>
+      <% if @column=="name" %>
+        <% if @direction=="ASC" %>
+          <%= link_to sort_product_purchase_purchase_details_path(@purchase.id, :column => "name", :direction => "DESC", :keyword => @keyword, :product_type => @product_type, :merk => @merk, :size => @size), :remote => true do %>
+            <%= t 'product.name' %>
+          <% end %>
+          <span class="glyphicon glyphicon-chevron-down"></span>
+        <% else %>
+          <%= link_to sort_product_purchase_purchase_details_path(@purchase.id, :column => "name", :direction => "ASC", :keyword => @keyword, :product_type => @product_type, :merk => @merk, :size => @size), :remote => true do %>
+            <%= t 'product.name' %>
+          <% end %>
+          <span class="glyphicon glyphicon-chevron-up"></span>
+        <% end %>
+      <% else %>
+        <%= link_to sort_product_purchase_purchase_details_path(@purchase.id, :column => "name", :direction => "ASC", :keyword => @keyword, :product_type => @product_type, :merk => @merk, :size => @size), :remote => true do %>
+          <%= t 'product.name' %>
+        <% end %>
+      <% end %>
+    </th>
+
+    <th>
+      <% if @column=="product_type" %>
+        <% if @direction=="ASC" %>
+          <%= link_to sort_product_purchase_purchase_details_path(@purchase.id, :column => "product_type", :direction => "DESC", :keyword => @keyword, :product_type => @product_type, :merk => @merk, :size => @size), :remote => true do %>
+            <%= t 'product.product_type' %>
+          <% end %>
+          <span class="glyphicon glyphicon-chevron-down"></span>
+        <% else %>
+          <%= link_to sort_product_purchase_purchase_details_path(@purchase.id, :column => "product_type", :direction => "ASC", :keyword => @keyword, :product_type => @product_type, :merk => @merk, :size => @size), :remote => true do %>
+            <%= t 'product.product_type' %>
+          <% end %>
+          <span class="glyphicon glyphicon-chevron-up"></span>
+        <% end %>
+      <% else %>
+        <%= link_to sort_product_purchase_purchase_details_path(@purchase.id, :column => "product_type", :direction => "ASC", :keyword => @keyword, :product_type => @product_type, :merk => @merk, :size => @size), :remote => true do %>
+          <%= t 'product.product_type' %>
+        <% end %>
+      <% end %>
+    </th>
+    
+    <th>
+      <% if @column=="merk" %>
+        <% if @direction=="ASC" %>
+          <%= link_to sort_product_purchase_purchase_details_path(@purchase.id, :column => "merk", :direction => "DESC", :keyword => @keyword, :product_type => @product_type, :merk => @merk, :size => @size), :remote => true do %>
+            <%= t 'product.merk' %>
+          <% end %>
+          <span class="glyphicon glyphicon-chevron-down"></span>
+        <% else %>
+          <%= link_to sort_product_purchase_purchase_details_path(@purchase.id, :column => "merk", :direction => "ASC", :keyword => @keyword, :product_type => @product_type, :merk => @merk, :size => @size), :remote => true do %>
+            <%= t 'product.merk' %>
+          <% end %>
+          <span class="glyphicon glyphicon-chevron-up"></span>
+        <% end %>
+      <% else %>
+        <%= link_to sort_product_purchase_purchase_details_path(@purchase.id, :column => "merk", :direction => "ASC", :keyword => @keyword, :product_type => @product_type, :merk => @merk, :size => @size), :remote => true do %>
+          <%= t 'product.merk' %>
+        <% end %>
+      <% end %>
+    </th>
+
+    <th>
+      <% if @column=="size" %>
+        <% if @direction=="ASC" %>
+          <%= link_to sort_product_purchase_purchase_details_path(@purchase.id, :column => "size", :direction => "DESC", :keyword => @keyword, :product_type => @product_type, :merk => @merk, :size => @size), :remote => true do %>
+            <%= t 'product.size' %>
+          <% end %>
+          <span class="glyphicon glyphicon-chevron-down"></span>
+        <% else %>
+          <%= link_to sort_product_purchase_purchase_details_path(@purchase.id, :column => "size", :direction => "ASC", :keyword => @keyword, :product_type => @product_type, :merk => @merk, :size => @size), :remote => true do %>
+            <%= t 'product.size' %>
+          <% end %>
+          <span class="glyphicon glyphicon-chevron-up"></span>
+        <% end %>
+      <% else %>
+        <%= link_to sort_product_purchase_purchase_details_path(@purchase.id, :column => "size", :direction => "ASC", :keyword => @keyword, :product_type => @product_type, :merk => @merk, :size => @size), :remote => true do %>
+          <%= t 'product.size' %>
+        <% end %>
+      <% end %>
+    </th>
+  </tr>
   </tr>
 
 <% @products.each do |product| %>

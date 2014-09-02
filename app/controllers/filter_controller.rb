@@ -73,10 +73,11 @@ class FilterController < ApplicationController
 
   def product
   	@products = Product
-  	.filter_name(params[:name])
+    .search_product(params[:keyword], params[:product_type], params[:merk], params[:size])
     .filter_supplier(params[:supplier_id])
-  	.sparepart
+    .sparepart
     .pagination(params[:page])
+    # .filter_name(params[:name])
 
     @store_cust_group = CustomerGroup.find_by_name("Bakul/Toko")
     @workshop_cust_group = CustomerGroup.find_by_name("Bengkel/Montir")
@@ -84,10 +85,11 @@ class FilterController < ApplicationController
 
   def product_unit
     @products = Product
-    .filter_name(params[:name])
+  	.search_product(params[:keyword], params[:product_type], params[:merk], params[:size])
     .filter_supplier(params[:supplier_id])
     .unit
     .pagination(params[:page])
+    # .filter_name(params[:name])
 
     @store_cust_group = CustomerGroup.find_by_name("Bakul/Toko")
     @workshop_cust_group = CustomerGroup.find_by_name("Bengkel/Montir")
