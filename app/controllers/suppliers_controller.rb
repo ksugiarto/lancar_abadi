@@ -86,6 +86,10 @@ class SuppliersController < ApplicationController
     @supplier = Supplier.find(params[:id])
     @supplier.destroy
     @suppliers = Supplier.order(:name).pagination(params[:page])
+
+    respond_to do |format|
+      format.html { redirect_to :back }
+    end
   end
 
   def import

@@ -1,5 +1,11 @@
 ============
 Things Done:
+(1) Start using 'javascript history.back'.
+(2) Adding Sale Histories on Product Show page.
+(3) Adding User List View. For developer for now.
+
+============
+Things Done:
 (1) Changing Filter on Sparepart and Unit.
 (2) Fixing Purchase Detail Pick Product.
 (3) Changing Product Update after 

@@ -1,8 +1,8 @@
 class ProductStickerPdf < Prawn::Document
   def initialize(model, view)
-  super(:page_size => [498.5, 769.5], :page_laytout => :landscape)
+  super(:page_size => [498.5, 769.5], :page_layout => :landscape)
     @model = model
-    @view =view
+    @view = view
     content
   end
 

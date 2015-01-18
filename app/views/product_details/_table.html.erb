@@ -1,5 +1,5 @@
-<table id="product_detail_table" class="table">
-  <tr>
+<table id="product_detail_table" class="table table-condensed">
+  <tr style="background-color:#708DC6;">
     <th><%= t 'product.detail.unit_of_measure' %></th>
     <th><%= t 'product.detail.sales_price' %></th>
     <th class="text-right"><%= link_to "#{t 'new'}", new_product_product_detail_path(@product), :class => "btn btn-default btn-xs", :remote => true %></th>

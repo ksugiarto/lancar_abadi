@@ -30,7 +30,7 @@ class ProductsController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @products }
-      format.js
+      # format.js
     end
   end
 
@@ -52,6 +52,8 @@ class ProductsController < ApplicationController
 
     @store_cust_group = CustomerGroup.find_by_name("Bakul/Toko")
     @workshop_cust_group = CustomerGroup.find_by_name("Bengkel/Montir")
+
+    @sale_histories = SaleDetail.where(:product_id => @product.id).order(:updated_at).reverse_order.limit(10)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -137,7 +139,8 @@ class ProductsController < ApplicationController
     @product.save
 
     respond_to do |format|
-      format.js
+      format.html { redirect_to @product }
+      # format.js
       # if @product.save && @product.try(:category).try(:name)=="SPAREPART"
       #   format.html { redirect_to @product, notice: 'Product was successfully created.' }
       #   format.json { render json: @product, status: :created, location: @product }
@@ -196,7 +199,8 @@ class ProductsController < ApplicationController
     end
 
     respond_to do |format|
-      format.js
+      format.html { redirect_to :back }
+      # format.js
       # if @product.try(:category).try(:name)=="SPAREPART"
       #   format.html { redirect_to @product, notice: 'Product was successfully updated.' }
       #   format.json { head :no_content }
@@ -221,6 +225,10 @@ class ProductsController < ApplicationController
     end
     @product.destroy
     get_data
+
+    respond_to do |format|
+      format.html { redirect_to :back }
+    end
   end
 
   def import

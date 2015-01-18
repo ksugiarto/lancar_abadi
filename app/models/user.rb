@@ -9,4 +9,8 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :username, :email, :password, :password_confirmation, :remember_me, :user_group_id
   # attr_accessible :title, :body
+
+  def self.pagination(page)
+    paginate(:per_page => 15, :page => page)
+  end
 end

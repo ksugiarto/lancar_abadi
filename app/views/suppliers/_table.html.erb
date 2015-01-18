@@ -22,7 +22,9 @@
     <td class="text-right">
         <%= link_to "#{t 'show'}", supplier, :class => "btn btn-primary btn-xs" %>
         <%= link_to "#{t 'edit'}", edit_supplier_path(supplier), :class => "btn btn-warning btn-xs", :remote => true %>
-        <%= link_to "#{t 'delete'}", supplier, method: :delete, data: { confirm: "#{t 'confirm'}" }, :class => "btn btn-danger btn-xs", :remote => true %>
+        <%= link_to "#{t 'delete'}", supplier, method: :delete, data: { confirm: "#{t 'confirm'}" }, :class => "btn btn-danger btn-xs" %>
+        <%=# link_to "#{t 'delete'}", supplier, method: :delete, data: { confirm: "#{t 'confirm'}" }, :class => "btn btn-danger btn-xs", :remote => true 
+        %>
     </td>
   </tr>
 <% end %>

@@ -1,0 +1,17 @@
+<table class="table table-condensed">
+  <tr style="background-color:#708DC6;">
+    <th><%= t 'sale.si_id' %></th>
+    <th><%= t 'sale.transaction_date' %></th>
+    <th><%= t 'sale.customer' %></th>
+    <th class="text-right"><%= t 'sale.detail.price' %></th>
+  </tr>
+
+<% @sale_histories.each do |sale_detail| %>
+  <tr>
+    <td><%= sale_detail.sale.try(:si_id) %></td>
+    <td><%= date(sale_detail.sale.transaction_date) %></td>
+    <td><%= sale_detail.sale.customer.try(:name) %></td>
+    <td class="text-right"><%= precision(sale_detail.price) %></td>
+  </tr>
+<% end %>
+</table>

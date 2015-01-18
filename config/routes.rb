@@ -2,7 +2,6 @@ LancarAbadi::Application.routes.draw do
 
   resources :special_prices
 
-
   resources :system_languages do
     collection do
       get :change_language
@@ -149,6 +148,10 @@ LancarAbadi::Application.routes.draw do
   resources :cities
   resources :provinces
   resources :countries
+
+  scope "/admin" do
+    resources :users
+  end
 
   get "home/index"
   get "*module/home/provinces_by_country" => "home#provinces_by_country"

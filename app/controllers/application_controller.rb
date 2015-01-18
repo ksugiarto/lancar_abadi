@@ -10,7 +10,6 @@ class ApplicationController < ActionController::Base
     I18n.locale = active.initial
   end
 
-
   def get_user_menus
     @main_menus = UserMenu.select("regexp_replace(name, '[ \t\n\r]*', '', 'g') as name, url, visible").where(:header_id => "A").order(:sub_header_id)
     @setting_menus = UserMenu.select("regexp_replace(name, '[ \t\n\r]*', '', 'g') as name, url, visible").where(:header_id => "B").order(:sub_header_id)
