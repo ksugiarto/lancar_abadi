@@ -140,7 +140,7 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to @product }
-      # format.js
+      format.js
       # if @product.save && @product.try(:category).try(:name)=="SPAREPART"
       #   format.html { redirect_to @product, notice: 'Product was successfully created.' }
       #   format.json { render json: @product, status: :created, location: @product }
@@ -200,7 +200,7 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to :back }
-      # format.js
+      format.js
       # if @product.try(:category).try(:name)=="SPAREPART"
       #   format.html { redirect_to @product, notice: 'Product was successfully updated.' }
       #   format.json { head :no_content }
@@ -228,6 +228,7 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to :back }
+      format.js
     end
   end
 
