@@ -57,7 +57,7 @@ $.fn.ajaxPagination = function() {
   this.on("click", function () {
     $(".apple_pagination").html("Silahkan tunggu...")
     $.get(this.href, null, null, "script");
-    // return false;
+    return false;
   });
 }
 
