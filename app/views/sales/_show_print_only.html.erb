@@ -1,4 +1,4 @@
-<% counter=0; row_number=0; total=0; @sale.details.each do |sale_detail| %>
+<% counter=0; row_number=0; total=0; grand_total=0; @sale.details.each do |sale_detail| %>
   <% counter+=1; if counter==1 %>
     <!-- PRINT HEADER -->
     <table id="table_hidden">
@@ -37,7 +37,7 @@
         <td class="text-center"><%= sale_detail.try(:unit_of_measure).try(:name) %></td>
         <td class="text-right"><%= precision(sale_detail.price) %></td>
         <td class="text-right"><%= precision(sale_detail.discount) %></td>
-        <td class="text-right"><%= precision(sale_detail.amount) %><% total+=sale_detail.amount.to_f %></td>
+        <td class="text-right"><%= precision(sale_detail.amount) %><% total+=sale_detail.amount.to_f; grand_total+=sale_detail.amount.to_f %></td>
         <td class="text-right" id="button_column">
           <%= link_to "#{t 'edit'}", edit_sale_sale_detail_path(@sale, sale_detail), :id => "btn", :class => "btn btn-warning btn-xs", :remote => true if @sale.status==0 %>
           <%= link_to "#{t 'delete'}", sale_sale_detail_path(@sale, sale_detail), method: :delete, data: { confirm: "#{t 'confirm'}" }, :id => "btn", :class => "btn btn-danger btn-xs", :remote => true if @sale.status==0 %>
@@ -51,7 +51,7 @@
         <td class="text-center"><%= sale_detail.try(:unit_of_measure).try(:name) %></td>
         <td class="text-right"><%= precision(sale_detail.price) %></td>
         <td class="text-right"><%= precision(sale_detail.discount) %></td>
-        <td class="text-right"><%= precision(sale_detail.amount) %><% total+=sale_detail.amount.to_f %></td>
+        <td class="text-right"><%= precision(sale_detail.amount) %><% total+=sale_detail.amount.to_f; grand_total+=sale_detail.amount.to_f %></td>
         <td class="text-right" id="button_column">
           <%= link_to "#{t 'edit'}", edit_sale_sale_detail_path(@sale, sale_detail), :id => "btn", :class => "btn btn-warning btn-xs", :remote => true if @sale.status==0 %>
           <%= link_to "#{t 'delete'}", sale_sale_detail_path(@sale, sale_detail), method: :delete, data: { confirm: "#{t 'confirm'}" }, :id => "btn", :class => "btn btn-danger btn-xs", :remote => true if @sale.status==0 %>
@@ -82,7 +82,7 @@
         <td class="text-center"><%= sale_detail.try(:unit_of_measure).try(:name) %></td>
         <td class="text-right"><%= precision(sale_detail.price) %></td>
         <td class="text-right"><%= precision(sale_detail.discount) %></td>
-        <td class="text-right"><%= precision(sale_detail.amount) %><% total+=sale_detail.amount.to_f %></td>
+        <td class="text-right"><%= precision(sale_detail.amount) %><% total+=sale_detail.amount.to_f; grand_total+=sale_detail.amount.to_f %></td>
         <td class="text-right" id="button_column">
           <%= link_to "#{t 'edit'}", edit_sale_sale_detail_path(@sale, sale_detail), :id => "btn", :class => "btn btn-warning btn-xs", :remote => true if @sale.status==0 %>
           <%= link_to "#{t 'delete'}", sale_sale_detail_path(@sale, sale_detail), method: :delete, data: { confirm: "#{t 'confirm'}" }, :id => "btn", :class => "btn btn-danger btn-xs", :remote => true if @sale.status==0 %>
@@ -104,6 +104,15 @@
           <th class="text-right" width="150"><%= precision(total) %></th>
           <th width="50"></th>
         </tr>
+        <tr>
+          <th colspan="3"><hr></th>
+        </tr>
+        <tr>
+          <th class="text-right" width="200"><%= t 'sale.grand_amount' %>:</th>
+          <th width="50">&nbsp;Rp</th>
+          <th class="text-right" width="150"><%= precision(grand_total) %></th>
+          <th width="50"></th>
+        </tr>
       </table>
     </div>
   </div>
@@ -119,6 +128,22 @@
     </tr>
   </table>
 <% else %>
+  <div class="row">
+    <div class="col-sm-8"></div>
+    <div class="col-sm-4">
+      <table id="table_hidden">
+        <tr>
+          <th colspan="3"><hr></th>
+        </tr>
+        <tr>
+          <th class="text-right" width="200"><%= t 'sale.grand_amount' %>:</th>
+          <th width="50">&nbsp;Rp</th>
+          <th class="text-right" width="150"><%= precision(grand_total) %></th>
+          <th width="50"></th>
+        </tr>
+      </table>
+    </div>
+  </div>
   
   <table border=1 id="table_hidden">
     <tr>

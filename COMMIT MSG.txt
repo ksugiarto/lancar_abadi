@@ -1,5 +1,13 @@
 ============
 Things Done:
+(1) Change back precision to normal.
+(2) Adding 'Grand Total' when printing Sales.
+
+Things Next to Do:
+(1) Di pembelian bisa kliatan dari supplier sapa aja, tapi di sales nda mau dobel2
+
+============
+Things Done:
 (1) Start using 'javascript history.back'.
 (2) Adding Sale Histories on Product Show page.
 (3) Adding User List View. For developer for now.
