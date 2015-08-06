@@ -115,6 +115,18 @@ class Sale < ActiveRecord::Base
     where("EXTRACT(YEAR FROM transaction_date) = ?", "#{id}")
   end
 
+  def self.filter_transaction_period(start_date, end_date)
+    if start_date.present? and end_date.blank?
+      where("sales.transaction_date >= ?", start_date)
+    elsif start_date.blank? and end_date.present?
+      where("sales.transaction_date <= ?", "#{end_date} 23:59:59")
+    elsif start_date.present? and end_date.present?
+      where("sales.transaction_date BETWEEN ? AND ?", start_date, "#{end_date} 23:59:59")
+    else
+      where("EXTRACT(MONTH FROM sales.transaction_date)=EXTRACT(MONTH FROM CURRENT_DATE) AND EXTRACT(YEAR FROM sales.transaction_date)=EXTRACT(YEAR FROM CURRENT_DATE)")
+    end
+  end
+
   def self.filter_customer(id)
     if id!=0
       where(:customer_id => id)
@@ -128,6 +140,24 @@ class Sale < ActiveRecord::Base
       where(:status => id)
     else
       scoped
+    end
+  end
+
+  def self.sort_report(order_by)
+    if order_by=="date_asc"
+      order(:transaction_date)
+    elsif order_by=="date_dsc"
+      order(:transaction_date).reverse_order
+    elsif order_by=="customer_asc"
+      joins(:customer).order("customers.name ASC, total_amount DESC")
+    elsif order_by=="customer_dsc"
+      joins(:customer).order("customers.name DSC, total_amount DESC")
+    elsif order_by=="amount_asc"
+      order(:total_amount)
+    elsif order_by=="amount_dsc"
+      order(:total_amount).reverse_order
+    else
+      order(:created_at).reverse_order
     end
   end
 end

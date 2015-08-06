@@ -74,6 +74,7 @@ id:
       product_unit: "Unit"
       customer: "Pembeli"
       supplier: "Supplier"
+      sale_report: "Lap Penjualan"
     setting:
       setting: "Pengaturan"
       employee: "Pegawai"
@@ -370,6 +371,18 @@ id:
       quantity: "Kuantitas"
       quantity_print: "Kuantitas Cetak"
       quantity_print_placeholder: "Kosongkan u/ ikuti kuantitas"
+
+  # REPORT
+  report:
+    pdf: "Cetak ke PDF"
+    period: "Periode"
+    order: "Urutkan"
+    start_date: "Tanggal Awal"
+    end_date: "Tanggal Akhir"
+    date: "Tanggal"
+    date_print: "Tanggal Cetak"
+    print_by: "Dicetak oleh"
+    sale: "Laporan Penjualan"
 
   # SETTING
   menu:

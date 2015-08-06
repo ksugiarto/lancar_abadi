@@ -1,0 +1,27 @@
+<%= will_paginate @sales, :class => "apple_pagination" %>
+
+<table class="table table-condensed">
+  <tr>
+    <th><%= t 'sale.si_id' %></th>
+    <th><%= t 'sale.transaction_date' %></th>
+    <th><%= t 'sale.customer' %></th>
+    <th><%= t 'sale.customer_group' %></th>
+    <th class="text-right"><%= t 'sale.total_amount' %></th>
+    <th></th>
+  </tr>
+
+<% @sales.each do |sale| %>
+  <tr class="status_<%= sale.status.to_i %>">
+    <td><%= sale.si_id %></td>
+    <td><%= date(sale.transaction_date) %></td>
+    <td><%= sale.customer_name %></td>
+    <td><%= sale.customer_group_name %></td>
+    <td class="text-right"><%= precision(sale.total_amount) %></td>
+    <td class="text-right">
+        <%= link_to "#{t 'show'}", sale, :class => "btn btn-primary btn-xs" %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<%= will_paginate @sales, :class => "apple_pagination" %>

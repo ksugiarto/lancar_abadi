@@ -16,6 +16,10 @@ module ApplicationHelper
     company = CompanyProfile.last
   end
 
+  def get_date_print
+    date_print = Date.today.strftime("%d-%m-%Y")
+  end
+
 	def date(d)
     if d.present?
     	return d.to_time.localtime.strftime("%d-%m-%Y")

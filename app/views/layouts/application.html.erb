@@ -87,7 +87,7 @@
 
 				    </ul>
 
-				  <p class="navbar-text navbar-right">Login as <%= current_user.try(:username) %> (<u><%= link_to "#{t 'logout'}", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></u>)</p>
+				  <p class="navbar-text navbar-right"><%= current_user.try(:username) %> (<u><%= link_to "#{t 'logout'}", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></u>)</p>
 				  </div><!-- /.navbar-collapse -->
 			  <% end %>
 			</div>

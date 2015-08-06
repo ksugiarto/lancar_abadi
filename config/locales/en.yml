@@ -74,6 +74,7 @@ en:
       product_unit: "Unit"
       customer: "Customer"
       supplier: "Supplier"
+      sale_report: "Sales Report"
     setting:
       setting: "Setting"
       employee: "Employee"
@@ -369,6 +370,18 @@ en:
       quantity: "Quantity"
       quantity_print: "Quantity Print"
       quantity_print_placeholder: "Leave blank will use quantity"
+
+  # REPORT
+  report:
+    pdf: "Print to PDF"
+    period: "Period"
+    order: "Order By"
+    start_date: "Start Date"
+    end_date: "End Date"
+    date: "Date"
+    date_print: "Date Print"
+    print_by: "Print by"
+    sale: "Sales Report"
 
   # SETTING
   menu:

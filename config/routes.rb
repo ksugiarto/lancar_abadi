@@ -9,6 +9,13 @@ LancarAbadi::Application.routes.draw do
     end
   end
 
+  resources :report do
+    collection do
+      get :sale_filter
+      get :sale
+    end
+  end
+
   resources :filter do
     collection do
       get :country

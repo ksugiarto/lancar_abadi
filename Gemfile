@@ -5,7 +5,8 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.12'
 gem 'pg', '0.17.0'
-gem 'jquery-rails', '3.0.4'
+# gem 'jquery-rails', '3.0.4'
+gem 'jquery-rails', '~> 2.3.0'
 # gem 'jquery-ui-rails'
 # gem 'date_time_picker', '~> 0.5.4'	# for date picker with time
 gem "paperclip", '~> 3.4.2'					# required for upload and save photo

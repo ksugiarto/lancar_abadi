@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
 //= require_tree .
 
 // require bootstrap-modal
@@ -64,6 +65,10 @@ $.fn.ajaxPagination = function() {
 $(document).ready(function() {
   /* Activating Best In Place */
   // jQuery(".best_in_place").best_in_place();
+
+  // $( "#datepicker" ).datepicker({showButtonPanel: true});
+  // $( "#datepicker" ).datepicker( "option", "dateFormat", "dd/mm/yy" );
+  // $( "#datepicker" ).datepicker( "option", "showAnim", "blind" );
 
   $(".apple_pagination a").ajaxPagination();
 

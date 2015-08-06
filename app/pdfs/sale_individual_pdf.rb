@@ -122,7 +122,7 @@ class SaleIndividualPdf < Prawn::Document
     [["Dibuat oleh,", "Diperiksa oleh,", "Pengumpul", "Diterima oleh,
 
 
-
+      
       "]]
   end
 
