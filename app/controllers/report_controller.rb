@@ -24,6 +24,8 @@ class ReportController < ApplicationController
     .filter_status(params[:status])
     .sort_report(params[:sort])
 
+    @grand_total = @sales_pdf.sum(&:total_amount)
+
     if params[:transaction_start_date].present? && params[:transaction_end_date].blank?
       @period = ">= #{params[:transaction_start_date].to_date.strftime('%d-%m-%Y')}" 
     elsif params[:transaction_start_date].blank? && params[:transaction_end_date].present?
@@ -37,7 +39,7 @@ class ReportController < ApplicationController
     respond_to do |format|
       format.js
       format.pdf do
-        pdf = SalePdf.new(@sales_pdf, view_context, ApplicationController.helpers.get_date_print, current_user.username, @period, ApplicationController.helpers.company_name)
+        pdf = SalePdf.new(@sales_pdf, view_context, ApplicationController.helpers.get_date_print, current_user.username, @period, ApplicationController.helpers.company_name, @grand_total)
         send_data pdf.render, filename: "#{I18n.t 'report.sale'}-#{Time.now.strftime("%Y%m%dT%H%M%S")}.pdf",
         type: "application/pdf", disposition: "inline"
       end

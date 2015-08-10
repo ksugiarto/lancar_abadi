@@ -1,5 +1,5 @@
 class SalePdf < Prawn::Document
-  def initialize(models, view, date_print, employee, period, company_name)
+  def initialize(models, view, date_print, employee, period, company_name, grand_total)
   super()
     @models = models
     @view = view
@@ -7,21 +7,10 @@ class SalePdf < Prawn::Document
     @employee = employee
     @period = period
     @company_name = company_name
+    @grand_total = grand_total
     header
     content
     footer
-  end
-
-  def precision(num)
-    @view.number_with_precision(num, :delimiter => ",", :separator => ".", :precision => 2)
-  end
-
-  def delimiter(num)
-    @view.number_with_delimiter(num, :delimiter => ",", :separator => ".")
-  end
-
-  def currency(num)
-    @view.number_to_currency(num, unit: "Rp ", :precision => 0)
   end
 
   def logo
@@ -60,7 +49,8 @@ class SalePdf < Prawn::Document
   def model_item_rows
     @number=0
 
-    [["#{I18n.t 'row_number'}", "#{I18n.t 'sale.si_id'}",
+    [["", "#{I18n.t 'report.grand_total'}", "", "", "", "Rp #{ApplicationController.helpers.precision(@grand_total)}"],
+      ["#{I18n.t 'row_number'}", "#{I18n.t 'sale.si_id'}",
       "#{I18n.t 'sale.transaction_date'}", "#{I18n.t 'sale.customer'}", 
       "#{I18n.t 'sale.customer_group'}", "#{I18n.t 'sale.total_amount'}" ]] +
     @models.map do |model|
@@ -68,18 +58,23 @@ class SalePdf < Prawn::Document
         "#{ApplicationController.helpers.date(model.try(:transaction_date))}",
         "#{model.customer_name}", "#{model.customer_group_name}",
         "#{ApplicationController.helpers.precision(model.total_amount)}" ]
-    end
+    end +
+    [["", "#{I18n.t 'report.grand_total'}", "", "", "", "Rp #{ApplicationController.helpers.precision(@grand_total)}"]]
   end
 
   def content
+    models = @models
+
     table model_item_rows, :cell_style => { :font => "Times-Roman", :size => 9 }, :width => 540 do
       self.header = true
       self.row_colors = ["FFFFFF", "F5F5F5"]
-      self.column_widths = {0=>30, 1=>75, 2=>100, 3=>190, 4=>60, 5=>85}
+      self.column_widths = {0=>30, 1=>75, 2=>75, 3=>165, 4=>60, 5=>135}
       # cells.borders = []
       # rows(0).borders = [:bottom]
       row(0).font_style = :bold
-      row(0).background_color = "708DC6"
+      row(models.count+2).font_style = :bold
+      row(0..1).background_color = "708DC6"
+      row(models.count+2).background_color = "708DC6"
       column(0).align=:right
       columns(5..6).align=:right
     end

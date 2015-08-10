@@ -381,6 +381,7 @@ en:
     date: "Date"
     date_print: "Date Print"
     print_by: "Print by"
+    grand_total: "Grand Total"
     sale: "Sales Report"
 
   # SETTING

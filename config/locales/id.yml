@@ -382,6 +382,7 @@ id:
     date: "Tanggal"
     date_print: "Tanggal Cetak"
     print_by: "Dicetak oleh"
+    grand_total: "Total Keseluruhan"
     sale: "Laporan Penjualan"
 
   # SETTING

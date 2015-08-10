@@ -1,7 +1,12 @@
 <%= will_paginate @sales, :class => "apple_pagination" %>
 
 <table class="table table-condensed">
-  <tr>
+  <tr style="background-color:#708DC6; color:#FFE57F">
+    <th colspan=4><%= t 'report.grand_total' %></th>
+    <th class="text-right">Rp&nbsp;<%= precision(@grand_total) %></th>
+    <th></th>
+  </tr>
+  <tr style="background-color:#708DC6;">
     <th><%= t 'sale.si_id' %></th>
     <th><%= t 'sale.transaction_date' %></th>
     <th><%= t 'sale.customer' %></th>
@@ -22,6 +27,11 @@
     </td>
   </tr>
 <% end %>
+  <tr style="background-color:#708DC6; color:#FFE57F">
+    <th colspan=4><%= t 'report.grand_total' %></th>
+    <th class="text-right">Rp&nbsp;<%= precision(@grand_total) %></th>
+    <th></th>
+  </tr>
 </table>
 
 <%= will_paginate @sales, :class => "apple_pagination" %>
